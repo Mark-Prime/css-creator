@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom'  
 import './index.css';
 import App from './App';
+import CssBuilder from './Pages/css-builder';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>  
+    <div>
+      <Route exact path="/" component={App} /> 
+      <Route path="/css" component={CssBuilder} /> 
+    </div>  
+  </Router>,
   document.getElementById('root')
 );
 
