@@ -29,6 +29,10 @@ const NumberInput = styled.input`
     &:focus {
         outline: none;
     }
+
+    &:disabled {
+        color: #BFBFBF;
+    }
 `
 
 class NumberSelect extends Component {
@@ -52,6 +56,7 @@ class NumberSelect extends Component {
                     min="0" 
                     value={this.props.style[this.props.name].replace('px', '')} 
                     onChange={this.props.OnStyleChange} 
+                    disabled={!this.props.enabled[this.props.name]}
                 />
             </Wrapper>
          );

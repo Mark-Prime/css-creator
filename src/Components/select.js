@@ -30,6 +30,10 @@ const SelectInput = styled.select`
     &:focus {
         outline: none;
     }
+
+    &:disabled {
+        color: #BFBFBF;
+    }
 `
 
 class Select extends Component {
@@ -52,6 +56,7 @@ class Select extends Component {
                     min="0" 
                     value={this.props.style[this.props.name]} 
                     onChange={this.props.OnStyleChange} 
+                    disabled={!this.props.enabled[this.props.name]}
                 >
                     {this.props.options.map(item => (
                         <Option value={item}>
