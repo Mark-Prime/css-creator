@@ -41,13 +41,15 @@ class Select extends Component {
         return ( 
             <Wrapper>
                 <div>
-                    <CheckBox 
-                        name={this.props.name}
-                        type="checkbox" 
-                        checked={this.props.enabled[this.props.name]}
-                        onChange={this.props.toggleEnabled}
-                    />
-                    <InputLabel>{aliases[this.props.name]}</InputLabel>
+                    <InputLabel>
+                        <CheckBox 
+                            name={this.props.name}
+                            type="checkbox" 
+                            checked={this.props.enabled[this.props.name]}
+                            onChange={this.props.toggleEnabled}
+                        />
+                        {aliases[this.props.name]}
+                    </InputLabel>
                 </div>
                 <SelectInput 
                     name={this.props.name}
