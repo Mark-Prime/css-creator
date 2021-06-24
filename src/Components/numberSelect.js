@@ -70,6 +70,18 @@ class NumberSelect extends Component {
         this.setState({
             suffix: value
         })
+
+        this.props.OnStyleChange(
+            {
+                target: {
+                    dataset: {
+                        suffix: value
+                    },
+                    value: parseInt(this.props.style[this.props.name], 10),
+                    name: this.props.name
+                }
+            }
+        )
     }
 
     render() { 
