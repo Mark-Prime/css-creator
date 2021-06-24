@@ -41,7 +41,8 @@ class CssBuilder extends Component {
             "borderWidth": "0px",
             "borderStyle": "solid",
             "textDecoration": 'none',
-            "textAlign": 'left'
+            "textAlign": 'left',
+            "borderRadius": "0px"
         },
         enabled: {
             "fontSize": true,
@@ -53,13 +54,14 @@ class CssBuilder extends Component {
             "borderWidth": false,
             "borderStyle": false,
             "textDecoration": false,
-            "textAlign": false
+            "textAlign": false,
+            "borderRadius": false
         }
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
 
-    setStyle = (style) => {this.setState({style: style}); console.log(style)}
+    setStyle = (style) => {this.setState({style: style})}
 
     setText = (event) => {this.setState({text: event.target.value})}
 

@@ -9,6 +9,7 @@ const aliases = {
     "borderStyle": "border-style",
     "textAlign": "text-align",
     "textDecoration": "text-decoration",
+    "borderRadius": "border-radius",
 }
 
 export default aliases;

@@ -33,7 +33,6 @@ const InputLabel = styled.label`
 class Properties extends Component {
 
     OnStyleChange = (event) => {
-        event.preventDefault()
         let suffix = event.target.dataset.suffix
         let newProps = {...this.props.style}
         let value = event.target.value + suffix
@@ -126,6 +125,13 @@ class Properties extends Component {
                     />
                     <NumberSelect 
                         name="borderWidth" 
+                        style={this.props.style} 
+                        enabled={this.props.enabled} 
+                        OnStyleChange={this.OnStyleChange} 
+                        toggleEnabled={this.props.toggleEnabled}
+                    />
+                    <NumberSelect 
+                        name="borderRadius" 
                         style={this.props.style} 
                         enabled={this.props.enabled} 
                         OnStyleChange={this.OnStyleChange} 
