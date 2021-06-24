@@ -59,6 +59,7 @@ class NumberSelect extends Component {
                     max={this.props.max ? this.props.max : "none"}
                     value={this.props.style[this.props.name].replace('px', '')} 
                     onChange={this.props.OnStyleChange} 
+                    disabled={!this.props.enabled[this.props.name]}
                 />
             </Wrapper>
          );
