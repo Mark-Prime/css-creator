@@ -35,7 +35,10 @@ class Properties extends Component {
     OnStyleChange = (event) => {
         let suffix = event.target.dataset.suffix
         let newProps = {...this.props.style}
-        let value = event.target.value + suffix
+        let value = event.target.value
+        if (suffix) { 
+            value += suffix
+        }
         newProps[event.target.name] = value;
         this.props.setStyle(newProps)
     }
