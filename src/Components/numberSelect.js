@@ -116,11 +116,20 @@ class NumberSelect extends Component {
                         disabled={!this.props.enabled[this.props.name]}
                     >
                         <option value={"px"} key="px">px</option>
+                        <option value={"cm"} key="cm">cm</option>
+                        <option value={"mm"} key="mm">mm</option>
+                        <option value={"in"} key="in">in</option>
+                        <option value={"pt"} key="pt">pt</option>
+                        <option value={"pc"} key="pc">pc</option>
                         <option value={"%"} key="percent">%</option>
                         <option value={"em"} key="em">em</option>
                         <option value={"rem"} key="rem">rem</option>
                         <option value={"vh"} key="vh">vh</option>
                         <option value={"vw"} key="vw">vw</option>
+                        <option value={"ex"} key="ex">ex</option>
+                        <option value={"ch"} key="ch">ch</option>
+                        <option value={"vmin"} key="vmin">vmin</option>
+                        <option value={"vmax"} key="vmax">vmax</option>
                     </SuffixSelect>
                 </SelectWrapper>
             </Wrapper>
