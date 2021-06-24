@@ -14,6 +14,7 @@ const TextBox = styled.div`
     background: #424242;
     border-radius: 5px 5px 0 0;
     display: grid;
+    position: relative;
     grid-template-rows: 5% auto;
 `
 
@@ -24,10 +25,20 @@ const TextBoxHeader = styled.h4`
 
 const TextBoxBody = styled.p`
     background: #303030;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     padding: 0 4px;
     border-radius: 5px 5px 0 0;
     white-space: pre-wrap;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    height: calc(100% - 25px);
+    width: calc(100% - 18px);
+
+    position: absolute;
+    left: 5px;
+    bottom: 0;
 `
 
 class Output extends Component {
@@ -36,7 +47,7 @@ class Output extends Component {
             <Wrapper style={{"gridTemplateColumns": this.props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
                 <TextBox>
                     <TextBoxHeader>HTML</TextBoxHeader>
-                    <TextBoxBody>{`<${this.props.tag}>${this.props.text}</${this.props.tag}>`}</TextBoxBody>
+                    <TextBoxBody>{`<body>\n\t<${this.props.tag}>${this.props.text}</${this.props.tag}>\n</body>`}</TextBoxBody>
                 </TextBox>
                 <TextBox>
                     <TextBoxHeader>CSS</TextBoxHeader>
