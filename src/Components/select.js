@@ -61,7 +61,7 @@ class Select extends Component {
                     disabled={!this.props.enabled[this.props.name]}
                 >
                     {this.props.options.map(item => (
-                        <Option value={item}>
+                        <Option value={item} key={`${this.props.name}-${item}`}>
                             {item}
                         </Option>
                     ))}
