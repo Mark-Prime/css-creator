@@ -55,7 +55,8 @@ class NumberSelect extends Component {
                     name={this.props.name}
                     data-suffix="px" 
                     type="number" 
-                    min="0" 
+                    min={this.props.min ? this.props.min : 0}
+                    max={this.props.max ? this.props.max : 0}
                     value={this.props.style[this.props.name].replace('px', '')} 
                     onChange={this.props.OnStyleChange} 
                     disabled={!this.props.enabled[this.props.name]}
