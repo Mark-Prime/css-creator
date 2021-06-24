@@ -48,7 +48,7 @@ class Properties extends Component {
             <Wrapper>
                 <Section>
                     <Input>
-                        <InputLabel>Display Text: </InputLabel>
+                        <InputLabel>Text: </InputLabel>
                         <TextBox value={this.props.text} onChange={this.props.setText}></TextBox>
                     </Input>
                 </Section>
