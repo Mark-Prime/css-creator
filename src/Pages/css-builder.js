@@ -92,6 +92,8 @@ class CssBuilder extends Component {
             background: ${this.state.background};
             position: relative;
             width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
         `
 
         return ( 

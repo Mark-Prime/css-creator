@@ -25,7 +25,7 @@ const SelectInput = styled.select`
     background: #303030;
     color: #fff;
     margin-left: 4px;
-    min-width: 21%;
+    width: 31%;
 
     &:focus {
         outline: none;
@@ -53,8 +53,6 @@ class Select extends Component {
                 </div>
                 <SelectInput 
                     name={this.props.name}
-                    data-suffix="" 
-                    type="number" 
                     min="0" 
                     value={this.props.style[this.props.name]} 
                     onChange={this.props.OnStyleChange} 
