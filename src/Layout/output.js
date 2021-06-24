@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import aliases from '../Utility/aliases'
 
+import CopyButton from '../Components/copyButton';
+
 const Wrapper = styled.div`
     background: #303030;
     border-top: 2px rgba(255, 255, 255, 0.12) solid;
@@ -19,8 +21,8 @@ const TextBox = styled.div`
 `
 
 const TextBoxHeader = styled.h4`
-    margin: 0;
-    padding: 0 0 0 10px;
+    margin: 3px 0 0 0;
+    padding: 0 3px 3px 10px;
 `
 
 const TextBoxBody = styled.p`
@@ -33,7 +35,7 @@ const TextBoxBody = styled.p`
     overflow-x: hidden;
     overflow-y: auto;
 
-    height: calc(100% - 25px);
+    height: calc(100% - 30px);
     width: calc(100% - 18px);
 
     position: absolute;
@@ -43,38 +45,41 @@ const TextBoxBody = styled.p`
 
 class Output extends Component {
     render() { 
+
+        const HTML = `<body>\n\t<${this.props.tag}>${this.props.text}</${this.props.tag}>\n</body>`
+        let CSS = ``
+        let SASS = ``
+
+        if (this.props.background !== "#ffffff") {
+            CSS = CSS + `body {\n\tbackground: ${this.props.background}\n}\n\n`
+            SASS = SASS + `body\n\tbackground: ${this.props.background}\n\n`
+        }
+
+        CSS = CSS + `${this.props.tag} {\n`
+        SASS = SASS + `${this.props.tag} \n`
+
+        for (const key of Object.keys(this.props.style)) {
+            if (this.props.enabled[key]) {
+                CSS = CSS + `\t${aliases[key]}: ${this.props.style[key]};\n`
+                SASS = SASS + `\t${aliases[key]}: ${this.props.style[key]};\n`
+            }
+        }
+
+        CSS += '}'
+
         return ( 
             <Wrapper style={{"gridTemplateColumns": this.props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
                 <TextBox>
-                    <TextBoxHeader>HTML</TextBoxHeader>
-                    <TextBoxBody>{`<body>\n\t<${this.props.tag}>${this.props.text}</${this.props.tag}>\n</body>`}</TextBoxBody>
+                    <TextBoxHeader>HTML <CopyButton text={HTML} /></TextBoxHeader>
+                    <TextBoxBody>{HTML}</TextBoxBody>
                 </TextBox>
                 <TextBox>
-                    <TextBoxHeader>CSS</TextBoxHeader>
-                    <TextBoxBody>
-                    {this.props.background === "#ffffff" ||
-                        <>{`body {\n\tbackground: ${this.props.background}\n}\n\n`}</>}
-                        {this.props.tag} {`{\n`}
-                            {Object.keys(this.props.style).map(key => (
-                                <>
-                                    {this.props.enabled[key] && `\t${aliases[key]}: ${this.props.style[key]};\n`}
-                                </>
-                            ))}
-                        {`}`}
-                    </TextBoxBody>
+                    <TextBoxHeader>CSS <CopyButton text={CSS} /></TextBoxHeader>
+                    <TextBoxBody>{CSS}</TextBoxBody>
                 </TextBox>
                 <TextBox style={{"display": !this.props.scss &&"none"}}>
-                    <TextBoxHeader>SASS</TextBoxHeader>
-                    <TextBoxBody>
-                        {this.props.background === "#ffffff" ||
-                        <>{`body\n\tbackground: ${this.props.background}\n\n`}</>}
-                        {this.props.tag} {`\n`}
-                            {Object.keys(this.props.style).map(key => (
-                                <>
-                                    {this.props.enabled[key] && `\t${aliases[key]}: ${this.props.style[key]};\n`}
-                                </>
-                            ))}
-                    </TextBoxBody>
+                    <TextBoxHeader>SASS <CopyButton text={SASS} /></TextBoxHeader>
+                    <TextBoxBody>{SASS}</TextBoxBody>
                 </TextBox>
             </Wrapper>
          );
