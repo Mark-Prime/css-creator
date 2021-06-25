@@ -52,13 +52,48 @@ const CenteredImg = styled.img`
     transform: translate(-50%, -50%);
 `
 
+const CheckBox = styled.input`
+
+`
+
+const InputLabel = styled.label`
+    
+`
+
 class Sidebar extends Component {
     state = {
-        "colorEnabled": false
+        "popup": false,
+        "enabled": false,
+        "color": "#FFFFFF"
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            color: this.props.values.background
+        })
     }
 
     toggleColorPicker = () => {
-        this.setState({colorEnabled: !this.state.colorEnabled})
+        this.setState({popup: !this.state.popup})
+    }
+
+    toggleEnabled = () => {
+        if (this.state.enabled) {
+            this.props.functions.handleChangeComplete({hex: "#ffffff"})
+        } else {
+            this.props.functions.handleChangeComplete({hex: this.state.color})
+        }
+        this.setState({enabled: !this.state.enabled})
+    }
+
+    handleChangeComplete = (color) => {
+        this.setState({
+            "color": color.hex
+        })
+
+        if (this.state.enabled) {
+            this.props.functions.handleChangeComplete({hex: color.hex})
+        }
     }
 
     render() { 
@@ -70,19 +105,28 @@ class Sidebar extends Component {
                     <ToggleDisabled><CenteredImg src={SassLogo} alt="SASS" width="70%"/></ToggleDisabled>}
                 </Toggle>
                 <Toggle onClick={this.toggleColorPicker}>
-                    {this.state.colorEnabled ? 
+                    {this.state.popup ? 
                         <ToggleEnabled><ToggleBody>BGC</ToggleBody></ToggleEnabled> :
                         <ToggleDisabled><ToggleBody>BGC</ToggleBody></ToggleDisabled>
                     }
                 </Toggle>
-                {this.state.colorEnabled &&
+                {this.state.popup &&
                     <PopoutWrapper>
                         <SketchPicker
-                            color={ this.props.values.background }
-                            onChange={ this.props.functions.handleChangeComplete }
+                            color={ this.state.color }
+                            onChange={ this.handleChangeComplete }
                             disableAlpha={true}
                             margin="7px"
                         />
+                        <InputLabel>
+                            <CheckBox 
+
+                                type="checkbox" 
+                                checked={this.state.enabled}
+                                onChange={this.toggleEnabled}
+                            />
+                            background
+                        </InputLabel>
                     </PopoutWrapper>
                 }
             </Wrapper>
