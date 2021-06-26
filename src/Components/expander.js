@@ -16,7 +16,6 @@ const Open = keyframes`
 `
 
 const Content = styled.div`
-    background: rgba(255,255,255, .07);
     padding: 4px 4px 4px 0;
     overflow-x: hidden;
     overflow-y: auto;
