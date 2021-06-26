@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TextProperties from '../properties/textProperties';
 import PaddingProperties from '../properties/paddingProperties';
 import BorderProperties from '../properties/borderProperties';
+import ColorProperties from '../properties/colorProperties';
 
 const Wrapper = styled.div`
     background: #303030;
@@ -34,7 +35,7 @@ class Properties extends Component {
                 <TextProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
                 <PaddingProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
                 <BorderProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
-                
+                <ColorProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
             </Wrapper>
          );
     }
