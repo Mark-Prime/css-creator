@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
-    background: rgba(255, 255, 255, 0.12);
-    margin-bottom: 3px;
-`
-
-const Title = styled.div`
-    cursor: pointer;
-    padding: 1px 5px;
-
-    &:hover {
-        font-weight: bold;
-    }
-`
-
 const Content = styled.div`
     background: #303030;
     padding: 3px 0;
 `
 
+const Title = styled.div`
+    cursor: pointer;
+    padding: 1px 5px;
+    
 
+    &:hover {
+        font-weight: bold;
+    }
+`
 
 class Expander extends Component {
     state = { 
@@ -30,11 +24,21 @@ class Expander extends Component {
     ToggleOpen = () => {this.setState({open: !this.state.open})}
 
     render() { 
+        const Wrapper = styled.div`
+            background: rgba(255,255,255, .12);
+            margin-bottom: 3px;
+            border-radius: 5px 0 0 ${this.state.open ? "0" : "5px"};
+
+            &:hover {
+                border-radius: 0px;
+            }
+        `
+
         const Notch = styled.div`
-            float: right;
+            float: left;
             ${this.state.open ? "transform: rotate(90deg) translateY(-1rem) translateX(.3rem);"
             : "transform: rotate(0deg) translateY(-.7rem);"}
-            margin-left: 5px;
+            margin-right: 10px;
             font-size: 1.6rem;
             height: .6rem;
         `
