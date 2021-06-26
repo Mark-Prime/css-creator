@@ -16,8 +16,8 @@ const Open = keyframes`
 `
 
 const Content = styled.div`
-    background: #303030;
-    padding: 3px 0;
+    background: rgba(255,255,255, .07);
+    padding: 4px 4px 4px 0;
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -27,15 +27,10 @@ const Content = styled.div`
     animation: ${Open} .2s linear 0s 1 normal;
 `
 
-const Title = styled.div`
-    cursor: pointer;
-    padding: 1px 5px;
-    transition: all .1s;
-
-    &:hover {
-        font-weight: bold;
-        margin-left: 5px;
-    }
+const Wrapper = styled.div`
+    margin-bottom: 3px;
+    height: auto;
+    transition: all .05s;
 `
 
 class Expander extends Component {
@@ -46,14 +41,16 @@ class Expander extends Component {
     ToggleOpen = () => {this.setState({open: !this.state.open})}
 
     render() { 
-        const Wrapper = styled.div`
-            background: rgba(255,255,255, .12);
-            margin-bottom: 3px;
+        const Title = styled.div`
+            cursor: pointer;
+            padding: 1px 5px;
+            transition: all .1s;
             border-radius: 5px 0 0 ${this.state.open ? "0" : "5px"};
-            height: auto;
-            transition: all .05s;
+            background: rgba(255,255,255, .12);
 
             &:hover {
+                font-weight: bold;
+                padding-left: 10px;
                 border-radius: 0px;
             }
         `
