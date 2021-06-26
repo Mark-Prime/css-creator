@@ -32,6 +32,7 @@ class CssBuilder extends Component {
         text: "Button",
         background: '#ffffff',
         style: {
+            "color": "#000000",
             "fontSize": "16px",
             "padding": "3px",
             "paddingLeft": "3px",
@@ -42,9 +43,10 @@ class CssBuilder extends Component {
             "borderStyle": "solid",
             "textDecoration": 'none',
             "textAlign": 'left',
-            "borderRadius": "0px"
+            "borderRadius": "0px",
         },
         enabled: {
+            "color": false,
             "fontSize": true,
             "padding": false,
             "paddingLeft": false,
@@ -55,7 +57,7 @@ class CssBuilder extends Component {
             "borderStyle": false,
             "textDecoration": false,
             "textAlign": false,
-            "borderRadius": false
+            "borderRadius": false,
         }
      }
 

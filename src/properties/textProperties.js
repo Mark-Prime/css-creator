@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import NumberSelect from '../Components/numberSelect'
+import ColorSelector from '../Components/colorSelector';
 import Select from '../Components/select'
 import Expander from '../Components/expander';
 
@@ -24,6 +25,13 @@ class TextProperties extends Component {
                     <InputLabel>Content: </InputLabel>
                     <TextBox value={this.props.parentProps.text} onChange={this.props.parentProps.setText}></TextBox>
                 </Input>
+                <ColorSelector 
+                    name="color"
+                    style={this.props.parentProps.style} 
+                    enabled={this.props.parentProps.enabled} 
+                    onStyleChange={this.props.OnStyleChange} 
+                    toggleEnabled={this.props.parentProps.toggleEnabled} 
+                />
                 <hr />
                 <NumberSelect 
                     name="fontSize" 

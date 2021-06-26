@@ -1,5 +1,6 @@
 const aliases = {
     'fontSize': "font-size",
+    "color": "color",
     'padding': "padding",
     'paddingLeft': "padding-left",
     'paddingTop': "padding-top",
@@ -9,7 +10,7 @@ const aliases = {
     "borderStyle": "border-style",
     "textAlign": "text-align",
     "textDecoration": "text-decoration",
-    "borderRadius": "border-radius",
+    "borderRadius": "border-radius"
 }
 
 export default aliases;
