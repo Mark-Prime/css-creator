@@ -7,7 +7,7 @@ import Expander from '../Components/expander';
 class BorderProperties extends Component {
     render() { 
         return ( 
-            <Expander title="Borders">
+            <Expander title="Border">
                 <Select 
                     name="borderStyle" 
                     options={['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']}

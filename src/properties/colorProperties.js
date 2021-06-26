@@ -5,7 +5,7 @@ import Expander from '../Components/expander';
 class ColorProperties extends Component {
     render() { 
         return ( 
-            <Expander title="Colors">
+            <Expander title="Color">
                 
             </Expander>
          );
