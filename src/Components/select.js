@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import aliases from '../Utility/aliases';
 
 const Wrapper = styled.div`
     display: flex;
@@ -45,18 +44,18 @@ class Select extends Component {
                         <CheckBox 
                             name={this.props.name}
                             type="checkbox" 
-                            checked={this.props.enabled[this.props.name]}
+                            checked={this.props.styles[this.props.name].enabled}
                             onChange={this.props.toggleEnabled}
                         />
-                        {aliases[this.props.name]}
+                        {this.props.styles[this.props.name].alias}
                     </InputLabel>
                 </div>
                 <SelectInput 
                     name={this.props.name}
                     min="0" 
-                    value={this.props.style[this.props.name]} 
+                    value={this.props.styles[this.props.name].val} 
                     onChange={this.props.OnStyleChange} 
-                    disabled={!this.props.enabled[this.props.name]}
+                    disabled={!this.props.styles[this.props.name].enabled}
                 >
                     {this.props.options.map(item => (
                         <Option value={item} key={`${this.props.name}-${item}`}>

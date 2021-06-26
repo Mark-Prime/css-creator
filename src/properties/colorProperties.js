@@ -6,7 +6,7 @@ class ColorProperties extends Component {
     render() { 
         return ( 
             <Expander title="Color">
-                
+                to be continued
             </Expander>
          );
     }

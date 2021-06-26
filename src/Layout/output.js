@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import aliases from '../Utility/aliases'
 
 import CopyButton from '../Components/copyButton';
 
@@ -58,10 +57,10 @@ class Output extends Component {
         CSS = CSS + `${this.props.tag} {\n`
         SASS = SASS + `${this.props.tag} \n`
 
-        for (const key of Object.keys(this.props.style)) {
-            if (this.props.enabled[key]) {
-                CSS = CSS + `\t${aliases[key]}: ${this.props.style[key]};\n`
-                SASS = SASS + `\t${aliases[key]}: ${this.props.style[key]};\n`
+        for (const key of Object.keys(this.props.styles)) {
+            if (this.props.styles[key].enabled) {
+                CSS = CSS + `\t${this.props.styles[key].alias}: ${this.props.styles[key].val};\n`
+                SASS = SASS + `\t${this.props.styles[key].alias}: ${this.props.styles[key].val};\n`
             }
         }
 

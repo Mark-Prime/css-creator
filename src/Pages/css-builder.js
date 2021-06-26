@@ -31,47 +31,83 @@ class CssBuilder extends Component {
         tag: 'button',
         text: "Button",
         background: '#ffffff',
-        style: {
-            "color": "#000000",
-            "fontSize": "16px",
-            "padding": "3px",
-            "paddingLeft": "3px",
-            "paddingTop": "3px",
-            "paddingRight": "3px",
-            "paddingBottom": "3px",
-            "borderWidth": "0px",
-            "borderStyle": "solid",
-            "textDecoration": 'none',
-            "textAlign": 'left',
-            "borderRadius": "0px",
-        },
-        enabled: {
-            "color": false,
-            "fontSize": true,
-            "padding": false,
-            "paddingLeft": false,
-            "paddingTop": false,
-            "paddingRight": false,
-            "paddingBottom": false,
-            "borderWidth": false,
-            "borderStyle": false,
-            "textDecoration": false,
-            "textAlign": false,
-            "borderRadius": false,
+        styles: {
+            "color": {
+                val: "#000000",
+                enabled: false,
+                alias: "color"
+            },
+            "fontSize": {
+                val: "16px",
+                enabled: true,
+                alias: "font-size"
+            },
+            "padding": {
+                val: "3px",
+                enabled: false,
+                alias: "padding"
+            },
+            "paddingLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-left"
+            },
+            "paddingTop": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-top"
+            },
+            "paddingRight": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-right"
+            },
+            "paddingBottom": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-bottom"
+            },
+            "borderWidth": {
+                val: "1px",
+                enabled: false,
+                alias: "border-width"
+            },
+            "borderStyle": {
+                val: "solid",
+                enabled: false,
+                alias: "border-style"
+            },
+            "textDecoration": {
+                val: 'none',
+                enabled: false,
+                alias: "text-decoration"
+            },
+            "textAlign": {
+                val: "left",
+                enabled: false,
+                alias: "text-align"
+            },
+            "borderRadius": {
+                val: "0px",
+                enabled: false,
+                alias: "border-radius"
+            },
         }
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
 
-    setStyle = (style) => {this.setState({style: style})}
+    setStyle = (style) => {
+        this.setState({styles: style})
+    }
 
     setText = (event) => {this.setState({text: event.target.value})}
 
     toggleEnabled = (event) => {
         const name = event.target.name
-        let enabled = this.state.enabled
-        enabled[name] = !enabled[name]
-        this.setState({enabled: {...enabled}});
+        let styles = this.state.styles
+        styles[name].enabled = !styles[name].enabled
+        this.setState({styles: styles});
     }
 
     handleChangeComplete = (color) => {
@@ -81,10 +117,10 @@ class CssBuilder extends Component {
     render() { 
         let style = {}
 
-        for (const key in this.state.style) {
-            if (Object.hasOwnProperty.call(this.state.style, key)) {
-                const value = this.state.style[key];
-                if (this.state.enabled[key]) {
+        for (const key in this.state.styles) {
+            if (Object.hasOwnProperty.call(this.state.styles, key)) {
+                const value = this.state.styles[key].val;
+                if (this.state.styles[key].enabled) {
                     style[key] = value
                 }
             }
@@ -119,11 +155,16 @@ class CssBuilder extends Component {
                         </Centered>
                     </Display>
 
-                    <Output background={this.state.background} text={this.state.text} enabled={this.state.enabled} style={this.state.style} scss={this.state.scss} tag={this.state.tag}/>
+                    <Output 
+                        styles={this.state.styles} 
+                        background={this.state.background} 
+                        text={this.state.text} 
+                        scss={this.state.scss} 
+                        tag={this.state.tag}
+                    />
                 </Center>
                 <Properties 
-                    enabled={this.state.enabled} 
-                    style={this.state.style}
+                    styles={this.state.styles}
                     text={this.state.text}
                     background={this.state.background}
                     setStyle={this.setStyle}

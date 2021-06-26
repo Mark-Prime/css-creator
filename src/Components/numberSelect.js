@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import styled from 'styled-components';
-import aliases from '../Utility/aliases';
 
 const Wrapper = styled.div`
     display: flex;
@@ -77,7 +76,7 @@ class NumberSelect extends Component {
                     dataset: {
                         suffix: value
                     },
-                    value: parseInt(this.props.style[this.props.name], 10),
+                    value: parseInt(this.props.styles[this.props.name].val, 10),
                     name: this.props.name
                 }
             }
@@ -91,10 +90,10 @@ class NumberSelect extends Component {
                     <CheckBox 
                         name={this.props.name}
                         type="checkbox" 
-                        checked={this.props.enabled[this.props.name]}
+                        checked={this.props.styles[this.props.name].enabled}
                         onChange={this.props.toggleEnabled}
                     />
-                    {aliases[this.props.name]}
+                    {this.props.styles[this.props.name].alias}
                 </InputLabel>
                 <SelectWrapper>
                     <NumberInput 
@@ -103,9 +102,9 @@ class NumberSelect extends Component {
                         type="number" 
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={parseInt(this.props.style[this.props.name], 10)} 
+                        value={parseInt(this.props.styles[this.props.name].val, 10)} 
                         onChange={this.props.OnStyleChange} 
-                        disabled={!this.props.enabled[this.props.name]}
+                        disabled={!this.props.styles[this.props.name].enabled}
                     />
 
                     <SuffixSelect
@@ -113,7 +112,7 @@ class NumberSelect extends Component {
                         min="0" 
                         value={this.state.suffix} 
                         onChange={this.OnSuffixChange} 
-                        disabled={!this.props.enabled[this.props.name]}
+                        disabled={!this.props.styles[this.props.name].enabled}
                     >
                         <option value={"px"} key="px">px</option>
                         <option value={"cm"} key="cm">cm</option>

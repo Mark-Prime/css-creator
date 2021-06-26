@@ -27,6 +27,7 @@ class TextProperties extends Component {
                 </Input>
                 <ColorSelector 
                     name="color"
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     onStyleChange={this.props.OnStyleChange} 
@@ -35,6 +36,7 @@ class TextProperties extends Component {
                 <hr />
                 <NumberSelect 
                     name="fontSize" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
@@ -43,6 +45,7 @@ class TextProperties extends Component {
                 <Select 
                     name="textAlign" 
                     options={['center', 'left', 'right', 'justify']}
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.OnStyleChange} 
@@ -51,6 +54,7 @@ class TextProperties extends Component {
                 <Select 
                     name="textDecoration" 
                     options={['none', 'overline', 'line-through', 'underline']}
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.OnStyleChange} 

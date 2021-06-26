@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 import { SketchPicker } from 'react-color';
 import styled from 'styled-components';
 
-import aliases from '../Utility/aliases';
-
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -58,7 +56,7 @@ class ColorSelector extends Component {
             text-align: center;
             cursor: pointer;
             position: relative;
-            background: ${this.props.style.color};
+            background: ${this.props.styles[this.props.name].val};
         `
 
         const HexCode = styled.div`
@@ -73,18 +71,18 @@ class ColorSelector extends Component {
                     <CheckBox 
                         name={this.props.name}
                         type="checkbox" 
-                        checked={this.props.enabled[this.props.name]}
+                        checked={this.props.styles[this.props.name].enabled}
                         onChange={this.props.toggleEnabled}
                     />
-                    {aliases[this.props.name]}
+                    {this.props.styles[this.props.name].alias}
                 </InputLabel>
                 <ColorShowcase onClick={this.toggleSketchPicker}>
-                    <HexCode>{this.props.style.color}</HexCode>
+                    <HexCode>{this.props.styles[this.props.name].val}</HexCode>
                 </ColorShowcase>
                 {this.state.open && 
                     <PopoutWrapper>
                         <SketchPicker
-                            color={ this.props.style.color }
+                            color={ this.props.styles[this.props.name].val }
                             onChange={ this.handleChangeComplete }
                             disableAlpha={true}
                             margin="7px"

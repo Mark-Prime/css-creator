@@ -8,6 +8,7 @@ class PaddingProperties extends Component {
             <Expander title="Padding">
                 <NumberSelect 
                     name="padding" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
@@ -15,6 +16,7 @@ class PaddingProperties extends Component {
                 />
                 <NumberSelect 
                     name="paddingTop" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
@@ -22,6 +24,7 @@ class PaddingProperties extends Component {
                 />
                 <NumberSelect 
                     name="paddingLeft" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
@@ -29,6 +32,7 @@ class PaddingProperties extends Component {
                 />
                 <NumberSelect 
                     name="paddingRight" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
@@ -36,6 +40,7 @@ class PaddingProperties extends Component {
                 />
                 <NumberSelect 
                     name="paddingBottom" 
+                    styles={this.props.parentProps.styles} 
                     style={this.props.parentProps.style} 
                     enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
