@@ -74,7 +74,7 @@ class ColorSelector extends Component {
                         checked={this.props.styles[this.props.name].enabled}
                         onChange={this.props.toggleEnabled}
                     />
-                    {this.props.styles[this.props.name].alias}
+                    {this.props.styles[this.props.name].alias}:
                 </InputLabel>
                 <ColorShowcase onClick={this.toggleSketchPicker}>
                     <HexCode>{this.props.styles[this.props.name].val}</HexCode>
