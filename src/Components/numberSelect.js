@@ -132,7 +132,7 @@ class NumberSelect extends Component {
                         max={this.props.max ? this.props.max : "none"}
                         value={parseInt(this.props.styles[this.props.name].val, 10)} 
                         onChange={this.OnStyleChange} 
-                        disabled={!this.props.styles[this.props.name].enabled}
+                        disabled={!this.props.styles[this.props.name].enabled || this.state.suffix === 'auto'}
                     />
 
                     <SuffixSelect
