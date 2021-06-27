@@ -67,6 +67,31 @@ class CssBuilder extends Component {
                 enabled: false,
                 alias: "padding-bottom"
             },
+            "margin": {
+                val: "3px",
+                enabled: false,
+                alias: "margin"
+            },
+            "marginLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-left"
+            },
+            "marginTop": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-top"
+            },
+            "marginRight": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-right"
+            },
+            "marginBottom": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-bottom"
+            },
             "borderWidth": {
                 val: "1px",
                 enabled: false,

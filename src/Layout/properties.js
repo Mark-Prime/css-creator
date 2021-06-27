@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TextProperties from '../properties/textProperties';
 import PaddingProperties from '../properties/paddingProperties';
+import MarginProperties from '../properties/marginProperties';
 import BorderProperties from '../properties/borderProperties';
 import ColorProperties from '../properties/colorProperties';
 
@@ -33,6 +34,7 @@ class Properties extends Component {
             <Wrapper>
                 <TextProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
                 <PaddingProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
+                <MarginProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
                 <BorderProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
                 <ColorProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
             </Wrapper>
