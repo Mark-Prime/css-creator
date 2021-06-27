@@ -5,6 +5,7 @@ import PaddingProperties from '../properties/paddingProperties';
 import MarginProperties from '../properties/marginProperties';
 import BorderProperties from '../properties/borderProperties';
 import ColorProperties from '../properties/colorProperties';
+import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
     background: #303030;
@@ -26,20 +27,22 @@ class Properties extends Component {
             value += suffix
         }
         this.props.styles[event.target.name].val = value;
-        this.props.setStyle(this.props.styles)
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: this.props.styles})
     }
 
     render() { 
         return ( 
             <Wrapper>
-                <TextProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
-                <PaddingProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
-                <MarginProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
-                <BorderProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
-                <ColorProperties OnStyleChange={this.OnStyleChange} parentProps={this.props}/>
+                <TextProperties OnStyleChange={this.OnStyleChange} text={this.props.text} SetText={this.props.SetText}/>
+                <PaddingProperties OnStyleChange={this.OnStyleChange} />
+                <MarginProperties OnStyleChange={this.OnStyleChange} />
+                <BorderProperties OnStyleChange={this.OnStyleChange} />
+                <ColorProperties OnStyleChange={this.OnStyleChange} />
             </Wrapper>
          );
     }
 }
- 
-export default Properties;
+
+const mapStateToProps = ({ styles }) => ({ styles });
+
+export default connect(mapStateToProps)(Properties);

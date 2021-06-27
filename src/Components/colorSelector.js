@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import { connect } from 'react-redux';
 import { SketchPicker } from 'react-color';
 import styled from 'styled-components';
 
@@ -34,9 +35,26 @@ class ColorSelector extends Component {
         open: false
     }
 
-    handleChangeComplete = (color) => {
+    toggleEnabled = (event) => {
+        const name = event.target.name
+        let styles = {...this.props.styles}
+        styles[name].enabled = !styles[name].enabled
+        this.props.dispatch({ type: 'SET_STYLE' , payload: styles})
+    }
 
-        this.props.onStyleChange({
+    OnStyleChange = (event) => {
+        let suffix = event.target.dataset.suffix
+        let value = event.target.value
+        if (suffix) { 
+            value += suffix
+        }
+        let styles = {...this.props.styles}
+        styles[event.target.name].val = value;
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+    }
+
+    handleChangeComplete = (color) => {
+        this.OnStyleChange({
             target: {
                 dataset: {},
                 value: color.hex,
@@ -72,7 +90,7 @@ class ColorSelector extends Component {
                         name={this.props.name}
                         type="checkbox" 
                         checked={this.props.styles[this.props.name].enabled}
-                        onChange={this.props.toggleEnabled}
+                        onChange={this.toggleEnabled}
                     />
                     {this.props.styles[this.props.name].alias}:
                 </InputLabel>
@@ -93,5 +111,7 @@ class ColorSelector extends Component {
          );
     }
 }
- 
-export default ColorSelector;
+
+const mapStateToProps = ({ styles }) => ({ styles });
+
+export default connect(mapStateToProps)(ColorSelector);

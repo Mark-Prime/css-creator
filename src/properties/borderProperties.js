@@ -11,27 +11,18 @@ class BorderProperties extends Component {
                 <Select 
                     name="borderStyle" 
                     options={['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']}
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="borderWidth" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="borderRadius" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
             </Expander>
          );

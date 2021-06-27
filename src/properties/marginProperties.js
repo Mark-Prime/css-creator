@@ -8,43 +8,28 @@ class PaddingProperties extends Component {
             <Expander title="Margin">
                 <NumberSelect 
                     name="margin" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="marginTop" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="marginLeft" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="marginRight" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
                     name="marginBottom" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
             </Expander>
          );

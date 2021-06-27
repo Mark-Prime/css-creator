@@ -23,42 +23,30 @@ class TextProperties extends Component {
             <Expander title="Text">
                 <Input>
                     <InputLabel>Content: </InputLabel>
-                    <TextBox value={this.props.parentProps.text} onChange={this.props.parentProps.setText}></TextBox>
+                    <TextBox value={this.props.text} onChange={this.props.setText}></TextBox>
                 </Input>
                 <ColorSelector 
                     name="color"
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     onStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled} 
+                    toggleEnabled={this.props.toggleEnabled} 
                 />
                 <hr />
                 <NumberSelect 
                     name="fontSize" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled} 
+                    toggleEnabled={this.props.toggleEnabled} 
                 />
                 <Select 
                     name="textAlign" 
                     options={['center', 'left', 'right', 'justify']}
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <Select 
                     name="textDecoration" 
                     options={['none', 'overline', 'line-through', 'underline']}
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
                     OnStyleChange={this.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
             </Expander>
          );

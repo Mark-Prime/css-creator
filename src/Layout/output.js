@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import CopyButton from '../Components/copyButton';
 
@@ -84,5 +85,7 @@ class Output extends Component {
          );
     }
 }
- 
-export default Output;
+
+const mapStateToProps = ({ styles }) => ({ styles });
+
+export default connect(mapStateToProps)(Output);

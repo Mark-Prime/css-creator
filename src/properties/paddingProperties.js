@@ -7,44 +7,29 @@ class PaddingProperties extends Component {
         return ( 
             <Expander title="Padding">
                 <NumberSelect 
-                    name="padding" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
+                    name="padding"  
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
-                    name="paddingTop" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
+                    name="paddingTop"  
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
-                    name="paddingLeft" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
+                    name="paddingLeft"  
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
-                    name="paddingRight" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
+                    name="paddingRight"  
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
                 <NumberSelect 
-                    name="paddingBottom" 
-                    styles={this.props.parentProps.styles} 
-                    style={this.props.parentProps.style} 
-                    enabled={this.props.parentProps.enabled} 
+                    name="paddingBottom"  
                     OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.parentProps.toggleEnabled}
+                    toggleEnabled={this.props.toggleEnabled}
                 />
             </Expander>
          );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled, {keyframes} from 'styled-components';
+import { connect } from 'react-redux';
 
 const Clicked = keyframes`
     0% {
@@ -77,5 +78,7 @@ class CopyButton extends Component {
          );
     }
 }
- 
-export default CopyButton;
+
+const mapStateToProps = ({ styles }) => ({ styles });
+
+export default connect(mapStateToProps)(CopyButton);

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 
@@ -70,7 +71,7 @@ class NumberSelect extends Component {
             suffix: value
         })
 
-        this.props.OnStyleChange(
+        this.OnStyleChange(
             {
                 target: {
                     dataset: {
@@ -83,6 +84,24 @@ class NumberSelect extends Component {
         )
     }
 
+    OnStyleChange = (event) => {
+        let suffix = event.target.dataset.suffix
+        let value = event.target.value
+        if (suffix) { 
+            value += suffix
+        }
+        let styles = {...this.props.styles}
+        styles[event.target.name].val = value;
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+    }
+
+    toggleEnabled = (event) => {
+        const name = event.target.name
+        let styles = {...this.props.styles}
+        styles[name].enabled = !styles[name].enabled
+        this.props.dispatch({ type: 'SET_STYLE' , payload: styles})
+    }
+
     render() { 
         return ( 
             <Wrapper>
@@ -91,7 +110,7 @@ class NumberSelect extends Component {
                         name={this.props.name}
                         type="checkbox" 
                         checked={this.props.styles[this.props.name].enabled}
-                        onChange={this.props.toggleEnabled}
+                        onChange={this.toggleEnabled}
                     />
                     {this.props.styles[this.props.name].alias}:
                 </InputLabel>
@@ -103,7 +122,7 @@ class NumberSelect extends Component {
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
                         value={parseInt(this.props.styles[this.props.name].val, 10)} 
-                        onChange={this.props.OnStyleChange} 
+                        onChange={this.OnStyleChange} 
                         disabled={!this.props.styles[this.props.name].enabled}
                     />
 
@@ -135,5 +154,7 @@ class NumberSelect extends Component {
          );
     }
 }
- 
-export default NumberSelect;
+
+const mapStateToProps = ({ styles }) => ({ styles });
+
+export default connect(mapStateToProps)(NumberSelect);
