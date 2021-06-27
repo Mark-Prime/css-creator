@@ -62,11 +62,18 @@ const SuffixSelect = styled.select`
 class NumberSelect extends Component {
 
     state = {
-        suffix: "px"
+        suffix: "px",
     }
 
     OnSuffixChange = (event) => {
         let value = event.target.value
+
+        let styleValue = parseInt(this.props.styles[this.props.name].val, 10)
+
+        if (isNaN(styleValue)) {
+            styleValue = 0
+        }
+
         this.setState({
             suffix: value
         })
@@ -75,9 +82,9 @@ class NumberSelect extends Component {
             {
                 target: {
                     dataset: {
-                        suffix: value
+                        suffix: value === 'auto' ? '' : value
                     },
-                    value: parseInt(this.props.styles[this.props.name].val, 10),
+                    value: value === 'auto' ? "auto" : parseInt(styleValue, 10),
                     name: this.props.name
                 }
             }
@@ -86,13 +93,15 @@ class NumberSelect extends Component {
 
     OnStyleChange = (event) => {
         let suffix = event.target.dataset.suffix
-        let value = event.target.value
-        if (suffix) { 
-            value += suffix
+        if (suffix !== 'auto') {
+            let value = event.target.value
+            if (suffix) { 
+                value += suffix
+            }
+            let styles = {...this.props.styles}
+            styles[event.target.name].val = value;
+            this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
         }
-        let styles = {...this.props.styles}
-        styles[event.target.name].val = value;
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
     }
 
     toggleEnabled = (event) => {
@@ -148,6 +157,7 @@ class NumberSelect extends Component {
                         <option value={"ch"} key="ch">ch</option>
                         <option value={"vmin"} key="vmin">vmin</option>
                         <option value={"vmax"} key="vmax">vmax</option>
+                        <option value={"auto"} key="auto">auto</option>
                     </SuffixSelect>
                 </SelectWrapper>
             </Wrapper>
