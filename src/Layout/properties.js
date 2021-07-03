@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import TextProperties from '../properties/textProperties';
-import PaddingProperties from '../properties/paddingProperties';
-import MarginProperties from '../properties/marginProperties';
-import BorderProperties from '../properties/borderProperties';
-import ColorProperties from '../properties/colorProperties';
+import Panel from '../properties/propertyPanel';
 import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
@@ -15,31 +11,34 @@ const Wrapper = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 `
-class Properties extends Component {
 
-    OnStyleChange = (event) => {
-        let suffix = event.target.dataset.suffix
-        let value = event.target.value
-        if (suffix) { 
-            value += suffix
-        }
-        this.props.styles[event.target.name].val = value;
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: this.props.styles})
-    }
+const Input = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
 
-    render() { 
-        return ( 
-            <Wrapper>
-                <TextProperties OnStyleChange={this.OnStyleChange} text={this.props.text} SetText={this.props.SetText}/>
-                <PaddingProperties OnStyleChange={this.OnStyleChange} />
-                <MarginProperties OnStyleChange={this.OnStyleChange} />
-                <BorderProperties OnStyleChange={this.OnStyleChange} />
-                <ColorProperties OnStyleChange={this.OnStyleChange} />
-            </Wrapper>
-         );
-    }
-}
+const TextBox = styled.input`
+`
+
+const InputLabel = styled.label`
+    padding-left: 4px;
+`
 
 const mapStateToProps = ({ styles }) => ({ styles });
 
-export default connect(mapStateToProps)(Properties);
+export default connect(mapStateToProps)(function Properties(props) {
+    return ( 
+        <Wrapper>
+            <Input>
+                <InputLabel>Content: </InputLabel>
+                <TextBox value={props.text} onChange={props.setText}></TextBox>
+            </Input>
+            <hr />
+            {Object.keys(props.styles).map((key) => {
+                return (
+                    <Panel styles={props.styles[key].props} title={key}/>
+                )
+            })}
+        </Wrapper>
+        );
+})

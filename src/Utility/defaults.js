@@ -5,22 +5,28 @@ const styles = {
             "color": {
                 val: "#000000",
                 enabled: false,
-                alias: "color"
+                alias: "color",
+                type: 'color'
             },
             "fontSize": {
                 val: "16px",
                 enabled: true,
-                alias: "font-size"
+                alias: "font-size",
+                type: 'number'
             },
             "textDecoration": {
                 val: 'none',
                 enabled: false,
-                alias: "text-decoration"
+                alias: "text-decoration",
+                type: 'select',
+                options: ['none', 'overline', 'line-through', 'underline']
             },
             "textAlign": {
                 val: "left",
                 enabled: false,
-                alias: "text-align"
+                alias: "text-align",
+                type: 'select',
+                options: ['center', 'left', 'right', 'justify']
             },
         }
     },
@@ -30,27 +36,32 @@ const styles = {
             "padding": {
                 val: "3px",
                 enabled: false,
-                alias: "padding"
+                alias: "padding",
+                type: 'number'
             },
             "paddingLeft": {
                 val: "3px",
                 enabled: false,
-                alias: "padding-left"
+                alias: "padding-left",
+                type: 'number'
             },
             "paddingTop": {
                 val: "3px",
                 enabled: false,
-                alias: "padding-top"
+                alias: "padding-top",
+                type: 'number'
             },
             "paddingRight": {
                 val: "3px",
                 enabled: false,
-                alias: "padding-right"
+                alias: "padding-right",
+                type: 'number'
             },
             "paddingBottom": {
                 val: "3px",
                 enabled: false,
-                alias: "padding-bottom"
+                alias: "padding-bottom",
+                type: 'number'
             },
         }
     },
@@ -60,17 +71,21 @@ const styles = {
             "borderWidth": {
                 val: "1px",
                 enabled: false,
-                alias: "border-width"
-            },
-            "borderStyle": {
-                val: "solid",
-                enabled: false,
-                alias: "border-style"
+                alias: "border-width",
+                type: 'number'
             },
             "borderRadius": {
                 val: "0px",
                 enabled: false,
-                alias: "border-radius"
+                alias: "border-radius",
+                type: 'number'
+            },
+            "borderStyle": {
+                val: "solid",
+                enabled: false,
+                alias: "border-style",
+                type: 'select',
+                options: ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']
             },
         }
     },
@@ -80,47 +95,49 @@ const styles = {
             "margin": {
                 val: "3px",
                 enabled: false,
-                alias: "margin"
+                alias: "margin",
+                type: 'number'
             },
             "marginLeft": {
                 val: "3px",
                 enabled: false,
-                alias: "margin-left"
+                alias: "margin-left",
+                type: 'number'
             },
             "marginTop": {
                 val: "3px",
                 enabled: false,
-                alias: "margin-top"
+                alias: "margin-top",
+                type: 'number'
             },
             "marginRight": {
                 val: "3px",
                 enabled: false,
-                alias: "margin-right"
+                alias: "margin-right",
+                type: 'number'
             },
             "marginBottom": {
                 val: "3px",
                 enabled: false,
-                alias: "margin-bottom"
+                alias: "margin-bottom",
+                type: 'number'
             },
         },
     },
     "Color" : {
         "enabled": false,
         "props": {
-            "color": {
-                val: "#000000",
-                enabled: false,
-                alias: "color"
-            },
             "background": {
                 val: "#000000",
                 enabled: false,
-                alias: "background"
+                alias: "background",
+                type: 'color'
             },
             "borderColor": {
                 val: "#000000",
                 enabled: false,
-                alias: "border-color"
+                alias: "border-color",
+                type: 'color'
             },
         }
     },
