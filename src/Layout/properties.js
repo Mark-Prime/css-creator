@@ -15,9 +15,6 @@ const Wrapper = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 `
-
-
-
 class Properties extends Component {
 
     OnStyleChange = (event) => {
