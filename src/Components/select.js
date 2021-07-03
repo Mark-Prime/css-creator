@@ -39,20 +39,41 @@ const SelectInput = styled.select`
 class Select extends Component {
 
     toggleEnabled = (event) => {
-        const name = event.target.name
-        let styles = {...this.props.styles}
-        styles[name].enabled = !styles[name].enabled
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+        const name = event.target.name;
+
+        let styles = {...this.props.styles};
+
+        if (event.target.checked) {
+            styles[this.props.title].enabled = true;
+            styles[this.props.title].props[name].enabled = true;
+        } else {
+            styles[this.props.title].props[name].enabled = false;
+
+            let keys = Object.keys(styles[this.props.title].props);
+            let i = 0, len = keys.length;
+
+            let enabled = false
+
+            while (i < len) {
+                const key = keys[i];
+
+                if (styles[this.props.title].props[key].enabled) {
+                    enabled = true;
+                }
+
+                i++;
+            }
+
+            styles[this.props.title].enabled = enabled;
+        }
+
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles});
     }
 
     OnStyleChange = (event) => {
-        let suffix = event.target.dataset.suffix
         let value = event.target.value
-        if (suffix) { 
-            value += suffix
-        }
         let styles = {...this.props.styles}
-        styles[event.target.name].val = value;
+        styles[this.props.title].props[event.target.name].val = value;
         this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
     }
 
@@ -64,17 +85,17 @@ class Select extends Component {
                         <CheckBox 
                             name={this.props.name}
                             type="checkbox" 
-                            checked={this.props.styles[this.props.name].enabled}
+                            checked={this.props.styles[this.props.title].props[this.props.name].enabled}
                             onChange={this.toggleEnabled}
                         />
-                        {this.props.styles[this.props.name].alias}:
+                        {this.props.styles[this.props.title].props[this.props.name].alias}:
                     </InputLabel>
                 </div>
                 <SelectInput 
                     name={this.props.name}
-                    value={this.props.styles[this.props.name].val} 
+                    value={this.props.styles[this.props.title].props[this.props.name].val} 
                     onChange={this.OnStyleChange} 
-                    disabled={!this.props.styles[this.props.name].enabled}
+                    disabled={!this.props.styles[this.props.title].props[this.props.name].enabled}
                 >
                     {this.props.options.map(item => (
                         <Option value={item} key={`${this.props.name}-${item}`}>

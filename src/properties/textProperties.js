@@ -26,26 +26,22 @@ export default function TextProperties(props) {
             </Input>
             <ColorSelector 
                 name="color"
-                onStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled} 
+                title="Text"
             />
             <hr />
             <NumberSelect 
                 name="fontSize" 
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled} 
+                title="Text"
             />
             <Select 
                 name="textAlign" 
                 options={['center', 'left', 'right', 'justify']}
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Text"
             />
             <Select 
                 name="textDecoration" 
                 options={['none', 'overline', 'line-through', 'underline']}
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Text"
             />
         </Expander>
      );    

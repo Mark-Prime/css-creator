@@ -7,28 +7,23 @@ export default function PaddingProperties(props) {
         <Expander title="Padding">
             <NumberSelect 
                 name="padding"  
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Padding"
             />
             <NumberSelect 
                 name="paddingTop"  
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Padding"
             />
             <NumberSelect 
                 name="paddingLeft"  
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Padding"
             />
             <NumberSelect 
                 name="paddingRight"  
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Padding"
             />
             <NumberSelect 
                 name="paddingBottom"  
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Padding"
             />
         </Expander>
      );   

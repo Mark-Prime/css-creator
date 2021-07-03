@@ -68,7 +68,7 @@ class NumberSelect extends Component {
     OnSuffixChange = (event) => {
         let value = event.target.value
 
-        let styleValue = parseInt(this.props.styles[this.props.name].val, 10)
+        let styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10)
 
         if (isNaN(styleValue)) {
             styleValue = 0
@@ -99,16 +99,41 @@ class NumberSelect extends Component {
                 value += suffix
             }
             let styles = {...this.props.styles}
-            styles[event.target.name].val = value;
+            styles[this.props.title].props[event.target.name].val = value;
             this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
         }
     }
 
     toggleEnabled = (event) => {
-        const name = event.target.name
-        let styles = {...this.props.styles}
-        styles[name].enabled = !styles[name].enabled
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+        const name = event.target.name;
+
+        let styles = {...this.props.styles};
+
+        if (event.target.checked) {
+            styles[this.props.title].enabled = true;
+            styles[this.props.title].props[name].enabled = true;
+        } else {
+            styles[this.props.title].props[name].enabled = false;
+
+            let keys = Object.keys(styles[this.props.title].props);
+            let i = 0, len = keys.length;
+
+            let enabled = false
+
+            while (i < len) {
+                const key = keys[i];
+
+                if (styles[this.props.title].props[key].enabled) {
+                    enabled = true;
+                }
+
+                i++;
+            }
+
+            styles[this.props.title].enabled = enabled;
+        }
+
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles});
     }
 
     render() { 
@@ -118,10 +143,10 @@ class NumberSelect extends Component {
                     <CheckBox 
                         name={this.props.name}
                         type="checkbox" 
-                        checked={this.props.styles[this.props.name].enabled}
+                        checked={this.props.styles[this.props.title].props[this.props.name].enabled}
                         onChange={this.toggleEnabled}
                     />
-                    {this.props.styles[this.props.name].alias}:
+                    {this.props.styles[this.props.title].props[this.props.name].alias}:
                 </InputLabel>
                 <SelectWrapper>
                     <NumberInput 
@@ -130,9 +155,9 @@ class NumberSelect extends Component {
                         type="number" 
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={parseInt(this.props.styles[this.props.name].val, 10)} 
+                        value={parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10)} 
                         onChange={this.OnStyleChange} 
-                        disabled={!this.props.styles[this.props.name].enabled || this.state.suffix === 'auto'}
+                        disabled={!this.props.styles[this.props.title].props[this.props.name].enabled || this.state.suffix === 'auto'}
                     />
 
                     <SuffixSelect
@@ -140,7 +165,7 @@ class NumberSelect extends Component {
                         min="0" 
                         value={this.state.suffix} 
                         onChange={this.OnSuffixChange} 
-                        disabled={!this.props.styles[this.props.name].enabled}
+                        disabled={!this.props.styles[this.props.title].props[this.props.name].enabled}
                     >
                         <option value={"px"} key="px">px</option>
                         <option value={"cm"} key="cm">cm</option>

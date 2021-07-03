@@ -36,20 +36,41 @@ class ColorSelector extends Component {
     }
 
     toggleEnabled = (event) => {
-        const name = event.target.name
-        let styles = {...this.props.styles}
-        styles[name].enabled = !styles[name].enabled
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+        const name = event.target.name;
+
+        let styles = {...this.props.styles};
+
+        if (event.target.checked) {
+            styles[this.props.title].enabled = true;
+            styles[this.props.title].props[name].enabled = true;
+        } else {
+            styles[this.props.title].props[name].enabled = false;
+
+            let keys = Object.keys(styles[this.props.title].props);
+            let i = 0, len = keys.length;
+
+            let enabled = false
+
+            while (i < len) {
+                const key = keys[i];
+
+                if (styles[this.props.title].props[key].enabled) {
+                    enabled = true;
+                }
+
+                i++;
+            }
+
+            styles[this.props.title].enabled = enabled;
+        }
+
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles});
     }
 
     OnStyleChange = (event) => {
-        let suffix = event.target.dataset.suffix
         let value = event.target.value
-        if (suffix) { 
-            value += suffix
-        }
         let styles = {...this.props.styles}
-        styles[event.target.name].val = value;
+        styles[this.props.title].props[event.target.name].val = value;
         this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
     }
 
@@ -74,7 +95,7 @@ class ColorSelector extends Component {
             text-align: center;
             cursor: pointer;
             position: relative;
-            background: ${this.props.styles[this.props.name].val};
+            background: ${this.props.styles[this.props.title].props[this.props.name].val};
         `
 
         const HexCode = styled.div`
@@ -89,18 +110,18 @@ class ColorSelector extends Component {
                     <CheckBox 
                         name={this.props.name}
                         type="checkbox" 
-                        checked={this.props.styles[this.props.name].enabled}
+                        checked={this.props.styles[this.props.title].props[this.props.name].enabled}
                         onChange={this.toggleEnabled}
                     />
-                    {this.props.styles[this.props.name].alias}:
+                    {this.props.styles[this.props.title].props[this.props.name].alias}:
                 </InputLabel>
                 <ColorShowcase onClick={this.toggleSketchPicker}>
-                    <HexCode>{this.props.styles[this.props.name].val}</HexCode>
+                    <HexCode>{this.props.styles[this.props.title].props[this.props.name].val}</HexCode>
                 </ColorShowcase>
                 {this.state.open && 
                     <PopoutWrapper>
                         <SketchPicker
-                            color={ this.props.styles[this.props.name].val }
+                            color={ this.props.styles[this.props.title].props[this.props.name].val }
                             onChange={ this.handleChangeComplete }
                             disableAlpha={true}
                             margin="7px"

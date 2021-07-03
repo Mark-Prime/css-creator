@@ -9,18 +9,15 @@ export default function borderProperties(props) {
             <Select 
                 name="borderStyle" 
                 options={['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']}
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Border"
             />
             <NumberSelect 
                 name="borderWidth" 
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Border"
             />
             <NumberSelect 
                 name="borderRadius" 
-                OnStyleChange={props.OnStyleChange} 
-                toggleEnabled={props.toggleEnabled}
+                title="Border"
             />
         </Expander>
      );
