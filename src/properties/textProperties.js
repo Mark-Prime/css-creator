@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NumberSelect from '../Components/numberSelect'
 import ColorSelector from '../Components/colorSelector';
@@ -16,41 +16,37 @@ const TextBox = styled.input`
 const InputLabel = styled.label`
     padding-left: 4px;
 `
-
-class TextProperties extends Component {
-    render() { 
-        return ( 
-            <Expander title="Text">
-                <Input>
-                    <InputLabel>Content: </InputLabel>
-                    <TextBox value={this.props.text} onChange={this.props.setText}></TextBox>
-                </Input>
-                <ColorSelector 
-                    name="color"
-                    onStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.toggleEnabled} 
-                />
-                <hr />
-                <NumberSelect 
-                    name="fontSize" 
-                    OnStyleChange={this.props.OnStyleChange} 
-                    toggleEnabled={this.props.toggleEnabled} 
-                />
-                <Select 
-                    name="textAlign" 
-                    options={['center', 'left', 'right', 'justify']}
-                    OnStyleChange={this.OnStyleChange} 
-                    toggleEnabled={this.props.toggleEnabled}
-                />
-                <Select 
-                    name="textDecoration" 
-                    options={['none', 'overline', 'line-through', 'underline']}
-                    OnStyleChange={this.OnStyleChange} 
-                    toggleEnabled={this.props.toggleEnabled}
-                />
-            </Expander>
-         );
-    }
-}
  
-export default TextProperties;
+export default function TextProperties(props) {
+    return ( 
+        <Expander title="Text">
+            <Input>
+                <InputLabel>Content: </InputLabel>
+                <TextBox value={props.text} onChange={props.setText}></TextBox>
+            </Input>
+            <ColorSelector 
+                name="color"
+                onStyleChange={props.OnStyleChange} 
+                toggleEnabled={props.toggleEnabled} 
+            />
+            <hr />
+            <NumberSelect 
+                name="fontSize" 
+                OnStyleChange={props.OnStyleChange} 
+                toggleEnabled={props.toggleEnabled} 
+            />
+            <Select 
+                name="textAlign" 
+                options={['center', 'left', 'right', 'justify']}
+                OnStyleChange={props.OnStyleChange} 
+                toggleEnabled={props.toggleEnabled}
+            />
+            <Select 
+                name="textDecoration" 
+                options={['none', 'overline', 'line-through', 'underline']}
+                OnStyleChange={props.OnStyleChange} 
+                toggleEnabled={props.toggleEnabled}
+            />
+        </Expander>
+     );    
+};
