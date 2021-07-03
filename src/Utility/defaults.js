@@ -2,12 +2,6 @@ const styles = {
     "Text" : {
         "enabled": true,
         "props": {
-            "color": {
-                val: "#000000",
-                enabled: false,
-                alias: "color",
-                type: 'color'
-            },
             "fontSize": {
                 val: "16px",
                 enabled: true,
@@ -27,6 +21,59 @@ const styles = {
                 alias: "text-align",
                 type: 'select',
                 options: ['center', 'left', 'right', 'justify']
+            },
+            "color": {
+                val: "#000000",
+                enabled: false,
+                alias: "color",
+                type: 'color'
+            },
+        }
+    },
+    "Content" : {
+        "enabled": false,
+        "props": {
+            "width": {
+                val: "75px",
+                enabled: false,
+                alias: "width",
+                type: 'number'
+            },
+            "minWidth": {
+                val: "60px",
+                enabled: false,
+                alias: "min-width",
+                type: 'number'
+            },
+            "maxWidth": {
+                val: "100px",
+                enabled: false,
+                alias: "max-width",
+                type: 'number'
+            },
+            "height": {
+                val: "20px",
+                enabled: false,
+                alias: "height",
+                type: 'number'
+            },
+            "minHeight": {
+                val: "10px",
+                enabled: false,
+                alias: "min-height",
+                type: 'number'
+            },
+            "maxHeight": {
+                val: "30px",
+                enabled: false,
+                alias: "max-height",
+                type: 'number'
+            },
+            "background": {
+                val: "#000000",
+                enabled: false,
+                alias: "background",
+                type: 'color'
             },
         }
     },
@@ -87,6 +134,12 @@ const styles = {
                 type: 'select',
                 options: ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']
             },
+            "borderColor": {
+                val: "#000000",
+                enabled: false,
+                alias: "border-color",
+                type: 'color'
+            },
         }
     },
     "Margin" : {
@@ -124,23 +177,6 @@ const styles = {
             },
         },
     },
-    "Color" : {
-        "enabled": false,
-        "props": {
-            "background": {
-                val: "#000000",
-                enabled: false,
-                alias: "background",
-                type: 'color'
-            },
-            "borderColor": {
-                val: "#000000",
-                enabled: false,
-                alias: "border-color",
-                type: 'color'
-            },
-        }
-    },
 }
 
-export default styles
+export default styles;

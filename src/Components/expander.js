@@ -45,7 +45,7 @@ class Expander extends Component {
             padding: 1px 5px;
             transition: all .1s;
             border-radius: 5px 0 0 ${this.state.open ? "0" : "5px"};
-            background: rgba(255,255,255, .12);
+            background: #444444;
 
             &:hover {
                 font-weight: bold;
