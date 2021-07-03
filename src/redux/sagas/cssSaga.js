@@ -2,13 +2,13 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function writeCSS(action, key){
   let CSS = '';
-  let values = Object.keys(action.payload[key].props);
+  let values = Object.keys(action.payload.styles[key].props);
   let i = 0, len = values.length;
 
   while (i < len) {
       const value = values[i];
       
-      let prop = action.payload[key].props[value];
+      let prop = action.payload.styles[key].props[value];
 
       if (prop.enabled) {
         CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
@@ -20,31 +20,60 @@ function writeCSS(action, key){
   return CSS;
 }
 
-function* updateCSS(action){
+function reloadCSS(action) {
+    let CSS = '', keys = Object.keys(action.payload.styles);
+
+    let i = 0, len = keys.length;
+
+    while (i < len) {
+        const key = keys[i];
+
+        if (action.payload.styles[key].enabled) {
+          CSS += writeCSS(action, key)
+        }
+
+        i++
+    }
+
+    return CSS
+}
+
+function* loadCSS(action){
     try {
-      let CSS = '', keys = Object.keys(action.payload);
-
-      let i = 0, len = keys.length;
-
-      while (i < len) {
-          const key = keys[i];
-
-          if (action.payload[key].enabled) {
-            // CSS = CSS + `\t${action.payload[key].alias}: ${action.payload[key].val};\n`\
-            CSS += writeCSS(action, key)
-          }
-
-          i++
-      }
-
+      let CSS = reloadCSS(action);
       yield put({ type: 'SET_CSS', payload: CSS });
     } catch (error) {
-      console.log('Error in get from /user/refresh', error);
+      console.log('Error in loadCSS', error);
+    }
+}
+
+function* updateCSS(action){
+    try {
+      let styles = action.payload.styles, CSS = action.payload.css;
+      let prop = styles[action.payload.title].props[action.payload.name];
+      let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
+      if (styles[action.payload.title].props[action.payload.name].enabled) {
+        if (re.test(CSS)){
+          CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
+        } else {
+          CSS = reloadCSS(action);
+        }
+      } else {
+        if (re.test(CSS)){
+          CSS = CSS.replace(re, ``);
+        } else {
+          CSS = reloadCSS(action);
+        }
+      }
+      yield put({ type: 'SET_CSS', payload: CSS });
+    } catch (error) {
+      console.log('Error in updateCSS', error);
     }
   }
 
 function* cssSaga() {
     yield takeLatest('UPDATE_CSS', updateCSS);
+    yield takeLatest('LOAD_CSS', loadCSS);
   }
   
   export default cssSaga;

@@ -41,7 +41,7 @@ class Select extends Component {
     toggleEnabled = (event) => {
         const name = event.target.name;
 
-        let styles = {...this.props.styles};
+        let styles = this.props.styles;
 
         if (event.target.checked) {
             styles[this.props.title].enabled = true;
@@ -67,14 +67,14 @@ class Select extends Component {
             styles[this.props.title].enabled = enabled;
         }
 
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles});
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
     }
 
     OnStyleChange = (event) => {
         let value = event.target.value
-        let styles = {...this.props.styles}
+        let styles = this.props.styles
         styles[this.props.title].props[event.target.name].val = value;
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
     }
 
     render() { 
@@ -108,6 +108,6 @@ class Select extends Component {
     }
 }
 
-const mapStateToProps = ({ styles }) => ({ styles });
+const mapStateToProps = ({ styles, css }) => ({ styles, css });
 
 export default connect(mapStateToProps)(Select);
