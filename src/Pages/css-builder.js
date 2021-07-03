@@ -67,6 +67,10 @@ class CssBuilder extends Component {
             overflow-y: auto;
         `
 
+        const Button = styled.button`
+            ${this.props.css}
+        `
+
         return ( 
             <Body>
                 <Sidebar 
@@ -83,7 +87,7 @@ class CssBuilder extends Component {
                     <Display>
                         <Centered>
                             {this.state.tag === 'button' && 
-                                (<button style={style}>{this.state.text}</button>)
+                                (<Button>{this.state.text}</Button>)
                             }
                         </Centered>
                     </Display>
@@ -104,6 +108,6 @@ class CssBuilder extends Component {
     }
 }
  
-const mapStateToProps = ({ styles }) => ({ styles });
+const mapStateToProps = ({ styles, css }) => ({ styles, css });
 
 export default connect(mapStateToProps)(CssBuilder);

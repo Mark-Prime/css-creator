@@ -39,7 +39,7 @@ class ColorSelector extends Component {
         const name = event.target.name
         let styles = {...this.props.styles}
         styles[name].enabled = !styles[name].enabled
-        this.props.dispatch({ type: 'SET_STYLE' , payload: styles})
+        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: styles})
     }
 
     OnStyleChange = (event) => {

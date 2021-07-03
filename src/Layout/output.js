@@ -43,7 +43,7 @@ const TextBoxBody = styled.p`
     bottom: 0;
 `
 
-const mapStateToProps = ({ styles }) => ({ styles });
+const mapStateToProps = ({ styles, css }) => ({ styles, css });
 
 // functional component
 export default connect(mapStateToProps)((props) => {
@@ -56,17 +56,8 @@ export default connect(mapStateToProps)((props) => {
         SASS = SASS + `body\n\tbackground: ${props.background}\n\n`
     }
 
-    CSS = CSS + `${props.tag} {\n`
-    SASS = SASS + `${props.tag} \n`
-
-    for (const key of Object.keys(props.styles)) {
-        if (props.styles[key].enabled) {
-            CSS = CSS + `\t${props.styles[key].alias}: ${props.styles[key].val};\n`
-            SASS = SASS + `\t${props.styles[key].alias}: ${props.styles[key].val};\n`
-        }
-    }
-
-    CSS += '}'
+    CSS = CSS + `${props.tag} {\n${props.css}}`
+    SASS = SASS + `${props.tag} \n${props.css}`
 
     return ( 
         <Wrapper style={{"gridTemplateColumns": props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
