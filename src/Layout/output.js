@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -43,49 +43,45 @@ const TextBoxBody = styled.p`
     bottom: 0;
 `
 
-class Output extends Component {
-    render() { 
-
-        const HTML = `<body>\n\t<${this.props.tag}>${this.props.text}</${this.props.tag}>\n</body>`
-        let CSS = ``
-        let SASS = ``
-
-        if (this.props.background !== "#ffffff") {
-            CSS = CSS + `body {\n\tbackground: ${this.props.background}\n}\n\n`
-            SASS = SASS + `body\n\tbackground: ${this.props.background}\n\n`
-        }
-
-        CSS = CSS + `${this.props.tag} {\n`
-        SASS = SASS + `${this.props.tag} \n`
-
-        for (const key of Object.keys(this.props.styles)) {
-            if (this.props.styles[key].enabled) {
-                CSS = CSS + `\t${this.props.styles[key].alias}: ${this.props.styles[key].val};\n`
-                SASS = SASS + `\t${this.props.styles[key].alias}: ${this.props.styles[key].val};\n`
-            }
-        }
-
-        CSS += '}'
-
-        return ( 
-            <Wrapper style={{"gridTemplateColumns": this.props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
-                <TextBox>
-                    <TextBoxHeader>HTML <CopyButton text={HTML} /></TextBoxHeader>
-                    <TextBoxBody>{HTML}</TextBoxBody>
-                </TextBox>
-                <TextBox>
-                    <TextBoxHeader>CSS <CopyButton text={CSS} /></TextBoxHeader>
-                    <TextBoxBody>{CSS}</TextBoxBody>
-                </TextBox>
-                <TextBox style={{"display": !this.props.scss &&"none"}}>
-                    <TextBoxHeader>SASS <CopyButton text={SASS} /></TextBoxHeader>
-                    <TextBoxBody>{SASS}</TextBoxBody>
-                </TextBox>
-            </Wrapper>
-         );
-    }
-}
-
 const mapStateToProps = ({ styles }) => ({ styles });
 
-export default connect(mapStateToProps)(Output);
+// functional component
+export default connect(mapStateToProps)((props) => {
+    const HTML = `<body>\n\t<${props.tag}>${props.text}</${props.tag}>\n</body>`
+    let CSS = ``
+    let SASS = ``
+
+    if (props.background !== "#ffffff") {
+        CSS = CSS + `body {\n\tbackground: ${props.background}\n}\n\n`
+        SASS = SASS + `body\n\tbackground: ${props.background}\n\n`
+    }
+
+    CSS = CSS + `${props.tag} {\n`
+    SASS = SASS + `${props.tag} \n`
+
+    for (const key of Object.keys(props.styles)) {
+        if (props.styles[key].enabled) {
+            CSS = CSS + `\t${props.styles[key].alias}: ${props.styles[key].val};\n`
+            SASS = SASS + `\t${props.styles[key].alias}: ${props.styles[key].val};\n`
+        }
+    }
+
+    CSS += '}'
+
+    return ( 
+        <Wrapper style={{"gridTemplateColumns": props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
+            <TextBox>
+                <TextBoxHeader>HTML <CopyButton text={HTML} /></TextBoxHeader>
+                <TextBoxBody>{HTML}</TextBoxBody>
+            </TextBox>
+            <TextBox>
+                <TextBoxHeader>CSS <CopyButton text={CSS} /></TextBoxHeader>
+                <TextBoxBody>{CSS}</TextBoxBody>
+            </TextBox>
+            <TextBox style={{"display": !props.scss &&"none"}}>
+                <TextBoxHeader>SASS <CopyButton text={SASS} /></TextBoxHeader>
+                <TextBoxBody>{SASS}</TextBoxBody>
+            </TextBox>
+        </Wrapper>
+     );
+})
