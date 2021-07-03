@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import NumberSelect from '../Components/numberSelect'
-import ColorSelector from '../Components/colorSelector';
 import Select from '../Components/select'
 import Expander from '../Components/expander';
 
@@ -24,10 +23,6 @@ export default function TextProperties(props) {
                 <InputLabel>Content: </InputLabel>
                 <TextBox value={props.text} onChange={props.setText}></TextBox>
             </Input>
-            <ColorSelector 
-                name="color"
-                title="Text"
-            />
             <hr />
             <NumberSelect 
                 name="fontSize" 

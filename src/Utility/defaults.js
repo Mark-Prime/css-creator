@@ -54,6 +54,26 @@ const styles = {
             },
         }
     },
+    "Border" : {
+        "enabled": false,
+        "props" : {
+            "borderWidth": {
+                val: "1px",
+                enabled: false,
+                alias: "border-width"
+            },
+            "borderStyle": {
+                val: "solid",
+                enabled: false,
+                alias: "border-style"
+            },
+            "borderRadius": {
+                val: "0px",
+                enabled: false,
+                alias: "border-radius"
+            },
+        }
+    },
     "Margin" : {
         "enabled": false,
         "props": {
@@ -84,26 +104,26 @@ const styles = {
             },
         },
     },
-    "Border" : {
+    "Color" : {
         "enabled": false,
-        "props" : {
-            "borderWidth": {
-                val: "1px",
+        "props": {
+            "color": {
+                val: "#000000",
                 enabled: false,
-                alias: "border-width"
+                alias: "color"
             },
-            "borderStyle": {
-                val: "solid",
+            "background": {
+                val: "#000000",
                 enabled: false,
-                alias: "border-style"
+                alias: "background"
             },
-            "borderRadius": {
-                val: "0px",
+            "borderColor": {
+                val: "#000000",
                 enabled: false,
-                alias: "border-radius"
+                alias: "border-color"
             },
         }
-    }
+    },
 }
 
 export default styles

@@ -28,6 +28,16 @@ const InputLabel = styled.label`
 
 `
 
+const Xbutton = styled.button`
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+`
+
 
 class ColorSelector extends Component {
 
@@ -120,6 +130,8 @@ class ColorSelector extends Component {
                 </ColorShowcase>
                 {this.state.open && 
                     <PopoutWrapper>
+                        {this.props.styles[this.props.title].props[this.props.name].alias}:
+                        <Xbutton onClick={this.toggleSketchPicker}>X</Xbutton>
                         <SketchPicker
                             color={ this.props.styles[this.props.title].props[this.props.name].val }
                             onChange={ this.handleChangeComplete }
