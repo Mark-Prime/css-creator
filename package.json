@@ -1,6 +1,7 @@
 {
   "name": "css-builder",
   "version": "0.1.0",
+  "homepage":"http://markspannbauer.me",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
