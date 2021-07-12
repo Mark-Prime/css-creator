@@ -9,6 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Mark Spannbauer
+          Portfolio Coming Soon
         </p>
         <Link to="/css">CSS Builder</Link>
       </header>
