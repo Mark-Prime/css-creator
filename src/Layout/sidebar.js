@@ -38,18 +38,29 @@ const ToggleDisabled = styled.div`
     height: 100%;
 `
 
-const ToggleBody = styled.div`
-    position: relative;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -50%);
+const ToolTip = styled.div`
+    background: #303030;
+    z-index: 3;
+    position: absolute;
+    left: 60px;
+    padding: 1px 5px 4px 5px;
+    border-radius: 5px;
+
+    ::before {
+        content: '';
+        background: #303030;
+        z-index: 2;
+        position: absolute;
+        height: .6rem;
+        width: 6px;
+        top: 50%;
+        left: -6px;
+        clip-path: polygon(100% 0, 100% 100%, 0 50%);
+        transform: translateY(-50%);
+    }
 `
 
 const CenteredImg = styled.img`
-    position: relative;
-    left: 35%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 `
 
 const CheckBox = styled.input`
@@ -97,17 +108,34 @@ class Sidebar extends Component {
     }
 
     render() { 
+
+        const ToggleBody = styled.div`
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+
+            ${ToolTip} {
+                display: none;
+            }
+
+            &:hover ${ToolTip} {
+                display: block;
+            }
+        `
+
         return ( 
             <Wrapper>
                 <Toggle onClick={this.props.functions.toggleSCSS}>
                     {this.props.values.scss ? 
-                    <ToggleEnabled><CenteredImg src={SassLogo} alt="SASS" width="70%"/></ToggleEnabled> :
-                    <ToggleDisabled><CenteredImg src={SassLogo} alt="SASS" width="70%"/></ToggleDisabled>}
+                    <ToggleEnabled><ToggleBody><CenteredImg src={SassLogo} alt="SASS" width="70%"/><ToolTip>Disable SASS Output Panel</ToolTip></ToggleBody></ToggleEnabled> :
+                    <ToggleDisabled><ToggleBody><CenteredImg src={SassLogo} alt="SASS" width="70%"/><ToolTip>Enable SASS Output Panel</ToolTip></ToggleBody></ToggleDisabled>}
                 </Toggle>
                 <Toggle onClick={this.toggleColorPicker}>
                     {this.state.popup ? 
-                        <ToggleEnabled><ToggleBody>BGC</ToggleBody></ToggleEnabled> :
-                        <ToggleDisabled><ToggleBody>BGC</ToggleBody></ToggleDisabled>
+                        <ToggleEnabled><ToggleBody>BGC<ToolTip>Close Background Color Selector</ToolTip></ToggleBody></ToggleEnabled> :
+                        <ToggleDisabled><ToggleBody>BGC<ToolTip>Open Background Color Selector</ToolTip></ToggleBody></ToggleDisabled>
                     }
                 </Toggle>
                 {this.state.popup &&
