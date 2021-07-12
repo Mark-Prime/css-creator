@@ -5,6 +5,7 @@ import Properties from '../Layout/properties';
 import Sidebar from '../Layout/sidebar';
 import { connect } from 'react-redux';
 import styles from '../Utility/defaults'
+import { Helmet } from 'react-helmet';
 
 const Body = styled.div`
     color: #fff;
@@ -74,6 +75,9 @@ class CssBuilder extends Component {
 
         return ( 
             <Body>
+                <Helmet>
+                    <title>CSS {this.state.tag[0].toUpperCase() + this.state.tag.slice(1)} Builder</title>
+                </Helmet>
                 <Sidebar 
                     functions={{
                         toggleSCSS: this.toggleSCSS,
