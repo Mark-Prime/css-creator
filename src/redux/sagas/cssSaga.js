@@ -48,24 +48,29 @@ function* loadCSS(action){
     }
 }
 
+function updateStyles(action) {
+  let styles = action.payload.styles, CSS = action.payload.css;
+  let prop = styles[action.payload.title].props[action.payload.name];
+  let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
+  if (styles[action.payload.title].props[action.payload.name].enabled) {
+    if (re.test(CSS)){
+      CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
+    } else {
+      CSS = reloadCSS(action);
+    }
+  } else {
+    if (re.test(CSS)){
+      CSS = CSS.replace(re, ``);
+    } else {
+      CSS = reloadCSS(action);
+    }
+  }
+  return CSS;
+}
+
 function* updateCSS(action){
     try {
-      let styles = action.payload.styles, CSS = action.payload.css;
-      let prop = styles[action.payload.title].props[action.payload.name];
-      let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
-      if (styles[action.payload.title].props[action.payload.name].enabled) {
-        if (re.test(CSS)){
-          CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
-        } else {
-          CSS = reloadCSS(action);
-        }
-      } else {
-        if (re.test(CSS)){
-          CSS = CSS.replace(re, ``);
-        } else {
-          CSS = reloadCSS(action);
-        }
-      }
+      let CSS = updateStyles(action);
       yield put({ type: 'SET_CSS', payload: CSS });
     } catch (error) {
       console.log('Error in updateCSS', error);
