@@ -43,14 +43,15 @@ class Select extends Component {
         const name = event.target.name;
 
         let styles = this.props.styles;
+        let style = styles[this.props.title];
 
         if (event.target.checked) {
-            styles[this.props.title].enabled = true;
-            styles[this.props.title].props[name].enabled = true;
+            style.enabled = true;
+            style.props[name].enabled = true;
         } else {
-            styles[this.props.title].props[name].enabled = false;
+            style.props[name].enabled = false;
 
-            let keys = Object.keys(styles[this.props.title].props);
+            let keys = Object.keys(style.props);
             let i = 0, len = keys.length;
 
             let enabled = false
@@ -58,14 +59,14 @@ class Select extends Component {
             while (i < len) {
                 const key = keys[i];
 
-                if (styles[this.props.title].props[key].enabled) {
+                if (style.props[key].enabled) {
                     enabled = true;
                 }
 
                 i++;
             }
 
-            styles[this.props.title].enabled = enabled;
+            style.enabled = enabled;
         }
 
         this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
@@ -79,12 +80,16 @@ class Select extends Component {
     }
 
     render() { 
-        if (this.props.styles[this.props.title].props[this.props.name].key) {
-            let key = this.props.styles[this.props.title].props[this.props.name].key;
-            let keyEnabled = this.props.styles[this.props.title].props[key].enabled;
-            let keyVal = this.props.styles[this.props.title].props[key].val;
+        let name = this.props.name;
+        let style = this.props.styles[this.props.title];
 
-            if (!keyEnabled || !this.props.styles[this.props.title].props[this.props.name].showOnValue[keyVal]){
+        if (style.props[name].key) {
+            let key = style.props[name].key;
+            let keyEnabled = style.props[key].enabled;
+            let keyVal = style.props[key].val;
+
+            if (!keyEnabled || !style.props[name].showOnValue[keyVal]){
+                this.toggleEnabled({target: {name: name, checked: false}})
                 return null;
             }
         }
@@ -93,22 +98,22 @@ class Select extends Component {
                 <div>
                     <InputLabel>
                         <CheckBox 
-                            name={this.props.name}
+                            name={name}
                             type="checkbox" 
-                            checked={this.props.styles[this.props.title].props[this.props.name].enabled}
+                            checked={style.props[name].enabled}
                             onChange={this.toggleEnabled}
                         />
-                        {this.props.styles[this.props.title].props[this.props.name].alias}:
+                        {style.props[name].alias}:
                     </InputLabel>
                 </div>
                 <SelectInput 
-                    name={this.props.name}
-                    value={this.props.styles[this.props.title].props[this.props.name].val} 
+                    name={name}
+                    value={style.props[name].val} 
                     onChange={this.OnStyleChange} 
-                    disabled={!this.props.styles[this.props.title].props[this.props.name].enabled}
+                    disabled={!style.props[name].enabled}
                 >
                     {this.props.options.map(item => (
-                        <Option value={item} key={`${this.props.name}-${item}`}>
+                        <Option value={item} key={`${name}-${item}`}>
                             {item}
                         </Option>
                     ))}
