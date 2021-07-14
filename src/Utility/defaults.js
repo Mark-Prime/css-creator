@@ -177,6 +177,30 @@ const styles = {
             },
         },
     },
+    "Display" : {
+        "enabled": false,
+        "props": {
+            "display": {
+                val: "solid",
+                enabled: false,
+                alias: "display",
+                type: 'select',
+                options: ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'grid', 'inline-grid', 'flow', 'flow-root', 'none', 'contents', 'table', 'table-row', 'list-item', 'inherit', 'initial', 'revert', 'unset']
+            },
+            "justifyContent": {
+                val: "solid",
+                enabled: false,
+                alias: "justify-content",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'left', 'right', 'baseline', 'first baseline', 'last baseline', 'space-between', 'space-around', 'space-evenly', 'stretch', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+        },
+    },
 }
 
 export default styles;
