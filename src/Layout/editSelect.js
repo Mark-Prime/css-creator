@@ -16,6 +16,10 @@ const Input = styled.input`
         border-right: 2px solid #ccc;
         margin: 0;
     }
+
+    :disabled + label {
+        color: rgba(255, 255, 255, .4);
+    }
 `
 
 const Label = styled.label`
@@ -41,17 +45,17 @@ class EditSelect extends Component {
         return ( 
             <Wrapper>
                 <Group>
-                    <Input type="radio" id='container' name='editSelect' value='container' />
+                    <Input type="radio" id='container' name='editSelect' value='container' disabled/>
                     <Label for='container'>Container</Label>
                     <Input type="radio" id='button' name='editSelect' value='button' defaultChecked={true} />
                     <Label for='button'>Button</Label>
-                    <Input type="radio" id=':hover' name='editSelect' value=':hover' />
+                    <Input type="radio" id=':hover' name='editSelect' value=':hover' disabled/>
                     <Label for=':hover'>:hover</Label>
-                    <Input type="radio" id=':active' name='editSelect' value=':active' />
+                    <Input type="radio" id=':active' name='editSelect' value=':active' disabled/>
                     <Label for=':active'>:active</Label>
-                    <Input type="radio" id=':focus' name='editSelect' value=':focus' />
+                    <Input type="radio" id=':focus' name='editSelect' value=':focus' disabled/>
                     <Label for=':focus'>:focus</Label>
-                    <Input type="radio" id=':target' name='editSelect' value=':target' />
+                    <Input type="radio" id=':target' name='editSelect' value=':target' disabled/>
                     <Label for=':target'>:target</Label>
                 </Group>
             </Wrapper>
