@@ -139,6 +139,15 @@ class NumberSelect extends Component {
     }
 
     render() { 
+        if (this.props.styles[this.props.title].props[this.props.name].key) {
+            let key = this.props.styles[this.props.title].props[this.props.name].key;
+            let keyEnabled = this.props.styles[this.props.title].props[key].enabled;
+            let keyVal = this.props.styles[this.props.title].props[key].val;
+
+            if (!keyEnabled || !this.props.styles[this.props.title].props[this.props.name].showOnValue[keyVal]){
+                return null;
+            }
+        }
         return ( 
             <Wrapper>
                 <InputLabel>
