@@ -181,18 +181,104 @@ const styles = {
         "enabled": false,
         "props": {
             "display": {
-                val: "solid",
+                val: "block",
                 enabled: false,
                 alias: "display",
                 type: 'select',
                 options: ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'grid', 'inline-grid', 'flow', 'flow-root', 'none', 'contents', 'table', 'table-row', 'list-item', 'inherit', 'initial', 'revert', 'unset']
             },
+
+            // -------------------
+            // * FLEXBOX OPTIONS *
+            // -------------------
+            
+            "flexDirection": {
+                val: "row",
+                enabled: false,
+                alias: "flex-direction",
+                type: 'select',
+                options: ['row', 'row-reverse', 'column', 'column-reverse', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "flexWrap": {
+                val: "nowrap",
+                enabled: false,
+                alias: "flex-wrap",
+                type: 'select',
+                options: ['nowrap', 'wrap', 'wrap-reverse', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
             "justifyContent": {
-                val: "solid",
+                val: "normal",
                 enabled: false,
                 alias: "justify-content",
                 type: 'select',
                 options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'left', 'right', 'baseline', 'first baseline', 'last baseline', 'space-between', 'space-around', 'space-evenly', 'stretch', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "alignContent": {
+                val: "normal",
+                enabled: false,
+                alias: "align-content",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'left', 'right', 'between', 'around', 'evenly', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "alignItems": {
+                val: "normal",
+                enabled: false,
+                alias: "align-items",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'baseline', 'stretch', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "gap": {
+                val: "3px",
+                enabled: false,
+                alias: "gap",
+                type: 'number',
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "rowGap": {
+                val: "3px",
+                enabled: false,
+                alias: "row-gap",
+                type: 'number',
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "columnGap": {
+                val: "3px",
+                enabled: false,
+                alias: "column-gap",
+                type: 'number',
                 key: 'display',
                 showOnValue: {
                     flex: true,
