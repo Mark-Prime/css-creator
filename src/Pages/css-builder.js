@@ -21,13 +21,6 @@ const Center = styled.div`
     grid-gap: 0px;
 `
 
-const Centered = styled.div`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-`
-
 class CssBuilder extends Component {
     state = { 
         scss: true,
@@ -69,6 +62,13 @@ class CssBuilder extends Component {
             overflow-y: auto;
         `
 
+        const Parent = styled.div`
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        `
+
         const Button = styled.button`
             ${this.props.css}
         `
@@ -90,11 +90,11 @@ class CssBuilder extends Component {
                 />
                 <Center>
                     <Display>
-                        <Centered>
+                        <Parent>
                             {this.state.tag === 'button' && 
                                 (<Button>{this.state.text}</Button>)
                             }
-                        </Centered>
+                        </Parent>
                     </Display>
                     <Output 
                         background={this.state.background} 
