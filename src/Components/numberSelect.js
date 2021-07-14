@@ -18,7 +18,7 @@ const InputLabel = styled.label`
 `
 
 const SelectWrapper = styled.div`
-    width: 32%;
+    width: 45%;
     display: flex;
     justify-content: space-between;
 `

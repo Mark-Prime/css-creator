@@ -25,7 +25,7 @@ const SelectInput = styled.select`
     background: #303030;
     color: #fff;
     margin-left: 4px;
-    width: 31%;
+    width: 44%;
 
     &:focus {
         outline: none;

@@ -101,7 +101,7 @@ class ColorSelector extends Component {
     render() { 
         let name = this.props.name;
         let style = this.props.styles[this.props.title];
-        
+
         if (style.props[name].key) {
             let key = style.props[name].key;
             let keyEnabled = style.props[key].enabled;
@@ -114,7 +114,7 @@ class ColorSelector extends Component {
         }
 
         const ColorShowcase = styled.div`
-            width: 31%;
+            width: 44%;
             text-align: center;
             cursor: pointer;
             position: relative;
