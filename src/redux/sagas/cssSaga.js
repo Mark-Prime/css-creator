@@ -1,14 +1,14 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
 function writeCSS(action, key){
-  let CSS = '';
-  let values = Object.keys(action.payload.styles[key].props);
+  let CSS = '', styles = action.payload.styles;
+  let values = Object.keys(styles[key].props);
   let i = 0, len = values.length;
 
   while (i < len) {
       const value = values[i];
       
-      let prop = action.payload.styles[key].props[value];
+      let prop = styles[key].props[value];
 
       if (prop.enabled) {
         CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
@@ -21,14 +21,15 @@ function writeCSS(action, key){
 }
 
 function reloadCSS(action) {
-    let CSS = '', keys = Object.keys(action.payload.styles);
+    let styles = action.payload.styles;
+    let CSS = '', keys = Object.keys(styles);
 
     let i = 0, len = keys.length;
 
     while (i < len) {
         const key = keys[i];
 
-        if (action.payload.styles[key].enabled) {
+        if (styles[key].enabled) {
           CSS += writeCSS(action, key)
         }
 
