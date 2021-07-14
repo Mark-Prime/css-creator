@@ -47,13 +47,13 @@ const mapStateToProps = ({ styles, css }) => ({ styles, css });
 
 // functional component
 export default connect(mapStateToProps)((props) => {
-    const HTML = `<body>\n\t<${props.tag}>${props.text}</${props.tag}>\n</body>`
+    const HTML = `<div class="container">\n\t<${props.tag}>${props.text}</${props.tag}>\n</div>`
     let CSS = ``
     let SASS = ``
 
     if (props.background !== "#ffffff") {
-        CSS = CSS + `body {\n\tbackground: ${props.background}\n}\n\n`
-        SASS = SASS + `body\n\tbackground: ${props.background}\n\n`
+        CSS = CSS + `.container {\n\tbackground: ${props.background};\n}\n\n`
+        SASS = SASS + `.container\n\tbackground: ${props.background};\n\n`
     }
 
     CSS = CSS + `${props.tag} {\n${props.css}}`
