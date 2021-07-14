@@ -33,6 +33,7 @@ const SelectInput = styled.select`
 
     &:disabled {
         color: #BFBFBF;
+        text-decoration: line-through;
     }
 `
 

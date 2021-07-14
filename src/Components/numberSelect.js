@@ -39,6 +39,7 @@ const NumberInput = styled.input`
 
     &:disabled {
         color: #BFBFBF;
+        text-decoration: line-through;
     }
 `
 
@@ -56,6 +57,7 @@ const SuffixSelect = styled.select`
 
     &:disabled {
         color: #BFBFBF;
+        text-decoration: line-through;
     }
 `
 
