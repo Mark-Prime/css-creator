@@ -95,7 +95,7 @@ function* loadContainerCSS(action){
 function* updateContainerCSS(action){
   try {
     console.table(action)
-    let styles = action.payload.container;
+    let styles = action.payload.styles;
     let CSS = parseStyles(action, styles);
     yield put({ type: 'SET_CONTAINER_CSS', payload: CSS });
   } catch (error) {
