@@ -47,7 +47,7 @@ export default connect(mapStateToProps)(function Properties(props) {
                 <hr />
                 {Object.keys(props.styles).map((key) => {
                     return (
-                        <Panel styles={props.styles[key].props} title={key}/>
+                        <Panel styles={props.styles[key].props} title={key} key={key}/>
                     )
                 })}
             </PropList>
