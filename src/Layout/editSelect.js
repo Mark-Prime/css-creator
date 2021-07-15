@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-const Wrapper = styled.form`
+const Wrapper = styled.div`
     padding: 5px 0;
     border-top: 2px rgba(255, 255, 255, 0.12) solid;
     background: #303030;
@@ -30,7 +31,7 @@ const Label = styled.label`
     border: 1px solid rgba(0, 0, 0, .7);
 `
 
-const Group = styled.div`
+const Group = styled.form`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,29 +39,35 @@ const Group = styled.div`
 `
 
 class EditSelect extends Component {
-    state = { 
-        selected: 'button'
-     }
+    
+    handleFormChange = (e) => {
+        console.log(e.target.value)
+        this.props.dispatch({ type: 'SET_SELECTION' , payload: e.target.value})
+    }
+
     render() { 
+        let selection = this.props.selection;
         return ( 
             <Wrapper>
                 <Group>
-                    <Input type="radio" id='container' name='editSelect' value='container' disabled/>
-                    <Label for='container'>Container</Label>
-                    <Input type="radio" id='button' name='editSelect' value='button' defaultChecked={true} />
-                    <Label for='button'>Button</Label>
-                    <Input type="radio" id=':hover' name='editSelect' value=':hover' disabled/>
-                    <Label for=':hover'>:hover</Label>
-                    <Input type="radio" id=':active' name='editSelect' value=':active' disabled/>
-                    <Label for=':active'>:active</Label>
-                    <Input type="radio" id=':focus' name='editSelect' value=':focus' disabled/>
-                    <Label for=':focus'>:focus</Label>
-                    <Input type="radio" id=':target' name='editSelect' value=':target' disabled/>
-                    <Label for=':target'>:target</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id='container' name='editSelect' value='container' checked={selection === 'container'}/>
+                    <Label htmlFor='container'>Container</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id='button' name='editSelect' value='button' checked={selection === 'button'}/>
+                    <Label htmlFor='button'>Button</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value=':hover' checked={selection === ':hover'} disabled/>
+                    <Label htmlFor=':hover'>:hover</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value=':active' checked={selection === ':active'} disabled/>
+                    <Label htmlFor=':active'>:active</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value=':focus' checked={selection === ':focus'} disabled/>
+                    <Label htmlFor=':focus'>:focus</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value=':target' checked={selection === ':target'} disabled/>
+                    <Label htmlFor=':target'>:target</Label>
                 </Group>
             </Wrapper>
          );
     }
 }
- 
-export default EditSelect;
+
+const mapStateToProps = ({selection}) => ({selection});
+
+export default connect(mapStateToProps)(EditSelect);
