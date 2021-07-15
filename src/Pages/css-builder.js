@@ -6,6 +6,7 @@ import Sidebar from '../Layout/sidebar';
 import { connect } from 'react-redux';
 import styles from '../Utility/defaults'
 import container from '../Utility/container';
+import hover from '../Utility/hover';
 import { Helmet } from 'react-helmet';
 
 const Body = styled.div`
@@ -33,6 +34,7 @@ class CssBuilder extends Component {
      componentDidMount() {
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles, selection: 'content'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: container, selection: 'container'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: hover, selection: 'hover'}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}

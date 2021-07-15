@@ -66,9 +66,14 @@ function* loadCSS(action){
       let styles = action.payload.styles;
       let CSS = reloadCSS(styles);
 
-      styles.css = CSS;switch (action.payload.selection) {
+      styles.css = CSS;
+      
+      switch (action.payload.selection) {
         case 'container':
           yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+          break;
+        case 'hover':
+          yield put({ type: 'SET_HOVER_STYLE', payload: styles });
           break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });
@@ -90,6 +95,9 @@ function* updateCSS(action){
       switch (action.payload.selection) {
         case 'container':
           yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+          break;
+        case 'hover':
+          yield put({ type: 'SET_HOVER_STYLE', payload: styles });
           break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });
