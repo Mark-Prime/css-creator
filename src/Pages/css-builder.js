@@ -70,7 +70,7 @@ class CssBuilder extends Component {
 
         for (let selector of selectors) {
             if (this.props[selector] && this.props[selector].css && this.props[selector].css !== '') {
-                extraCSS = extraCSS + `&:hover{\n${this.props.hover.css}}`
+                extraCSS = extraCSS + `&:${selector}{\n${this.props[selector].css}}`
             }
         }
 
