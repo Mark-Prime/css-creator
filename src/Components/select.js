@@ -8,13 +8,62 @@ const Wrapper = styled.div`
     height: 21;
 `
 
+const Label = styled.label`
+    position: relative;
+`
+
+const InputLabel = styled.div`
+    display: inline;
+    color: #BFBFBF;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        clear: both;
+        margin: 6px 3px 0 4px;
+        width: 10px;
+        height: 10px;
+
+        transition: all 0.2s ease;
+        clip-path: polygon(75% 0, 100% 0%, 25% 100%, 0% 100%);
+        background-color: #BFBFBF;
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        clear: both;
+        margin: 0 3px 0 4px;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left: 0;
+        top: 7px;
+
+        transition: all 0.2s ease;
+        clip-path: polygon(0 0, 25% 0, 100% 100%, 75% 100%);
+        background-color: #BFBFBF;
+    }
+`
+
 const CheckBox = styled.input`
+    display: none;
 
+    &:checked + ${InputLabel}::before {
+        clip-path: polygon(75% 0, 100% 0%, 60% 100%, 35% 100%);
+        background-color: #fff;
+    }
+
+    &:checked + ${InputLabel}::after {
+        clip-path: polygon(0 50%, 25% 50%, 60% 100%, 35% 100%);
+        background-color: #fff;
+    }
+
+    &:checked + ${InputLabel} {
+        color: #fff;
+    }
 `
 
-const InputLabel = styled.label`
-
-`
 const Option = styled.option`
 
 `
@@ -116,15 +165,15 @@ class Select extends Component {
         return ( 
             <Wrapper key={this.props.log}>
                 <div>
-                    <InputLabel>
+                    <Label>
                         <CheckBox 
                             name={name}
                             type="checkbox" 
                             checked={style.props[name].enabled}
                             onChange={this.toggleEnabled}
                         />
-                        {style.props[name].alias}:
-                    </InputLabel>
+                        <InputLabel>{style.props[name].alias}:</InputLabel>
+                    </Label>
                 </div>
                 <SelectInput 
                     name={name}
