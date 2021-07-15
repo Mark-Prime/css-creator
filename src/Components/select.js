@@ -78,7 +78,7 @@ class Select extends Component {
         }
         switch (this.props.selection) {
             case 'container':
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss, calledFrom: 'select.js toggleEnabled'}})
                 break
             default:
                 this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
@@ -93,7 +93,7 @@ class Select extends Component {
             case 'container':
                 styles = this.props.containerStyles;
                 styles[this.props.title].props[event.target.name].val = value;
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss, calledFrom: 'select.js toggleEnabled'}})
                 break
             default:
                 styles[this.props.title].props[event.target.name].val = value;
