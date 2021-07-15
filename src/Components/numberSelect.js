@@ -159,7 +159,14 @@ class NumberSelect extends Component {
             styles[this.props.title].enabled = enabled;
         }
 
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+        switch (this.props.selection) {
+            case 'container':
+                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                break
+            default:
+                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+          }
+        
     }
 
     render() { 
