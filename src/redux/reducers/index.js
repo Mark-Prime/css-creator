@@ -9,13 +9,13 @@ import selection from './selectionReducer';
 import log from './logReducer';
 
 const rootReducer = combineReducers({
-  styles,
   container,
   hover,
   active,
   focus,
   target,
   selection,
+  styles,
   log
 });
 

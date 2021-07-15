@@ -231,6 +231,7 @@ const defaults = `{
                 "enabled": false,
                 "alias": "display",
                 "type": "select",
+                "isKey": true,
                 "options": ["block", "inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "flow", "flow-root", "none", "contents", "table", "table-row", "list-item", "inherit", "initial", "revert", "unset"]
             },
             "flexDirection": {
@@ -336,6 +337,7 @@ const defaults = `{
                 "enabled": false,
                 "alias": "position",
                 "type": "select",
+                "isKey": true,
                 "options": ["static", "sticky", "absolute", "fixed", "relative", "inherit", "initial", "revert", "unset"]
             },
             "top": {

@@ -158,7 +158,6 @@ class Select extends Component {
             let keyVal = style.props[key].val;
 
             if (!keyEnabled || !style.props[name].showOnValue[keyVal]){
-                this.toggleEnabled({target: {name: name, checked: false}})
                 return null;
             }
         }

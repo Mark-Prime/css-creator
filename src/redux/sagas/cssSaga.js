@@ -10,7 +10,11 @@ function writeCSS(styles, key){
       
       let prop = styles[key].props[value];
       try {
-        if (prop.enabled) {
+        if (prop.key) {
+            if (styles[key].props[prop.key].enabled && prop.showOnValue[styles[key].props[prop.key].val] && prop.enabled) {
+              CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
+            }
+        } else if (prop.enabled) {
           CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
         }
       } catch (error) {
@@ -47,13 +51,21 @@ function parseStyles(action, styles) {
   let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
   if (styles[action.payload.title].props[action.payload.name].enabled) {
     if (re.test(CSS)){
-      CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
+      if (styles[action.payload.title].props[action.payload.name].isKey) {
+        CSS = reloadCSS(styles);
+      } else {
+        CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
+      }
     } else {
       CSS = reloadCSS(styles);
     }
   } else {
     if (re.test(CSS)){
-      CSS = CSS.replace(re, ``);
+      if (styles[action.payload.title].props[action.payload.name].isKey) {
+        CSS = reloadCSS(styles);
+      } else {
+        CSS = CSS.replace(re, ``);
+      }
     } else {
       CSS = reloadCSS(styles);
     }
@@ -64,16 +76,15 @@ function parseStyles(action, styles) {
 function* loadCSS(action){
     try {
       let styles = action.payload.styles;
-      console.log(action.payload.selection)
-      console.table(styles)
+      
       let CSS = reloadCSS(styles);
 
       styles.css = CSS;
 
       if (action.payload.selection !== 'content') {
-        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: Object.assign({}, styles) });
+        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: styles });
       } else {
-        yield put({ type: 'SET_STYLE', payload: Object.assign({}, styles) });
+        yield put({ type: 'SET_STYLE', payload: styles });
       }
 
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE ' + action.payload.selection + ' to ' + JSON.stringify(styles) });
@@ -85,15 +96,14 @@ function* loadCSS(action){
 function* updateCSS(action){
     try {
       let styles = action.payload.styles;
-      console.table(styles)
 
       let CSS = parseStyles(action, styles);
       styles.css = CSS;
 
       if (action.payload.selection !== 'content') {
-        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: Object.assign({}, styles) });
+        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: styles });
       } else {
-        yield put({ type: 'SET_STYLE', payload: Object.assign({}, styles) });
+        yield put({ type: 'SET_STYLE', payload: styles });
       }
 
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE ' + action.payload.selection + ' to ' + JSON.stringify(styles) });

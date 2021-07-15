@@ -34,17 +34,16 @@ const InputLabel = styled.label`
     padding-left: 4px;
 `
 
-const mapStateToProps = ({ styles, container, selection }) => ({ styles, container, selection });
+const mapStateToProps = (props) => (props);
 
 export default connect(mapStateToProps)(function Properties(props) {
-    let styles;
-    switch (props.selection) {
-        case 'container':
-            styles = props.container;
-            break
-        default:
-            styles = props.styles;
-      }
+    let styles = props.styles;
+
+    if (props.selection !== 'content') {
+        styles = props[props.selection]
+    }
+    
+    console.table(styles);
       
     return ( 
         <Wrapper>
