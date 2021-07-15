@@ -67,7 +67,7 @@ function* loadCSS(action){
       let CSS = reloadCSS(styles);
 
       styles.css = CSS;
-      
+
       switch (action.payload.selection) {
         case 'container':
           yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
@@ -79,7 +79,7 @@ function* loadCSS(action){
           yield put({ type: 'SET_STYLE', payload: styles });
       }
 
-      yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
+      yield put({ type: 'SET_LOG', payload: 'SET_STYLE' + action.payload.selection + ' to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in loadCSS', error);
     }
@@ -103,7 +103,7 @@ function* updateCSS(action){
           yield put({ type: 'SET_STYLE', payload: styles });
       }
 
-      yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
+      yield put({ type: 'SET_LOG', payload: 'SET_STYLE' + action.payload.selection + ' to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in updateCSS', error);
     }
