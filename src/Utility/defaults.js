@@ -348,6 +348,7 @@ const styles = {
                 enabled: false,
                 alias: "top",
                 type: 'number',
+                min: 'none',
                 key: 'position',
                 showOnValue: {
                     absolute: true,
@@ -361,6 +362,7 @@ const styles = {
                 enabled: false,
                 alias: "left",
                 type: 'number',
+                min: 'none',
                 key: 'position',
                 showOnValue: {
                     absolute: true,
@@ -374,6 +376,7 @@ const styles = {
                 enabled: false,
                 alias: "right",
                 type: 'number',
+                min: 'none',
                 key: 'position',
                 showOnValue: {
                     absolute: true,
@@ -387,6 +390,7 @@ const styles = {
                 enabled: false,
                 alias: "bottom",
                 type: 'number',
+                min: 'none',
                 key: 'position',
                 showOnValue: {
                     absolute: true,

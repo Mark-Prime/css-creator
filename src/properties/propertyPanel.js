@@ -14,6 +14,8 @@ export default function Panel(props) {
                             <NumberSelect 
                                 name={style}
                                 title={props.title}
+                                min={props.styles[style].min}
+                                max={props.styles[style].max}
                                 key={`${props.title}-${i}-style`}
                             />
                         )
