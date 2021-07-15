@@ -1,4 +1,4 @@
-const selectionReducer = (state = '', action) => {
+const selectionReducer = (state = 'content', action) => {
     switch (action.type) {
       case 'SET_SELECTION':
         return action.payload;

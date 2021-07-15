@@ -52,8 +52,8 @@ class EditSelect extends Component {
                 <Group>
                     <Input type="radio" onChange={this.handleFormChange} id='container' name='editSelect' value='container' checked={selection === 'container'}/>
                     <Label htmlFor='container'>Container</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id='button' name='editSelect' value='button' checked={selection === 'button'}/>
-                    <Label htmlFor='button'>Button</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id='content' name='editSelect' value='content' checked={selection === 'content'}/>
+                    <Label htmlFor='content'>Content</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value=':hover' checked={selection === ':hover'} disabled/>
                     <Label htmlFor=':hover'>:hover</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value=':active' checked={selection === ':active'} disabled/>
