@@ -63,22 +63,19 @@ class CssBuilder extends Component {
             ${this.props.container.css}
         `
 
+        let selectors = ['hover', 'active', 'focus', 'target'];
+        let extraCSS = ''
+
+        for (let selector of selectors) {
+            if (this.props[selector] && this.props[selector].css && this.props[selector].css !== '') {
+                extraCSS = extraCSS + `&:hover{\n${this.props.hover.css}}`
+            }
+        }
+
         const Button = styled.button`
             ${this.props.styles.css}
 
-            ${(this.props.hover.css && this.props.hover.css !== '')
-                ? 
-                    '&:hover{\n' + this.props.hover.css + '}'
-                :
-                    ''
-            }
-
-            ${(this.props.active.css && this.props.active.css !== '')
-                ? 
-                    '&:active{\n' + this.props.active.css + '}'
-                :
-                    ''
-            }
+            ${extraCSS}
         `
 
         return ( 

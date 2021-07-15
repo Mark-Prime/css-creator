@@ -60,19 +60,13 @@ export default connect(mapStateToProps)((props) => {
         SASS = SASS + `${props.tag} \n${props.styles.css}\n`
     }
 
-    if (props.hover.css && props.hover.css !== '') {
-        CSS = CSS + `${props.tag}:hover {\n${props.hover.css}}\n\n`
-        SASS = SASS + `\t&:hover \n${props.hover.css.split('\t').join('\t\t')}\n`
-    }
+    let selectors = ['hover', 'active', 'focus', 'target'];
 
-    if (props.active.css && props.active.css !== '') {
-        CSS = CSS + `${props.tag}:active {\n${props.active.css}}\n\n`
-        SASS = SASS + `\t&:active \n${props.active.css.split('\t').join('\t\t')}\n`
-    }
-
-    if (props.focus.css && props.focus.css !== '') {
-        CSS = CSS + `${props.tag}:focus {\n${props.focus.css}}\n\n`
-        SASS = SASS + `\t&:focus \n${props.focus.css.split('\t').join('\t\t')}\n`
+    for (let selector of selectors) {
+        if (props[selector] && props[selector].css && props[selector].css !== '') {
+            CSS = CSS + `${props.tag}:${selector} {\n${props[selector].css}}\n\n`
+            SASS = SASS + `\t&:${selector} \n${props[selector].css.split('\t').join('\t\t')}\n`
+        }
     }
 
     return ( 
