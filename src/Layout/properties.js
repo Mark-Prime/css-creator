@@ -34,9 +34,18 @@ const InputLabel = styled.label`
     padding-left: 4px;
 `
 
-const mapStateToProps = ({ styles }) => ({ styles });
+const mapStateToProps = ({ styles, containerStyles, selection }) => ({ styles, containerStyles, selection });
 
 export default connect(mapStateToProps)(function Properties(props) {
+    let styles;
+    switch (props.selection) {
+        case 'container':
+            styles = props.containerStyles;
+            break
+        default:
+            styles = props.styles;
+      }
+      
     return ( 
         <Wrapper>
             <PropList>
@@ -45,9 +54,9 @@ export default connect(mapStateToProps)(function Properties(props) {
                     <TextBox value={props.text} onChange={props.setText}></TextBox>
                 </Input>
                 <hr />
-                {Object.keys(props.styles).map((key) => {
+                {Object.keys(styles).map((key, i) => {
                     return (
-                        <Panel styles={props.styles[key].props} title={key} key={key}/>
+                        <Panel styles={styles[key].props} title={key} key={`${key}-${i}`}/>
                     )
                 })}
             </PropList>
