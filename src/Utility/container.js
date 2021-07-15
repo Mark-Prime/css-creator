@@ -3,6 +3,7 @@ import styles from './defaults';
 const container = JSON.parse(JSON.stringify(styles));
 
 container.Text.enabled = false;
+container.Text.props.fontSize.enabled = false;
 
 container.Content.enabled = true;
 
