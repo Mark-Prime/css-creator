@@ -78,6 +78,9 @@ function* loadCSS(action){
         case 'active':
           yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
           break;
+        case 'focus':
+          yield put({ type: 'SET_FOCUS_STYLE', payload: styles });
+          break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });
       }
@@ -104,6 +107,9 @@ function* updateCSS(action){
           break;
         case 'active':
           yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
+          break;
+        case 'focus':
+          yield put({ type: 'SET_FOCUS_STYLE', payload: styles });
           break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });

@@ -8,6 +8,7 @@ import styles from '../Utility/defaults'
 import container from '../Utility/container';
 import hover from '../Utility/hover';
 import active from '../Utility/active';
+import focus from '../Utility/focus';
 import { Helmet } from 'react-helmet';
 
 const Body = styled.div`
@@ -37,6 +38,7 @@ class CssBuilder extends Component {
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: container, selection: 'container'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: hover, selection: 'hover'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: active, selection: 'active'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: focus, selection: 'focus'}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}

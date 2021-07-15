@@ -58,7 +58,7 @@ class EditSelect extends Component {
                     <Label htmlFor=':hover'>:hover</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value='active' checked={selection === 'active'}/>
                     <Label htmlFor=':active'>:active</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value='focus' checked={selection === 'focus'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value='focus' checked={selection === 'focus'}/>
                     <Label htmlFor=':focus'>:focus</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value='target' checked={selection === 'target'} disabled/>
                     <Label htmlFor=':target'>:target</Label>

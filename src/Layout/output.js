@@ -70,6 +70,11 @@ export default connect(mapStateToProps)((props) => {
         SASS = SASS + `\t&:active \n${props.active.css.split('\t').join('\t\t')}\n`
     }
 
+    if (props.focus.css && props.focus.css !== '') {
+        CSS = CSS + `${props.tag}:focus {\n${props.focus.css}}\n\n`
+        SASS = SASS + `\t&:focus \n${props.focus.css.split('\t').join('\t\t')}\n`
+    }
+
     return ( 
         <Wrapper style={{"gridTemplateColumns": props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
             <TextBox>
