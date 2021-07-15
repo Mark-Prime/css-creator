@@ -31,7 +31,6 @@ function reloadCSS(styles) {
 
     while (i < len) {
         const key = keys[i];
-
         if (styles[key].enabled) {
           CSS += writeCSS(styles, key)
         }
@@ -43,7 +42,7 @@ function reloadCSS(styles) {
 }
 
 function parseStyles(action, styles) {
-  let CSS = action.payload.css;
+  let CSS = styles.css;
   let prop = styles[action.payload.title].props[action.payload.name];
   let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
   if (styles[action.payload.title].props[action.payload.name].enabled) {
@@ -65,8 +64,11 @@ function parseStyles(action, styles) {
 function* loadCSS(action){
     try {
       let styles = action.payload.styles;
+      console.table(action.payload)
       let CSS = reloadCSS(styles);
-      yield put({ type: 'SET_CSS', payload: CSS });
+      styles.css = CSS;
+      yield put({ type: 'SET_STYLE', payload: styles });
+      yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in loadCSS', error);
     }
@@ -75,8 +77,11 @@ function* loadCSS(action){
 function* updateCSS(action){
     try {
       let styles = action.payload.styles;
+      console.table(action.payload)
       let CSS = parseStyles(action, styles);
-      yield put({ type: 'SET_CSS', payload: CSS });
+      styles.css = CSS;
+      yield put({ type: 'SET_STYLE', payload: styles });
+      yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in updateCSS', error);
     }
@@ -86,7 +91,9 @@ function* loadContainerCSS(action){
   try {
     let styles = action.payload.container;
     let CSS = reloadCSS(styles);
-    yield put({ type: 'SET_CONTAINER_CSS', payload: CSS });
+    styles.css = CSS;
+    yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+    yield put({ type: 'SET_LOG', payload: 'SET_CONTAINER_STYLE to ' + JSON.stringify(styles) });
   } catch (error) {
     console.log('Error in loadContainerCSS', error);
   }
@@ -97,7 +104,9 @@ function* updateContainerCSS(action){
     console.table(action)
     let styles = action.payload.styles;
     let CSS = parseStyles(action, styles);
-    yield put({ type: 'SET_CONTAINER_CSS', payload: CSS });
+    styles.css = CSS;
+    yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+    yield put({ type: 'SET_LOG', payload: 'SET_CONTAINER_STYLE to ' + JSON.stringify(styles) });
   } catch (error) {
     console.log('Error in updateContainerCSS', error);
   }

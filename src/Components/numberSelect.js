@@ -73,7 +73,7 @@ class NumberSelect extends Component {
         let styleValue;
         switch (this.props.selection) {
             case 'container':
-                styleValue = parseInt(this.props.containerStyles[this.props.title].props[this.props.name].val, 10)
+                styleValue = parseInt(this.props.container[this.props.title].props[this.props.name].val, 10)
                 break
             default:
                 styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10)
@@ -112,13 +112,13 @@ class NumberSelect extends Component {
 
             switch (this.props.selection) {
                 case 'container':
-                    styles = this.props.containerStyles;
+                    styles = this.props.container;
                     styles[this.props.title].props[event.target.name].val = value;
-                    this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss}})
+                    this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
                     break
                 default:
                     styles[this.props.title].props[event.target.name].val = value;
-                    this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                    this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
             }
         }
     }
@@ -129,7 +129,7 @@ class NumberSelect extends Component {
         let styles;
         switch (this.props.selection) {
             case 'container':
-                styles = this.props.containerStyles;
+                styles = this.props.container;
                 break
             default:
                 styles = this.props.styles;
@@ -161,10 +161,10 @@ class NumberSelect extends Component {
 
         switch (this.props.selection) {
             case 'container':
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss}})
+                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
                 break
             default:
-                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
           }
         
     }
@@ -175,7 +175,7 @@ class NumberSelect extends Component {
 
         switch (this.props.selection) {
             case 'container':
-                style = this.props.containerStyles[this.props.title];
+                style = this.props.container[this.props.title];
                 break
             default:
                 style = this.props.styles[this.props.title];
@@ -192,7 +192,7 @@ class NumberSelect extends Component {
             }
         }
         return ( 
-            <Wrapper>
+            <Wrapper key={this.props.log}>
                 <InputLabel>
                     <CheckBox 
                         name={name}
@@ -244,6 +244,6 @@ class NumberSelect extends Component {
     }
 }
 
-const mapStateToProps = ({ styles, css, containerStyles, containerCss, selection }) => ({ styles, css, containerStyles, containerCss, selection });
+const mapStateToProps = ({ styles, container, selection, log }) => ({ styles, container, selection, log });
 
 export default connect(mapStateToProps)(NumberSelect);

@@ -34,13 +34,13 @@ const InputLabel = styled.label`
     padding-left: 4px;
 `
 
-const mapStateToProps = ({ styles, containerStyles, selection }) => ({ styles, containerStyles, selection });
+const mapStateToProps = ({ styles, container, selection }) => ({ styles, container, selection });
 
 export default connect(mapStateToProps)(function Properties(props) {
     let styles;
     switch (props.selection) {
         case 'container':
-            styles = props.containerStyles;
+            styles = props.container;
             break
         default:
             styles = props.styles;
@@ -55,9 +55,11 @@ export default connect(mapStateToProps)(function Properties(props) {
                 </Input>
                 <hr />
                 {Object.keys(styles).map((key, i) => {
-                    return (
-                        <Panel styles={styles[key].props} title={key} key={`${key}-${i}`}/>
-                    )
+                    if (key !== 'css'){
+                        return (
+                            <Panel styles={styles[key].props} title={key} key={`${key}-${i}`}/>
+                        )
+                    } else return null
                 })}
             </PropList>
             <EditSelect />

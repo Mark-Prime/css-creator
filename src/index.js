@@ -12,6 +12,9 @@ import CssBuilder from './Pages/css-builder';
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
+const composeEnhancers =  typeof window === 'object' && window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] ? 
+      window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({ }) : null;
+
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewareList = process.env.NODE_ENV === 'development' ?
@@ -20,7 +23,9 @@ const middlewareList = process.env.NODE_ENV === 'development' ?
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(...middlewareList),
+  composeEnhancers(
+    applyMiddleware(...middlewareList),
+  )
 );
 
 sagaMiddleware.run(rootSaga);

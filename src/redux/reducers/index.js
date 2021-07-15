@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux';
 import styles from './styleReducer';
-import css from './cssReducer';
-import containerCss from './containerReducer';
-import containerStyles from './containerStyleReducer';
+import container from './containerStyleReducer';
 import selection from './selectionReducer';
+import log from './logReducer';
 
 const rootReducer = combineReducers({
   styles,
-  css,
-  containerCss,
-  containerStyles,
-  selection
+  container,
+  selection,
+  log
 });
 
 export default rootReducer;

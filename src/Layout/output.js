@@ -51,14 +51,14 @@ export default connect(mapStateToProps)((props) => {
     let CSS = ``
     let SASS = ``
 
-    if (props.containerCss !== '') {
-        CSS = CSS + `.container {\n${props.containerCss}}\n\n`
-        SASS = SASS + `.container\n${props.containerCss}\n`
+    if (props.container.css !== '') {
+        CSS = CSS + `.container {\n${props.container.css}}\n\n`
+        SASS = SASS + `.container\n${props.container.css}\n`
     }
 
-    if (props.css !== '') {
-        CSS = CSS + `${props.tag} {\n${props.css}}`
-        SASS = SASS + `${props.tag} \n${props.css}`
+    if (props.styles.css !== '') {
+        CSS = CSS + `${props.tag} {\n${props.styles.css}}`
+        SASS = SASS + `${props.tag} \n${props.styles.css}`
     }
 
     return ( 

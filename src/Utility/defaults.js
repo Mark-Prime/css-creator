@@ -1,4 +1,5 @@
 const styles = {
+    css: "",
     "Text" : {
         "enabled": true,
         "props": {
@@ -191,7 +192,7 @@ const styles = {
             // -------------------
             // * FLEXBOX OPTIONS *
             // -------------------
-            
+
             "flexDirection": {
                 val: "row",
                 enabled: false,

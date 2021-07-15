@@ -1,13 +1,13 @@
-const cssReducer = (state = '', action) => {
+const logReducer = (state = '', action) => {
     switch (action.type) {
-      case 'SET_CSS':
+      case 'SET_LOG':
         return action.payload;
-      case 'UNSET_CSS':
+      case 'UNSET_LOG':
         return '';
       default:
         return state;
     }
   };
   
-  export default cssReducer;
+  export default logReducer;
   

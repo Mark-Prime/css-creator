@@ -57,11 +57,11 @@ class CssBuilder extends Component {
         `
 
         const Parent = styled.div`
-            ${this.props.containerCss}
+            ${this.props.container.css}
         `
 
         const Button = styled.button`
-            ${this.props.css}
+            ${this.props.styles.css}
         `
 
         return ( 
@@ -104,6 +104,6 @@ class CssBuilder extends Component {
     }
 }
  
-const mapStateToProps = ({ styles, css, containerCss }) => ({ styles, css, containerCss });
+const mapStateToProps = ({ styles, container }) => ({ styles, container });
 
 export default connect(mapStateToProps)(CssBuilder);

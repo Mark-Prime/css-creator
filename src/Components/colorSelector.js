@@ -51,7 +51,7 @@ class ColorSelector extends Component {
         let styles;
         switch (this.props.selection) {
             case 'container':
-                styles = this.props.containerStyles;
+                styles = this.props.container;
                 break
             default:
                 styles = this.props.styles;
@@ -96,7 +96,7 @@ class ColorSelector extends Component {
 
         switch (this.props.selection) {
             case 'container':
-                styles = this.props.containerStyles;
+                styles = this.props.container;
                 styles[this.props.title].props[event.target.name].val = value;
                 this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss}})
                 break;
@@ -126,7 +126,7 @@ class ColorSelector extends Component {
 
         switch (this.props.selection) {
             case 'container':
-                style = this.props.containerStyles[this.props.title];
+                style = this.props.container[this.props.title];
                 break
             default:
                 style = this.props.styles[this.props.title];
@@ -158,7 +158,7 @@ class ColorSelector extends Component {
         `
 
         return ( 
-            <Wrapper>
+            <Wrapper key={this.props.log}>
                 <InputLabel>
                     <CheckBox 
                         name={name}
@@ -188,6 +188,6 @@ class ColorSelector extends Component {
     }
 }
 
-const mapStateToProps = ({ styles, css, containerStyles, containerCss, selection }) => ({ styles, css, containerStyles, containerCss, selection });
+const mapStateToProps = ({ styles, container, selection, log }) => ({ styles, container, selection, log });
 
 export default connect(mapStateToProps)(ColorSelector);
