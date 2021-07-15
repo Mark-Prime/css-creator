@@ -48,13 +48,10 @@ class ColorSelector extends Component {
     toggleEnabled = (event) => {
         const name = event.target.name;
 
-        let styles;
-        switch (this.props.selection) {
-            case 'container':
-                styles = this.props.container;
-                break
-            default:
-                styles = this.props.styles;
+        let styles = this.props.styles;
+
+        if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection]
         }
 
         if (event.target.checked) {
@@ -86,14 +83,10 @@ class ColorSelector extends Component {
 
     OnStyleChange = (event) => {
         let value = event.target.value
-        let styles;
+        let styles = this.props.styles;
 
-        switch (this.props.selection) {
-            case 'container':
-                styles = this.props.container;
-                break;
-            default:
-                break;
+        if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection]
         }
         
         styles[this.props.title].props[event.target.name].val = value;
@@ -116,15 +109,11 @@ class ColorSelector extends Component {
 
     render() { 
         let name = this.props.name;
-        let style;
-
-        switch (this.props.selection) {
-            case 'container':
-                style = this.props.container[this.props.title];
-                break
-            default:
-                style = this.props.styles[this.props.title];
-          }
+        let style = this.props.styles[this.props.title];
+    
+        if (this.props.selection !== 'content') {
+            style = this.props[this.props.selection][this.props.title];
+        }
 
         if (style.props[name].key) {
             let key = style.props[name].key;

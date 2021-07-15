@@ -70,13 +70,10 @@ class NumberSelect extends Component {
     OnSuffixChange = (event) => {
         let value = event.target.value
 
-        let styleValue;
-        switch (this.props.selection) {
-            case 'container':
-                styleValue = parseInt(this.props.container[this.props.title].props[this.props.name].val, 10)
-                break
-            default:
-                styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10)
+        let styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10);
+
+        if (this.props.selection !== 'content') {
+            styleValue = parseInt(this.props[this.props.selection][this.props.title].props[this.props.name].val, 10);
         }
 
         if (isNaN(styleValue)) {
@@ -110,12 +107,8 @@ class NumberSelect extends Component {
             
             let styles = this.props.styles;
 
-            switch (this.props.selection) {
-                case 'container':
-                    styles = this.props.container;
-                    break;
-                default:
-                    break;
+            if (this.props.selection !== 'content') {
+                styles = this.props[this.props.selection]
             }
             
             styles[this.props.title].props[event.target.name].val = value;
@@ -126,13 +119,10 @@ class NumberSelect extends Component {
     toggleEnabled = (event) => {
         const name = event.target.name;
 
-        let styles;
-        switch (this.props.selection) {
-            case 'container':
-                styles = this.props.container;
-                break
-            default:
-                styles = this.props.styles;
+        let styles = this.props.styles;
+
+        if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection]
         }
 
         if (event.target.checked) {
@@ -165,15 +155,11 @@ class NumberSelect extends Component {
 
     render() { 
         let name = this.props.name;
-        let style;
-
-        switch (this.props.selection) {
-            case 'container':
-                style = this.props.container[this.props.title];
-                break
-            default:
-                style = this.props.styles[this.props.title];
-          }
+        let style = this.props.styles[this.props.title];
+    
+        if (this.props.selection !== 'content') {
+            style = this.props[this.props.selection][this.props.title];
+        }
 
         if (style.props[name].key) {
             let key = style.props[name].key;
