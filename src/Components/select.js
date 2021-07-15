@@ -91,13 +91,10 @@ class Select extends Component {
     toggleEnabled = (event) => {
         const name = event.target.name;
 
-        let styles;
-        switch (this.props.selection) {
-            case 'container':
-                styles = this.props.container;
-                break
-            default:
-                styles = this.props.styles;
+        let styles = this.props.styles;
+
+        if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection]
         }
 
         let style = styles[this.props.title];
