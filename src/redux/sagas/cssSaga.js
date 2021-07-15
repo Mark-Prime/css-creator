@@ -64,10 +64,16 @@ function parseStyles(action, styles) {
 function* loadCSS(action){
     try {
       let styles = action.payload.styles;
-      console.table(action.payload)
       let CSS = reloadCSS(styles);
-      styles.css = CSS;
-      yield put({ type: 'SET_STYLE', payload: styles });
+
+      styles.css = CSS;switch (action.payload.selection) {
+        case 'container':
+          yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+          break;
+        default:
+          yield put({ type: 'SET_STYLE', payload: styles });
+      }
+
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in loadCSS', error);
@@ -77,46 +83,27 @@ function* loadCSS(action){
 function* updateCSS(action){
     try {
       let styles = action.payload.styles;
-      console.table(action.payload)
+
       let CSS = parseStyles(action, styles);
       styles.css = CSS;
-      yield put({ type: 'SET_STYLE', payload: styles });
+
+      switch (action.payload.selection) {
+        case 'container':
+          yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
+          break;
+        default:
+          yield put({ type: 'SET_STYLE', payload: styles });
+      }
+
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE to ' + JSON.stringify(styles) });
     } catch (error) {
       console.log('Error in updateCSS', error);
     }
 }
 
-function* loadContainerCSS(action){
-  try {
-    let styles = action.payload.container;
-    let CSS = reloadCSS(styles);
-    styles.css = CSS;
-    yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
-    yield put({ type: 'SET_LOG', payload: 'SET_CONTAINER_STYLE to ' + JSON.stringify(styles) });
-  } catch (error) {
-    console.log('Error in loadContainerCSS', error);
-  }
-}
-
-function* updateContainerCSS(action){
-  try {
-    console.table(action)
-    let styles = action.payload.styles;
-    let CSS = parseStyles(action, styles);
-    styles.css = CSS;
-    yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
-    yield put({ type: 'SET_LOG', payload: 'SET_CONTAINER_STYLE to ' + JSON.stringify(styles) });
-  } catch (error) {
-    console.log('Error in updateContainerCSS', error);
-  }
-}
-
 function* cssSaga() {
     yield takeLatest('LOAD_CSS', loadCSS);
     yield takeLatest('UPDATE_CSS', updateCSS);
-    yield takeLatest('LOAD_CONTAINER_CSS', loadContainerCSS);
-    yield takeLatest('UPDATE_CONTAINER_CSS', updateContainerCSS);
 }
 
 export default cssSaga;

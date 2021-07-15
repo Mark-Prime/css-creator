@@ -76,13 +76,9 @@ class Select extends Component {
 
             style.enabled = enabled;
         }
-        switch (this.props.selection) {
-            case 'container':
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css }})
-                break
-            default:
-                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
-          }
+
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
+
     }
 
     OnStyleChange = (event) => {
@@ -92,13 +88,13 @@ class Select extends Component {
         switch (this.props.selection) {
             case 'container':
                 styles = this.props.container;
-                styles[this.props.title].props[event.target.name].val = value;
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css }})
-                break
+                break;
             default:
-                styles[this.props.title].props[event.target.name].val = value;
-                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css}})
+                break;
         }
+        
+        styles[this.props.title].props[event.target.name].val = value;
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
     }
 
     render() { 

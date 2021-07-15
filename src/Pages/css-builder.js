@@ -31,11 +31,8 @@ class CssBuilder extends Component {
      }
 
      componentDidMount() {
-        this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles}})
-        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles}})
-
-        this.props.dispatch({ type: 'SET_CONTAINER_STYLE' , payload: container })
-        this.props.dispatch({ type: 'LOAD_CONTAINER_CSS' , payload: {container}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles, selection: 'content'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: container, selection: 'container'}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}

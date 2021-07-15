@@ -81,29 +81,23 @@ class ColorSelector extends Component {
             styles[this.props.title].enabled = enabled;
         }
 
-        switch (this.props.selection) {
-            case 'container':
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss}})
-                break;
-            default:
-                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
-          }
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
     }
 
     OnStyleChange = (event) => {
         let value = event.target.value
-        let styles = this.props.styles;
+        let styles;
 
         switch (this.props.selection) {
             case 'container':
                 styles = this.props.container;
-                styles[this.props.title].props[event.target.name].val = value;
-                this.props.dispatch({ type: 'UPDATE_CONTAINER_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.containerCss}})
                 break;
             default:
-                styles[this.props.title].props[event.target.name].val = value;
-                this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles, title: this.props.title, name: event.target.name, css: this.props.css}})
+                break;
         }
+        
+        styles[this.props.title].props[event.target.name].val = value;
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
     }
 
     handleChangeComplete = (color) => {
