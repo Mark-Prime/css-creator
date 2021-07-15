@@ -158,13 +158,14 @@ class ColorSelector extends Component {
         `
 
         return ( 
-            <Wrapper key={this.props.log}>
+            <Wrapper>
                 <InputLabel>
                     <CheckBox 
                         name={name}
                         type="checkbox" 
                         checked={style.props[name].enabled}
                         onChange={this.toggleEnabled}
+                        key={this.props.log}
                     />
                     {style.props[name].alias}:
                 </InputLabel>

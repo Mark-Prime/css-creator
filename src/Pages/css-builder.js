@@ -81,7 +81,7 @@ class CssBuilder extends Component {
                 />
                 <Center>
                     <Display>
-                        <Parent>
+                        <Parent key={this.props.log}>
                             {this.state.tag === 'button' && 
                                 (<Button>{this.state.text}</Button>)
                             }
@@ -104,6 +104,6 @@ class CssBuilder extends Component {
     }
 }
  
-const mapStateToProps = ({ styles, container }) => ({ styles, container });
+const mapStateToProps = ({ styles, container, log }) => ({ styles, container, log });
 
 export default connect(mapStateToProps)(CssBuilder);
