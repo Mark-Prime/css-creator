@@ -132,16 +132,16 @@ const styles = {
                 alias: "padding",
                 type: 'number'
             },
-            "paddingLeft": {
-                val: "3px",
-                enabled: false,
-                alias: "padding-left",
-                type: 'number'
-            },
             "paddingTop": {
                 val: "3px",
                 enabled: false,
                 alias: "padding-top",
+                type: 'number'
+            },
+            "paddingLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-left",
                 type: 'number'
             },
             "paddingRight": {
@@ -197,16 +197,16 @@ const styles = {
                 alias: "margin",
                 type: 'number'
             },
-            "marginLeft": {
-                val: "3px",
-                enabled: false,
-                alias: "margin-left",
-                type: 'number'
-            },
             "marginTop": {
                 val: "3px",
                 enabled: false,
                 alias: "margin-top",
+                type: 'number'
+            },
+            "marginLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-left",
                 type: 'number'
             },
             "marginRight": {
@@ -330,6 +330,84 @@ const styles = {
                     flex: true,
                     "inline-flex": true,
                 }
+            },
+        },
+    },
+    "Position" : {
+        "enabled": false,
+        "props": {
+            "position": {
+                val: "static",
+                enabled: false,
+                alias: "position",
+                type: 'select',
+                options: ['static', 'sticky', 'absolute', 'fixed', 'relative', 'inherit', 'initial', 'revert', 'unset'],
+            },
+            "top": {
+                val: "3px",
+                enabled: false,
+                alias: "top",
+                type: 'number',
+                key: 'position',
+                showOnValue: {
+                    absolute: true,
+                    relative: true,
+                    fixed: true,
+                    sticky: true,
+                }
+            },
+            "left": {
+                val: "3px",
+                enabled: false,
+                alias: "left",
+                type: 'number',
+                key: 'position',
+                showOnValue: {
+                    absolute: true,
+                    relative: true,
+                    fixed: true,
+                    sticky: true,
+                }
+            },
+            "right": {
+                val: "3px",
+                enabled: false,
+                alias: "right",
+                type: 'number',
+                key: 'position',
+                showOnValue: {
+                    absolute: true,
+                    relative: true,
+                    fixed: true,
+                    sticky: true,
+                }
+            },
+            "bottom": {
+                val: "3px",
+                enabled: false,
+                alias: "bottom",
+                type: 'number',
+                key: 'position',
+                showOnValue: {
+                    absolute: true,
+                    relative: true,
+                    fixed: true,
+                    sticky: true,
+                }
+            },
+            "float": {
+                val: "none",
+                enabled: false,
+                alias: "float",
+                type: 'select',
+                options: ['left', 'right', 'none', 'inline-start', 'inline-end', 'inherit', 'initial', 'revert', 'unset'],
+            },
+            "clear": {
+                val: "none",
+                enabled: false,
+                alias: "clear",
+                type: 'select',
+                options: ['left', 'right', 'none', 'inline-start', 'inline-end', 'inherit', 'initial', 'revert', 'unset'],
             },
         },
     },
