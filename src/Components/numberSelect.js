@@ -155,11 +155,14 @@ class NumberSelect extends Component {
 
     render() { 
         let name = this.props.name;
-        let style = this.props.styles[this.props.title];
     
+        let styles = this.props.styles;
+
         if (this.props.selection !== 'content') {
-            style = this.props[this.props.selection][this.props.title];
+            styles = this.props[this.props.selection]
         }
+        
+        let style = styles[this.props.title];
 
         if (style.props[name].key) {
             let key = style.props[name].key;
@@ -225,6 +228,6 @@ class NumberSelect extends Component {
     }
 }
 
-const mapStateToProps = ({ styles, container, selection, log }) => ({ styles, container, selection, log });
+const mapStateToProps = (props) => (props);
 
 export default connect(mapStateToProps)(NumberSelect);
