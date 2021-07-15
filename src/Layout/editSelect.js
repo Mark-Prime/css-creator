@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
-    padding: 5px 0;
-    border-top: 2px rgba(255, 255, 255, 0.12) solid;
     background: #303030;
 `
 
@@ -36,6 +34,8 @@ const Group = styled.form`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-top: 2px rgba(255, 255, 255, 0.12) solid;
+    padding: 5px 0;
 `
 
 class EditSelect extends Component {
@@ -54,6 +54,12 @@ class EditSelect extends Component {
                     <Label htmlFor='container'>Container</Label>
                     <Input type="radio" onChange={this.handleFormChange} id='content' name='editSelect' value='content' checked={selection === 'content'}/>
                     <Label htmlFor='content'>Content</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id='before' name='editSelect' value='before' checked={selection === 'before'} disabled/>
+                    <Label htmlFor='before'>::before</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id='after' name='editSelect' value='after' checked={selection === 'after'} disabled/>
+                    <Label htmlFor='after'>::after</Label>
+                </Group>
+                <Group>
                     <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value='hover' checked={selection === 'hover'}/>
                     <Label htmlFor=':hover'>:hover</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value='active' checked={selection === 'active'}/>
@@ -62,6 +68,10 @@ class EditSelect extends Component {
                     <Label htmlFor=':focus'>:focus</Label>
                     <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value='target' checked={selection === 'target'}/>
                     <Label htmlFor=':target'>:target</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':disabled' name='editSelect' value='disabled' checked={selection === 'disabled'} disabled/>
+                    <Label htmlFor=':disabled'>:disabled</Label>
+                    <Input type="radio" onChange={this.handleFormChange} id=':invalid' name='editSelect' value='invalid' checked={selection === 'invalid'} disabled/>
+                    <Label htmlFor=':invalid'>:invalid</Label>
                 </Group>
             </Wrapper>
          );
