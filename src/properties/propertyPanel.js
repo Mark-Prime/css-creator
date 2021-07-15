@@ -14,6 +14,7 @@ export default function Panel(props) {
                             <NumberSelect 
                                 name={style}
                                 title={props.title}
+                                key={props.title}
                             />
                         )
                     case "color":
@@ -21,6 +22,7 @@ export default function Panel(props) {
                             <ColorSelector 
                                 name={style}
                                 title={props.title}
+                                key={props.title}
                             />
                         )
                     case "select":
@@ -29,6 +31,7 @@ export default function Panel(props) {
                                 name={style}
                                 title={props.title}
                                 options={props.styles[style].options}
+                                key={props.title}
                             />
                         )
                     default:
