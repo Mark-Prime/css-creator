@@ -57,8 +57,13 @@ export default connect(mapStateToProps)((props) => {
     }
 
     if (props.styles.css !== '') {
-        CSS = CSS + `${props.tag} {\n${props.styles.css}}`
-        SASS = SASS + `${props.tag} \n${props.styles.css}`
+        CSS = CSS + `${props.tag} {\n${props.styles.css}}\n\n`
+        SASS = SASS + `${props.tag} \n${props.styles.css}\n`
+    }
+
+    if (props.hover.css && props.hover.css !== '') {
+        CSS = CSS + `${props.tag}:hover {\n${props.hover.css}}`
+        SASS = SASS + `\t&:hover \n${props.hover.css.split('\t').join('\t\t')}`
     }
 
     return ( 

@@ -61,6 +61,13 @@ class CssBuilder extends Component {
 
         const Button = styled.button`
             ${this.props.styles.css}
+
+            ${(this.props.hover.css && this.props.hover.css !== '')
+                ? 
+                    '&:hover{\n' + this.props.hover.css + '}'
+                :
+                    ''
+            }
         `
 
         return ( 
@@ -103,6 +110,6 @@ class CssBuilder extends Component {
     }
 }
  
-const mapStateToProps = ({ styles, container, log }) => ({ styles, container, log });
+const mapStateToProps = (props) => (props);
 
 export default connect(mapStateToProps)(CssBuilder);
