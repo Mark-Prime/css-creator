@@ -29,6 +29,30 @@ const styles = {
                 alias: "color",
                 type: 'color'
             },
+            "testIndent": {
+                val: "3px",
+                enabled: false,
+                alias: "text-indent",
+                type: 'number'
+            },
+            "letterSpacing": {
+                val: "3px",
+                enabled: false,
+                alias: "letter-spacing",
+                type: 'number'
+            },
+            "lineHeight": {
+                val: "3px",
+                enabled: false,
+                alias: "line-height",
+                type: 'number'
+            },
+            "wordSpacing": {
+                val: "3px",
+                enabled: false,
+                alias: "word-spacing",
+                type: 'number'
+            },
         }
     },
     "Content" : {
@@ -75,6 +99,27 @@ const styles = {
                 enabled: false,
                 alias: "background",
                 type: 'color'
+            },
+            "overflow": {
+                val: "visible",
+                enabled: false,
+                alias: "overflow",
+                type: 'select',
+                options: ['visible', 'hidden', 'scroll', 'auto']
+            },
+            "overflowX": {
+                val: "visible",
+                enabled: false,
+                alias: "overflow-x",
+                type: 'select',
+                options: ['visible', 'hidden', 'scroll', 'auto']
+            },
+            "overflowY": {
+                val: "visible",
+                enabled: false,
+                alias: "overflow-y",
+                type: 'select',
+                options: ['visible', 'hidden', 'scroll', 'auto']
             },
         }
     },
