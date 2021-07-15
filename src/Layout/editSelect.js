@@ -54,13 +54,13 @@ class EditSelect extends Component {
                     <Label htmlFor='container'>Container</Label>
                     <Input type="radio" onChange={this.handleFormChange} id='content' name='editSelect' value='content' checked={selection === 'content'}/>
                     <Label htmlFor='content'>Content</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value='hover' checked={selection === ':hover'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value='hover' checked={selection === 'hover'}/>
                     <Label htmlFor=':hover'>:hover</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value='active' checked={selection === ':active'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value='active' checked={selection === 'active'} disabled/>
                     <Label htmlFor=':active'>:active</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value='focus' checked={selection === ':focus'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value='focus' checked={selection === 'focus'} disabled/>
                     <Label htmlFor=':focus'>:focus</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value='target' checked={selection === ':target'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value='target' checked={selection === 'target'} disabled/>
                     <Label htmlFor=':target'>:target</Label>
                 </Group>
             </Wrapper>
