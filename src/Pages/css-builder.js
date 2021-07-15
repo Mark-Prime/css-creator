@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import styles from '../Utility/defaults'
 import container from '../Utility/container';
 import hover from '../Utility/hover';
+import active from '../Utility/active';
 import { Helmet } from 'react-helmet';
 
 const Body = styled.div`
@@ -35,6 +36,7 @@ class CssBuilder extends Component {
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles, selection: 'content'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: container, selection: 'container'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: hover, selection: 'hover'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: active, selection: 'active'}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
@@ -65,6 +67,13 @@ class CssBuilder extends Component {
             ${(this.props.hover.css && this.props.hover.css !== '')
                 ? 
                     '&:hover{\n' + this.props.hover.css + '}'
+                :
+                    ''
+            }
+
+            ${(this.props.active.css && this.props.active.css !== '')
+                ? 
+                    '&:active{\n' + this.props.active.css + '}'
                 :
                     ''
             }

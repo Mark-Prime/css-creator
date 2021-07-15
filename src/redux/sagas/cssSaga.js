@@ -75,6 +75,9 @@ function* loadCSS(action){
         case 'hover':
           yield put({ type: 'SET_HOVER_STYLE', payload: styles });
           break;
+        case 'active':
+          yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
+          break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });
       }
@@ -98,6 +101,9 @@ function* updateCSS(action){
           break;
         case 'hover':
           yield put({ type: 'SET_HOVER_STYLE', payload: styles });
+          break;
+        case 'active':
+          yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
           break;
         default:
           yield put({ type: 'SET_STYLE', payload: styles });

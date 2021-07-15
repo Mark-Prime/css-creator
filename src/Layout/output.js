@@ -45,7 +45,6 @@ const TextBoxBody = styled.p`
 
 const mapStateToProps = (props) => (props);
 
-// functional component
 export default connect(mapStateToProps)((props) => {
     const HTML = `<div class="container">\n\t<${props.tag}>${props.text}</${props.tag}>\n</div>`
     let CSS = ``
@@ -62,8 +61,13 @@ export default connect(mapStateToProps)((props) => {
     }
 
     if (props.hover.css && props.hover.css !== '') {
-        CSS = CSS + `${props.tag}:hover {\n${props.hover.css}}`
-        SASS = SASS + `\t&:hover \n${props.hover.css.split('\t').join('\t\t')}`
+        CSS = CSS + `${props.tag}:hover {\n${props.hover.css}}\n\n`
+        SASS = SASS + `\t&:hover \n${props.hover.css.split('\t').join('\t\t')}\n`
+    }
+
+    if (props.active.css && props.active.css !== '') {
+        CSS = CSS + `${props.tag}:active {\n${props.active.css}}\n\n`
+        SASS = SASS + `\t&:active \n${props.active.css.split('\t').join('\t\t')}\n`
     }
 
     return ( 
