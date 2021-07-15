@@ -4,7 +4,7 @@ import Output from '../Layout/output';
 import Properties from '../Layout/properties';
 import Sidebar from '../Layout/sidebar';
 import { connect } from 'react-redux';
-import styles from '../Utility/defaults'
+import styles from '../Utility/styles'
 import container from '../Utility/container';
 import hover from '../Utility/hover';
 import active from '../Utility/active';

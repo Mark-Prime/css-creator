@@ -1,9 +1,6 @@
-import styles from './defaults';
+import defaultValues from './defaultValues'
 
-const container = JSON.parse(JSON.stringify(styles));
-
-container.Text.enabled = false;
-container.Text.props.fontSize.enabled = false;
+const container = JSON.parse(defaultValues);
 
 container.Content.enabled = true;
 

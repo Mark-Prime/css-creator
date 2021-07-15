@@ -1,8 +1,5 @@
-import styles from './defaults';
+import defaultValues from './defaultValues'
 
-const active = JSON.parse(JSON.stringify(styles));
+const focus = JSON.parse(defaultValues);
 
-active.Text.enabled = false;
-active.Text.props.fontSize.enabled = false;
-
-export default active;
+export default focus;

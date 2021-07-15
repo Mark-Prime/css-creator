@@ -1,8 +1,5 @@
-import styles from './defaults';
+import defaultValues from './defaultValues'
 
-const target = JSON.parse(JSON.stringify(styles));
-
-target.Text.enabled = false;
-target.Text.props.fontSize.enabled = false;
+const target = JSON.parse(defaultValues);
 
 export default target;

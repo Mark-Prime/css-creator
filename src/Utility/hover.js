@@ -1,8 +1,5 @@
-import styles from './defaults';
+import defaultValues from './defaultValues'
 
-const hover = JSON.parse(JSON.stringify(styles));
-
-hover.Text.enabled = false;
-hover.Text.props.fontSize.enabled = false;
+const hover = JSON.parse(defaultValues);
 
 export default hover;
