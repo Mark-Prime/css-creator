@@ -51,11 +51,15 @@ export default connect(mapStateToProps)((props) => {
     let CSS = ``
     let SASS = ``
 
-    CSS = CSS + `.container {\n${props.containerCss}}\n\n`
-    SASS = SASS + `.container\n${props.containerCss}\n\n`
+    if (props.containerCss !== '') {
+        CSS = CSS + `.container {\n${props.containerCss}}\n\n`
+        SASS = SASS + `.container\n${props.containerCss}\n`
+    }
 
-    CSS = CSS + `${props.tag} {\n${props.css}}`
-    SASS = SASS + `${props.tag} \n${props.css}`
+    if (props.css !== '') {
+        CSS = CSS + `${props.tag} {\n${props.css}}`
+        SASS = SASS + `${props.tag} \n${props.css}`
+    }
 
     return ( 
         <Wrapper style={{"gridTemplateColumns": props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
