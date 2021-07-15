@@ -68,21 +68,10 @@ function* loadCSS(action){
 
       styles.css = CSS;
 
-      switch (action.payload.selection) {
-        case 'container':
-          yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
-          break;
-        case 'hover':
-          yield put({ type: 'SET_HOVER_STYLE', payload: styles });
-          break;
-        case 'active':
-          yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
-          break;
-        case 'focus':
-          yield put({ type: 'SET_FOCUS_STYLE', payload: styles });
-          break;
-        default:
-          yield put({ type: 'SET_STYLE', payload: styles });
+      if (action.payload.selection !== 'content') {
+        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: styles });
+      } else {
+        yield put({ type: 'SET_STYLE', payload: styles });
       }
 
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE' + action.payload.selection + ' to ' + JSON.stringify(styles) });
@@ -98,21 +87,10 @@ function* updateCSS(action){
       let CSS = parseStyles(action, styles);
       styles.css = CSS;
 
-      switch (action.payload.selection) {
-        case 'container':
-          yield put({ type: 'SET_CONTAINER_STYLE', payload: styles });
-          break;
-        case 'hover':
-          yield put({ type: 'SET_HOVER_STYLE', payload: styles });
-          break;
-        case 'active':
-          yield put({ type: 'SET_ACTIVE_STYLE', payload: styles });
-          break;
-        case 'focus':
-          yield put({ type: 'SET_FOCUS_STYLE', payload: styles });
-          break;
-        default:
-          yield put({ type: 'SET_STYLE', payload: styles });
+      if (action.payload.selection !== 'content') {
+        yield put({ type: `SET_${action.payload.selection.toUpperCase()}_STYLE`, payload: styles });
+      } else {
+        yield put({ type: 'SET_STYLE', payload: styles });
       }
 
       yield put({ type: 'SET_LOG', payload: 'SET_STYLE' + action.payload.selection + ' to ' + JSON.stringify(styles) });
