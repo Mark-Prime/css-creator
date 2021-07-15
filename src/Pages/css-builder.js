@@ -5,6 +5,7 @@ import Properties from '../Layout/properties';
 import Sidebar from '../Layout/sidebar';
 import { connect } from 'react-redux';
 import styles from '../Utility/defaults'
+import container from '../Utility/container';
 import { Helmet } from 'react-helmet';
 
 const Body = styled.div`
@@ -32,6 +33,9 @@ class CssBuilder extends Component {
      componentDidMount() {
         this.props.dispatch({ type: 'UPDATE_STYLE' , payload: {styles}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles}})
+
+        this.props.dispatch({ type: 'SET_CONTAINER_STYLE' , payload: container })
+        this.props.dispatch({ type: 'LOAD_CONTAINER_CSS' , payload: {container}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
@@ -43,30 +47,17 @@ class CssBuilder extends Component {
     };
 
     render() { 
-        let style = {}
-
-        for (const key in this.props.styles) {
-            if (Object.hasOwnProperty.call(this.props.styles, key)) {
-                const value = this.props.styles[key].val;
-                if (this.props.styles[key].enabled) {
-                    style[key] = value
-                }
-            }
-        }
-
         const Display = styled.div`
             background: ${this.state.background};
             position: relative;
             width: 100%;
+            height: 100%;
             overflow-x: hidden;
             overflow-y: auto;
         `
 
         const Parent = styled.div`
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
+            ${this.props.containerCss}
         `
 
         const Button = styled.button`
@@ -113,6 +104,6 @@ class CssBuilder extends Component {
     }
 }
  
-const mapStateToProps = ({ styles, css }) => ({ styles, css });
+const mapStateToProps = ({ styles, css, containerCss }) => ({ styles, css, containerCss });
 
 export default connect(mapStateToProps)(CssBuilder);

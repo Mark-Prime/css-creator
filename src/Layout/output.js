@@ -43,7 +43,7 @@ const TextBoxBody = styled.p`
     bottom: 0;
 `
 
-const mapStateToProps = ({ styles, css }) => ({ styles, css });
+const mapStateToProps = (props) => (props);
 
 // functional component
 export default connect(mapStateToProps)((props) => {
@@ -51,10 +51,8 @@ export default connect(mapStateToProps)((props) => {
     let CSS = ``
     let SASS = ``
 
-    if (props.background !== "#ffffff") {
-        CSS = CSS + `.container {\n\tbackground: ${props.background};\n}\n\n`
-        SASS = SASS + `.container\n\tbackground: ${props.background};\n\n`
-    }
+    CSS = CSS + `.container {\n${props.containerCss}}\n\n`
+    SASS = SASS + `.container\n${props.containerCss}\n\n`
 
     CSS = CSS + `${props.tag} {\n${props.css}}`
     SASS = SASS + `${props.tag} \n${props.css}`

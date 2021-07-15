@@ -1,23 +1,292 @@
-import styles from "./defaults";
+const container = {
+    "Text" : {
+        "enabled": false,
+        "props": {
+            "fontSize": {
+                val: "16px",
+                enabled: false,
+                alias: "font-size",
+                type: 'number'
+            },
+            "textDecoration": {
+                val: 'none',
+                enabled: false,
+                alias: "text-decoration",
+                type: 'select',
+                options: ['none', 'overline', 'line-through', 'underline']
+            },
+            "textAlign": {
+                val: "left",
+                enabled: false,
+                alias: "text-align",
+                type: 'select',
+                options: ['center', 'left', 'right', 'justify']
+            },
+            "color": {
+                val: "#000000",
+                enabled: false,
+                alias: "color",
+                type: 'color'
+            },
+        }
+    },
+    "Content" : {
+        "enabled": true,
+        "props": {
+            "width": {
+                val: "75px",
+                enabled: false,
+                alias: "width",
+                type: 'number'
+            },
+            "minWidth": {
+                val: "60px",
+                enabled: false,
+                alias: "min-width",
+                type: 'number'
+            },
+            "maxWidth": {
+                val: "100px",
+                enabled: false,
+                alias: "max-width",
+                type: 'number'
+            },
+            "height": {
+                val: "100%",
+                enabled: true,
+                alias: "height",
+                type: 'number'
+            },
+            "minHeight": {
+                val: "10px",
+                enabled: false,
+                alias: "min-height",
+                type: 'number'
+            },
+            "maxHeight": {
+                val: "30px",
+                enabled: false,
+                alias: "max-height",
+                type: 'number'
+            },
+            "background": {
+                val: "#000000",
+                enabled: false,
+                alias: "background",
+                type: 'color'
+            },
+        }
+    },
+    "Padding" : {
+        "enabled": false,
+        "props": {
+            "padding": {
+                val: "3px",
+                enabled: false,
+                alias: "padding",
+                type: 'number'
+            },
+            "paddingLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-left",
+                type: 'number'
+            },
+            "paddingTop": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-top",
+                type: 'number'
+            },
+            "paddingRight": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-right",
+                type: 'number'
+            },
+            "paddingBottom": {
+                val: "3px",
+                enabled: false,
+                alias: "padding-bottom",
+                type: 'number'
+            },
+        }
+    },
+    "Border" : {
+        "enabled": false,
+        "props" : {
+            "borderWidth": {
+                val: "1px",
+                enabled: false,
+                alias: "border-width",
+                type: 'number'
+            },
+            "borderRadius": {
+                val: "0px",
+                enabled: false,
+                alias: "border-radius",
+                type: 'number'
+            },
+            "borderStyle": {
+                val: "solid",
+                enabled: false,
+                alias: "border-style",
+                type: 'select',
+                options: ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none', 'hidden']
+            },
+            "borderColor": {
+                val: "#000000",
+                enabled: false,
+                alias: "border-color",
+                type: 'color'
+            },
+        }
+    },
+    "Margin" : {
+        "enabled": false,
+        "props": {
+            "margin": {
+                val: "3px",
+                enabled: false,
+                alias: "margin",
+                type: 'number'
+            },
+            "marginLeft": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-left",
+                type: 'number'
+            },
+            "marginTop": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-top",
+                type: 'number'
+            },
+            "marginRight": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-right",
+                type: 'number'
+            },
+            "marginBottom": {
+                val: "3px",
+                enabled: false,
+                alias: "margin-bottom",
+                type: 'number'
+            },
+        },
+    },
+    "Display" : {
+        "enabled": true,
+        "props": {
+            "display": {
+                val: "flex",
+                enabled: true,
+                alias: "display",
+                type: 'select',
+                options: ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'grid', 'inline-grid', 'flow', 'flow-root', 'none', 'contents', 'table', 'table-row', 'list-item', 'inherit', 'initial', 'revert', 'unset']
+            },
 
-let container = styles
-
-container.Text.enabled = false;
-container.Text.props.fontSize.enabled = false;
-
-container.Content.enabled = true;
-container.Content.props.height.enabled = true;
-container.Content.props.height.val = '100%';
-
-container.Display.enabled = false;
-
-container.Display.props.display.enabled = true;
-container.Display.props.display.val = 'flex';
-
-container.Display.props.justifyContent.enabled = true;
-container.Display.props.justifyContent.val = 'center';
-
-container.Display.props.alignContent.enabled = true;
-container.Display.props.alignContent.val = 'center';
+            // -------------------
+            // * FLEXBOX OPTIONS *
+            // -------------------
+            
+            "flexDirection": {
+                val: "row",
+                enabled: false,
+                alias: "flex-direction",
+                type: 'select',
+                options: ['row', 'row-reverse', 'column', 'column-reverse', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "flexWrap": {
+                val: "nowrap",
+                enabled: false,
+                alias: "flex-wrap",
+                type: 'select',
+                options: ['nowrap', 'wrap', 'wrap-reverse', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "justifyContent": {
+                val: "center",
+                enabled: true,
+                alias: "justify-content",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'left', 'right', 'baseline', 'first baseline', 'last baseline', 'space-between', 'space-around', 'space-evenly', 'stretch', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "alignContent": {
+                val: "normal",
+                enabled: false,
+                alias: "align-content",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'left', 'right', 'between', 'around', 'evenly', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "alignItems": {
+                val: "center",
+                enabled: true,
+                alias: "align-items",
+                type: 'select',
+                options: ['normal', 'start', 'center', 'end', 'flex-start', 'flex-end', 'baseline', 'stretch', 'inherit', 'initial', 'revert', 'unset'],
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "gap": {
+                val: "3px",
+                enabled: false,
+                alias: "gap",
+                type: 'number',
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "rowGap": {
+                val: "3px",
+                enabled: false,
+                alias: "row-gap",
+                type: 'number',
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+            "columnGap": {
+                val: "3px",
+                enabled: false,
+                alias: "column-gap",
+                type: 'number',
+                key: 'display',
+                showOnValue: {
+                    flex: true,
+                    "inline-flex": true,
+                }
+            },
+        },
+    },
+}
 
 export default container;
