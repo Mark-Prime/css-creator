@@ -24,8 +24,8 @@ const InputLabel = styled.div`
         width: 10px;
         height: 10px;
 
-        transition: all 0.2s ease;
-        clip-path: polygon(75% 0, 100% 0%, 25% 100%, 0% 100%);
+        transition: all 0.1s ease;
+        clip-path: polygon(0% 0%, 0 20%, 80% 20%, 80% 100%, 100% 100%, 100% 0%);
         background-color: #BFBFBF;
     }
 
@@ -40,8 +40,8 @@ const InputLabel = styled.div`
         left: 0;
         top: 7px;
 
-        transition: all 0.2s ease;
-        clip-path: polygon(0 0, 25% 0, 100% 100%, 75% 100%);
+        transition: all 0.1s ease;
+        clip-path: polygon(0% 0%, 20% 0, 20% 80%, 100% 80%, 100% 100%, 0% 100%);
         background-color: #BFBFBF;
     }
 `
@@ -50,12 +50,12 @@ const CheckBox = styled.input`
     display: none;
 
     &:checked + ${InputLabel}::before {
-        clip-path: polygon(75% 0, 100% 0%, 60% 100%, 35% 100%);
+        clip-path: polygon(75% 0, 100% 0%, 60% 100%, 35% 100%, 35% 100%, 35% 100%);
         background-color: #fff;
     }
 
     &:checked + ${InputLabel}::after {
-        clip-path: polygon(0 50%, 25% 50%, 60% 100%, 35% 100%);
+        clip-path: polygon(0 50%, 25% 50%, 60% 100%, 35% 100%, 35% 100%, 35% 100%);
         background-color: #fff;
     }
 
