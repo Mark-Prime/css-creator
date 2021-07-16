@@ -24,7 +24,7 @@ const InputLabel = styled.div`
         width: 10px;
         height: 10px;
 
-        transition: all 0.1s ease;
+        transition: all 0.2s ease;
         clip-path: polygon(0% 0%, 0 20%, 80% 20%, 80% 100%, 100% 100%, 100% 0%);
         background-color: #BFBFBF;
     }
@@ -40,7 +40,7 @@ const InputLabel = styled.div`
         left: 0;
         top: 7px;
 
-        transition: all 0.1s ease;
+        transition: all 0.2s ease;
         clip-path: polygon(0% 0%, 20% 0, 20% 80%, 100% 80%, 100% 100%, 0% 100%);
         background-color: #BFBFBF;
     }
