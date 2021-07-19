@@ -1,67 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Label, InputLabel, CheckBox } from './Label'
 
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
     height: 21;
-`
-
-const Label = styled.label`
-    position: relative;
-`
-
-const InputLabel = styled.div`
-    display: inline;
-    color: #BFBFBF;
-
-    &::before {
-        content: "";
-        display: inline-block;
-        clear: both;
-        margin: 6px 3px 0 4px;
-        width: 10px;
-        height: 10px;
-
-        transition: all 0.2s ease;
-        clip-path: polygon(0% 0%, 0 20%, 80% 20%, 80% 100%, 100% 100%, 100% 0%);
-        background-color: #BFBFBF;
-    }
-
-    &::after {
-        content: "";
-        display: inline-block;
-        clear: both;
-        margin: 0 3px 0 4px;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        left: 0;
-        top: 7px;
-
-        transition: all 0.2s ease;
-        clip-path: polygon(0% 0%, 20% 0, 20% 80%, 100% 80%, 100% 100%, 0% 100%);
-        background-color: #BFBFBF;
-    }
-`
-
-const CheckBox = styled.input`
-    display: none;
-
-    &:checked + ${InputLabel}::before {
-        clip-path: polygon(75% 0, 100% 0%, 60% 100%, 35% 100%, 35% 100%, 35% 100%);
-        background-color: #fff;
-    }
-
-    &:checked + ${InputLabel}::after {
-        clip-path: polygon(0 50%, 25% 50%, 60% 100%, 35% 100%, 35% 100%, 35% 100%);
-        background-color: #fff;
-    }
-
-    &:checked + ${InputLabel} {
-        color: #fff;
-    }
 `
 
 const Option = styled.option`
@@ -160,17 +105,16 @@ class Select extends Component {
         }
         return ( 
             <Wrapper key={this.props.log}>
-                <div>
-                    <Label>
-                        <CheckBox 
-                            name={name}
-                            type="checkbox" 
-                            checked={style.props[name].enabled}
-                            onChange={this.toggleEnabled}
-                        />
-                        <InputLabel>{style.props[name].alias}:</InputLabel>
-                    </Label>
-                </div>
+                <Label>
+                    <CheckBox 
+                        name={name}
+                        type="checkbox" 
+                        checked={style.props[name].enabled}
+                        onChange={this.toggleEnabled}
+                        key={this.props.log}
+                    />
+                    <InputLabel>{style.props[name].alias}:</InputLabel>
+                </Label>
                 <SelectInput 
                     name={name}
                     value={style.props[name].val} 
