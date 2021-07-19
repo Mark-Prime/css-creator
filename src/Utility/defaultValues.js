@@ -167,12 +167,6 @@ const defaults = `{
                 "alias": "border-width",
                 "type": "number"
             },
-            "borderRadius": {
-                "val": "0px",
-                "enabled": false,
-                "alias": "border-radius",
-                "type": "number"
-            },
             "borderStyle": {
                 "val": "solid",
                 "enabled": false,
@@ -185,6 +179,12 @@ const defaults = `{
                 "enabled": false,
                 "alias": "border-color",
                 "type": "color"
+            },
+            "borderRadius": {
+                "val": "0px",
+                "enabled": false,
+                "alias": "border-radius",
+                "type": "number"
             }
         }
     },
