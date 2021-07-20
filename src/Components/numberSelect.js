@@ -4,6 +4,8 @@ import { Label, InputLabel, CheckBox } from './Label'
 
 import styled from 'styled-components';
 
+const defaultSuffixs = ['px', 'cm', 'mm', 'in', 'pt', 'pc', '%', 'em', 'rem', 'vh', 'vw', 'ex', 'ch', 'vmin', 'vmax', 'auto']
+
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -182,7 +184,8 @@ class NumberSelect extends Component {
                     <NumberInput 
                         name={name}
                         data-suffix={this.state.suffix}
-                        type="number" 
+                        type="number"
+                        step="any"
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
                         value={parseInt(style.props[name].val, 10)} 
@@ -192,27 +195,19 @@ class NumberSelect extends Component {
 
                     <SuffixSelect
                         name={name}
-                        min="0" 
                         value={this.state.suffix} 
                         onChange={this.OnSuffixChange} 
                         disabled={!style.props[name].enabled}
                     >
-                        <option value={"px"} key="px">px</option>
-                        <option value={"cm"} key="cm">cm</option>
-                        <option value={"mm"} key="mm">mm</option>
-                        <option value={"in"} key="in">in</option>
-                        <option value={"pt"} key="pt">pt</option>
-                        <option value={"pc"} key="pc">pc</option>
-                        <option value={"%"} key="percent">%</option>
-                        <option value={"em"} key="em">em</option>
-                        <option value={"rem"} key="rem">rem</option>
-                        <option value={"vh"} key="vh">vh</option>
-                        <option value={"vw"} key="vw">vw</option>
-                        <option value={"ex"} key="ex">ex</option>
-                        <option value={"ch"} key="ch">ch</option>
-                        <option value={"vmin"} key="vmin">vmin</option>
-                        <option value={"vmax"} key="vmax">vmax</option>
-                        <option value={"auto"} key="auto">auto</option>
+                        {style.props[name].suffixOverrides ? 
+                            style.props[name].suffixOverrides.map((item) => {
+                                return <option value={item} key={item}>{item}</option>
+                            }
+                        ) : 
+                            defaultSuffixs.map((item) => {
+                                return <option value={item} key={item}>{item}</option>
+                            })
+                        }
                     </SuffixSelect>
                 </SelectWrapper>
             </Wrapper>
