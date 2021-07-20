@@ -415,3 +415,37 @@ const defaults = `{
 }`
 
 export default defaults;
+
+// ,
+//     "Animations" : {
+//         "enabled": false,
+//         "props" : {
+//             "transitionProperty": {
+//                 "val": "all",
+//                 "enabled": false,
+//                 "alias": "transition-property",
+//                 "type": "select",
+//                 "options": ["all"]
+//             },
+//             "transitionDuration": {
+//                 "val": "0.2s",
+//                 "enabled": false,
+//                 "alias": "transition-duration",
+//                 "type": "number",
+//                 "suffixOverrides": [ "s", "ms" ]
+//             },
+//             "transitionTimingFunction": {
+//                 "val": "ease",
+//                 "enabled": false,
+//                 "alias": "transition-timing-function",
+//                 "type": "select",
+//                 "options": [ "linear", "ease", "ease-in", "ease-out", "ease-in-out", "step-start", "step-end"]
+//             },
+//             "transitionDelay": {
+//                 "val": "0px",
+//                 "enabled": false,
+//                 "alias": "transition-delay",
+//                 "type": "number"
+//             }
+//         }
+//     }
