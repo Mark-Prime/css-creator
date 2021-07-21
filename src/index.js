@@ -8,6 +8,7 @@ import logger from 'redux-logger';
 import './index.css';
 import App from './App';
 import CssBuilder from './Pages/css-builder';
+import Home from './Pages/home';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
@@ -31,6 +32,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>  
       <Route exact path="/" component={App} /> 
+      <Route path="/home" component={Home} /> 
       <Route path="/css" component={CssBuilder} /> 
     </Router>
   </Provider>,
