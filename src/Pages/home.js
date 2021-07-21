@@ -21,7 +21,6 @@ const Adjective = styled.div`
     font-family: Inter, sans-serif;
     color: white;
     font-size: 3rem;
-    padding-top: 10vh;
     display: inline-block;
 
     &::before {
@@ -46,6 +45,7 @@ const NamePlate = styled.div`
     font-size: 3rem;
     text-align: center;
     padding-top: 10vh;
+    margin-bottom: 10vh;
     font-weight: 700;
 `
 
