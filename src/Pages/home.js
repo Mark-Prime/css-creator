@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from '../imgs/logo.png';
 import HomeBG from '../imgs/home-bg.jpg';
+import Noun from '../Components/Noun'
 
 // colors:
 let colorBg = "#21006f"
 let colorBg2 = "#450eff"
 let colorHighlight = "#ff911a"
 let colorPrimary = "#fe3218"
-let colorSecondary = "#e100f5"
+// let colorSecondary = "#e100f5"
 
 const Container = styled.div`
     height: 100%;
@@ -25,7 +26,7 @@ const scanlineAnim = keyframes`
 `
 
 const Scanner = styled.div`
-    height: 90vh;
+    height: 95vh;
     width: 100%;
     overflow: hidden;
     position: absolute;
@@ -56,10 +57,10 @@ const Scanline = styled.div`
 `
 
 const Header = styled.div`
-    font-family: Montserrat, sans-serif;
+    font-family: "Major Mono Display", sans-serif;
     background: linear-gradient(#000000 0%, ${colorBg} 100%);
     width: 100%;
-    height: 90vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -67,7 +68,7 @@ const Header = styled.div`
     overflow: hidden;
 `
 
-let lineheight = -60
+let lineheight = -48
 
 const animation = keyframes`
     0% {
@@ -95,16 +96,29 @@ const animation = keyframes`
     }
 
     100% {
-        transform: translateY(calc(-100% + 60px));
+        transform: translateY(calc(-100% + 59px));
     }
 `
 
 const IAM = styled.div`
     position: absolute;
-    z-index: 1;
     right: 50%;
-    color: ${colorPrimary};
-    text-shadow: 0 0 3px ${colorPrimary};
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(${colorPrimary}, ${colorHighlight});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &::before {
+        content: "I AM";
+        position: absolute;
+        width: fit-content;
+        z-index: -1;
+        transform: translateX(1px) translateY(1px);
+        left: 0;
+        background: linear-gradient(${colorBg2}, ${colorBg});
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 `
 
 const NamePlate = styled.img`
@@ -156,6 +170,28 @@ const DownArrow = styled.div`
 
 `
 
+const ME = styled.div`
+    background: -webkit-linear-gradient(${colorPrimary}, ${colorHighlight});
+    font-family: "Montserrat", sans-serif;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    &::before {
+        content: "ME";
+        position: absolute;
+        width: fit-content;
+        z-index: -1;
+        transform: translateX(1px) translateY(1px);
+        left: 0;
+        background: linear-gradient(${colorBg2}, ${colorBg});
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+`
+
 const descriptors = ['a movie lover', 'a software engineer', 'an artist', 'a front-end developer', 'a photographer', 'a video editor', 'a gamer', 'a performer', 'a leader', 'a python developer', 'a magician'];
 
 class Home extends Component {
@@ -191,16 +227,14 @@ class Home extends Component {
     render() { 
 
         const Descriptor = styled.div`
-            font-family: Inter, sans-serif;
+            font-family: "Major Mono Display", sans-serif;
             font-size: 3rem;
             text-align: left;
             position: absolute;
             left: 51%;
             height: fit-content;
-            transform: translateY(calc(-100% + 60px));
+            transform: translateY(calc(-100% + 59px));
             animation: ${animation} ${this.state.loaded ? '0s' : '2.5s'} ease;
-            color: ${colorPrimary};
-            text-shadow: 0 0 3px ${colorPrimary};
             transition: transform 0.2s ease;
         `
 
@@ -229,7 +263,21 @@ class Home extends Component {
             <Container>
                 <Header>
                     <NamePlate src={logo} alt="Mark Spannbauer" />
-                    <SubHeader onMouseEnter={this.onMouseEnter}><IAM>I AM </IAM><Descriptor key={this.state.num}>{descriptors.map((descriptor) => (<div key={descriptor}>{descriptor}<br/></div>))}<br/><br/>ME</Descriptor></SubHeader>
+                    <SubHeader onMouseEnter={this.onMouseEnter} key={this.state.num}>
+                        <IAM>I AM</IAM>
+                        <Descriptor>
+                            {descriptors.map(
+                                (descriptor) => (
+                                    <Noun 
+                                        key={descriptor} 
+                                        shadow={colorBg2}
+                                        color={"#ff6a0e"}
+                                    >{descriptor}<br/></Noun>
+                                )
+                            )}
+                            <br/><br/><ME>ME</ME>
+                        </Descriptor>
+                    </SubHeader>
                     <DownArrow />
                     <Scanner>
                         <Scanline />
