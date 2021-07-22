@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from '../imgs/logo.png';
+import HomeBG from '../imgs/home-bg.jpg';
 
 // colors:
 let colorBg = "#21006f"
@@ -29,6 +30,18 @@ const Scanner = styled.div`
     overflow: hidden;
     position: absolute;
     z-index: 1;
+
+    &::before {    
+        content: "";
+        background-image: url(${HomeBG});
+        background-size: cover;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        opacity: 0.01;
+    }
 `
 
 const Scanline = styled.div`
