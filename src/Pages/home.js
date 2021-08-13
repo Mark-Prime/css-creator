@@ -9,7 +9,7 @@ let colorBg = "#21006f"
 let colorBg2 = "#450eff"
 let colorHighlight = "#ff911a"
 let colorPrimary = "#fe3218"
-// let colorSecondary = "#e100f5"
+let colorSecondary = "#e100f5"
 
 const Container = styled.div`
     height: 100%;
@@ -97,6 +97,42 @@ const animation = keyframes`
 
     100% {
         transform: translateY(calc(-100% + 59px));
+    }
+`
+
+const purpleAnim = keyframes`
+    0% {
+        width: 100%;
+        opacity: 0.1;
+
+        &::after {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) translateY(-10px);
+            box-shadow: 0px 20px 0px ${colorSecondary};
+        }
+
+        &::before {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) translateY(-22px);
+            box-shadow: 0px 44px 0px ${colorSecondary};
+        }
+    }
+
+    80% {
+        width: 100%;
+        opacity: 0.1;
+
+        &::after {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) translateY(-10px);
+            box-shadow: 0px 20px 0px ${colorSecondary};
+        }
+
+        &::before {
+            opacity: 0.9;
+            transform: translate(-50%, -50%) translateY(-22px);
+            box-shadow: 0px 44px 0px ${colorSecondary};
+        }
     }
 `
 
@@ -235,7 +271,58 @@ class Home extends Component {
             height: fit-content;
             transform: translateY(calc(-100% + 59px));
             animation: ${animation} ${this.state.loaded ? '0s' : '2.5s'} ease;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease-out;
+        `
+
+        const PurpleLines = styled.div`
+            position: absolute;
+            z-index: -1;
+            opacity: 0.3;
+            width: 25%;
+            height: 4px;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+            background: ${colorSecondary};
+            animation: ${purpleAnim} ${this.state.loaded ? '0s' : '2.5s'} ease;
+            transition: all 0.2s ease-out;
+
+            &::after {
+                content: "";
+                display: table;
+                clear: both;
+
+                position: absolute;
+                opacity: 0.5;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) translateY(-5px);
+                width: 90%;
+                height: 2px;
+                border-radius: 100%;
+                background: ${colorSecondary};
+
+                box-shadow: 0px 10px 0px ${colorSecondary};
+            }
+
+            &::before {
+                content: "";
+                display: table;
+                clear: both;
+
+                position: absolute;
+                opacity: 0.5;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) translateY(-11px);
+                width: 80%;
+                height: 1px;
+                border-radius: 100%;
+                background: ${colorSecondary};
+
+                box-shadow: 0px 22px 0px ${colorSecondary};
+            }
         `
 
         const SubHeader = styled.div`
@@ -258,6 +345,25 @@ class Home extends Component {
             &:hover ${Descriptor} {
                 transform: translateY(${lineheight * this.state.num}px);
             }
+
+            ${this.state.loaded && 
+            `&:hover ${PurpleLines} {
+                width: 100%;
+                opacity: 0.1;
+
+                &::after {
+                    opacity: 0.9;
+                    transform: translate(-50%, -50%) translateY(-10px);
+                    box-shadow: 0px 20px 0px ${colorSecondary};
+                }
+
+                &::before {
+                    opacity: 0.9;
+                    transform: translate(-50%, -50%) translateY(-22px);
+                    box-shadow: 0px 44px 0px ${colorSecondary};
+                }
+            }`}
+            
         `
         return ( 
             <Container>
@@ -277,6 +383,7 @@ class Home extends Component {
                             )}
                             <br/><br/><ME>ME</ME>
                         </Descriptor>
+                        <PurpleLines />
                     </SubHeader>
                     <DownArrow />
                     <Scanner>
