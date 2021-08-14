@@ -68,37 +68,37 @@ const Header = styled.div`
     overflow: hidden;
 `
 
-let lineheight = -48
-
-const animation = keyframes`
+function createAnimation(lineheight) {
+    return keyframes`
     0% {
-        transform: translateY(${lineheight*2}px);
+        transform: translateY(calc(-${lineheight} * 2));
     }
 
     20% {
-        transform: translateY(${lineheight*2}px);
+        transform: translateY(calc(-${lineheight} * 2));
     }
 
     40% {
-        transform: translateY(${lineheight*5}px);
+        transform: translateY(calc(-${lineheight} * 5));
     }
 
     50% {
-        transform: translateY(${lineheight*5}px);
+        transform: translateY(calc(-${lineheight} * 5));
     }
 
     70% {
-        transform: translateY(${lineheight}px);
+        transform: translateY(-${lineheight});
     }
 
     80% {
-        transform: translateY(${lineheight}px);
+        transform: translateY(-${lineheight});
     }
 
     100% {
-        transform: translateY(calc(-100% + 59px));
+        transform: translateY(calc(-100% + ${lineheight}));
     }
 `
+}
 
 const IAM = styled.div`
     position: absolute;
@@ -233,12 +233,42 @@ class Home extends Component {
             position: absolute;
             left: 51%;
             height: fit-content;
-            transform: translateY(calc(-100% + 59px));
-            animation: ${animation} ${this.state.loaded ? '0s' : '2.5s'} ease;
+            transform: translateY(calc(-100% + 3rem));
+            animation: ${createAnimation('3rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
             transition: transform 0.2s ease;
+            white-space: nowrap;
+
+            @media (max-width: 1550px) {
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+                transform: translateY(calc(-100% + 2.5rem));
+                animation: ${createAnimation('2.5rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
+            }
+
+            @media (max-width: 1300px) {
+                font-size: 2rem;
+                line-height: 2rem;
+                transform: translateY(calc(-100% + 2rem));
+                animation: ${createAnimation('2rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
+            }
+
+            @media (max-width: 1000px) {
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                transform: translateY(calc(-100% + 1.5rem));
+                animation: ${createAnimation('1.5rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
+            }
+
+            @media (max-width: 750px) {
+                font-size: 2rem;
+                line-height: 2rem;
+                transform: translateY(calc(-100% + 2rem));
+                animation: ${createAnimation('2rem')} 0s ease;
+            }
         `
 
         const SubHeader = styled.div`
+            line-height: 3rem;
             position: relative;
             z-index: 10;
             top: -60px;
@@ -250,13 +280,57 @@ class Home extends Component {
             font-size: 3rem;
             padding-top: 50px;
             height: 100px;
-            width: 90%;
+            width: 100%;
             margin: auto;
             mask: linear-gradient(0deg, rgba(255,255,255,0) 10%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,0) 90%);
             overflow: hidden;
 
+            @media (max-width: 1550px) {
+                top: 60px;
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+                transform: translateY(calc(-100% + 2.5rem));
+            }
+
+            @media (max-width: 1300px) {
+                top: 60px;
+                font-size: 2rem;
+                line-height: 2rem;
+                transform: translateY(calc(-100% + 2rem));
+            }
+
+            @media (max-width: 1000px) {
+                top: 60px;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                transform: translateY(calc(-100% + 1.5rem));
+            }
+
+            @media (max-width: 750px) {
+                top: 60px;
+                font-size: 2rem;
+                line-height: 2rem;
+                transform: translateY(calc(-100% + 2rem));
+            }
+
             &:hover ${Descriptor} {
-                transform: translateY(${lineheight * this.state.num}px);
+                transform: translateY(calc(-3rem * ${this.state.num}));
+
+                @media (max-width: 1550px) {
+                    transform: translateY(calc(-2.5rem * ${this.state.num}));
+                }
+
+                @media (max-width: 1300px) {
+                    transform: translateY(calc(-2rem * ${this.state.num}));
+                }
+
+                @media (max-width: 1000px) {
+                    transform: translateY(calc(-1.5rem * ${this.state.num}));
+                }
+
+                @media (max-width: 750px) {
+                    transform: translateY(calc(-100% + 2rem));
+                }
             }
         `
         return ( 
@@ -275,7 +349,7 @@ class Home extends Component {
                                     >{descriptor}<br/></Noun>
                                 )
                             )}
-                            <br/><br/><ME>ME</ME>
+                            <br/><br/><br/><br/><ME>ME</ME>
                         </Descriptor>
                     </SubHeader>
                     <DownArrow />
