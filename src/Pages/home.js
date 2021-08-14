@@ -41,19 +41,20 @@ const Scanner = styled.div`
         right: 0px;
         bottom: 0px;
         left: 0px;
-        opacity: 0.01;
+        opacity: 0.03;
+        filter: grayscale(1);
     }
 `
 
 const Scanline = styled.div`
-        clear: both;
-        display: table;
-        height: 100px;
-        width: 100%;
-        position: absolute;
-        z-index: 1;
-        background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.03) 50%, rgba(255,255,255,0) 100%);
-        animation: ${scanlineAnim} 10s linear infinite;
+    clear: both;
+    display: table;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.03) 50%, rgba(255,255,255,0) 100%);
+    animation: ${scanlineAnim} 10s linear infinite;
 `
 
 const Header = styled.div`
@@ -71,27 +72,27 @@ const Header = styled.div`
 function createAnimation(lineheight) {
     return keyframes`
     0% {
-        transform: translateY(calc(-${lineheight} * 2));
+        transform: translateY(calc((-${lineheight} * 2) - 3px));
     }
 
     20% {
-        transform: translateY(calc(-${lineheight} * 2));
+        transform: translateY(calc((-${lineheight} * 2) - 3px));
     }
 
     40% {
-        transform: translateY(calc(-${lineheight} * 5));
+        transform: translateY(calc((-${lineheight} * 5) - 3px));
     }
 
     50% {
-        transform: translateY(calc(-${lineheight} * 5));
+        transform: translateY(calc((-${lineheight} * 5) - 3px));
     }
 
     70% {
-        transform: translateY(-${lineheight});
+        transform: translateY(calc(-${lineheight} - 3px));
     }
 
     80% {
-        transform: translateY(-${lineheight});
+        transform: translateY(calc(-${lineheight} - 3px));
     }
 
     100% {
@@ -314,18 +315,18 @@ class Home extends Component {
             }
 
             &:hover ${Descriptor} {
-                transform: translateY(calc(-3rem * ${this.state.num}));
+                transform: translateY(calc((-3rem * ${this.state.num}) - 3px));
 
                 @media (max-width: 1550px) {
-                    transform: translateY(calc(-2.5rem * ${this.state.num}));
+                    transform: translateY(calc((-2.5rem * ${this.state.num}) - 3px));
                 }
 
                 @media (max-width: 1300px) {
-                    transform: translateY(calc(-2rem * ${this.state.num}));
+                    transform: translateY(calc((-2rem * ${this.state.num}) - 3px));
                 }
 
                 @media (max-width: 1000px) {
-                    transform: translateY(calc(-1.5rem * ${this.state.num}));
+                    transform: translateY(calc((-1.5rem * ${this.state.num}) - 3px));
                 }
 
                 @media (max-width: 750px) {
