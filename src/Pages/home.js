@@ -139,7 +139,7 @@ const purpleAnim = keyframes`
 
 const IAM = styled.div`
     position: absolute;
-    right: 50%;
+    right: 49%;
     font-family: "Montserrat", sans-serif;
     background: linear-gradient(${colorPrimary}, ${colorHighlight});
     -webkit-background-clip: text;
@@ -268,7 +268,7 @@ class Home extends Component {
             font-size: 3rem;
             text-align: left;
             position: absolute;
-            left: 51%;
+            left: calc(51% + 10px);
             height: fit-content;
             transform: translateY(calc(-100% + 3rem));
             animation: ${createAnimation('3rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
@@ -352,6 +352,11 @@ class Home extends Component {
                 background: ${colorSecondary};
 
                 box-shadow: 0px 22px 0px ${colorSecondary};
+            }
+
+            @media (max-width: 750px) {
+                width: 50%;
+                animation: ${purpleAnim} 0s ease;
             }
         `
 
