@@ -365,7 +365,7 @@ class Home extends Component {
             font-family: Inter, sans-serif;
             color: white;
             font-size: 3rem;
-            padding-top: 50px;
+            padding-top: 60px;
             height: 100px;
             width: 100%;
             margin: auto;
