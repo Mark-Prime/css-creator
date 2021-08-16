@@ -272,7 +272,7 @@ class Home extends Component {
             height: fit-content;
             transform: translateY(calc(-100% + 3rem));
             animation: ${createAnimation('3rem')} ${this.state.loaded ? '0s' : '2.5s'} ease;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
             white-space: nowrap;
 
             @media (max-width: 1550px) {
@@ -361,7 +361,6 @@ class Home extends Component {
             z-index: 10;
             top: -60px;
             text-align: center;
-            transition: all 0.1s ease-out;
             cursor: default;
             font-family: Inter, sans-serif;
             color: white;
@@ -370,11 +369,12 @@ class Home extends Component {
             height: 100px;
             width: 100%;
             margin: auto;
-            mask: linear-gradient(0deg, rgba(255,255,255,0) 10%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,0) 90%);
+            mask: linear-gradient(0deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,0) 85%);
             overflow: hidden;
 
             @media (max-width: 1550px) {
                 top: 60px;
+                padding-top: 70px;
                 font-size: 2.5rem;
                 line-height: 2.5rem;
                 transform: translateY(calc(-100% + 2.5rem));
@@ -382,6 +382,7 @@ class Home extends Component {
 
             @media (max-width: 1300px) {
                 top: 60px;
+                padding-top: 80px;
                 font-size: 2rem;
                 line-height: 2rem;
                 transform: translateY(calc(-100% + 2rem));
@@ -389,6 +390,7 @@ class Home extends Component {
 
             @media (max-width: 1000px) {
                 top: 60px;
+                padding-top: 87px;
                 font-size: 1.5rem;
                 line-height: 1.5rem;
                 transform: translateY(calc(-100% + 1.5rem));
@@ -396,6 +398,7 @@ class Home extends Component {
 
             @media (max-width: 750px) {
                 top: 60px;
+                padding-top: 80px;
                 font-size: 2rem;
                 line-height: 2rem;
                 transform: translateY(calc(-100% + 2rem));
