@@ -1,27 +1,54 @@
 import React, { Component } from 'react';
-
 import styled, { keyframes } from 'styled-components';
 
 function wait(time) {
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
+let Rewards = styled.div`
+    color: lightgreen;
+    border-top: 1px solid white;
+    width: 100%;
+    margin-top: .5rem;
+`;
+
+let Costs = styled.div`
+    width: 100%;
+    color: #f44336;
+    border-top: 1px solid white;
+    margin-top: .5rem;
+`;
 class GameButton extends Component {
     state = { 
         disabled: false,
     } 
 
     onClick = (delay = 1) => {
-        this.setState({
-            disabled: true,
-        })
-
-        wait(delay*1000).then(() => {
-            this.props.addValue((Math.floor(Math.random() * (5)) + 1) * this.props.multiplier)
+        if (this.props.checkCost(this.props.cost || {})) {
             this.setState({
-                disabled: false,
+                disabled: true,
             })
+    
+            let max = this.props.max || 5;
+            let min = this.props.min || 1;
+    
+            wait(delay*1000).then(() => {
+                this.props.addValue((Math.floor(Math.random() * (max - min + 1)) + min) * this.props.multiplier, this.props.title);
+                this.setState({
+                    disabled: false,
+                })
+            })
+        }   
+    }
+
+    enableTooltip = () => {
+        this.setState({
+            showTooltip: true,
         })
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.disabled !== nextState.disabled;
     }
 
     render() { 
@@ -31,7 +58,29 @@ class GameButton extends Component {
             100% { width: 0%; }
         `
 
+        let Wrapper = styled.div`
+            position: relative;
+        `
+
+        let ToolTip = styled.div`
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            opacity: 0;
+            display: none;
+
+            border: 1px solid white;
+            padding: 5px;
+
+            background: #121212;
+            color: white;
+            font-size: .8rem;
+        `
+
         let Button = styled.button`
+            width: 150px;
             background: transparent;
             border: 1px solid white;
             padding: 5px 10px;
@@ -44,6 +93,7 @@ class GameButton extends Component {
             position: relative;
             cursor: pointer;
             overflow: hidden;
+            margin: 5px;
 
             &:disabled {
                 border-bottom: 3px solid white;
@@ -65,10 +115,40 @@ class GameButton extends Component {
                     animation: ${disabledAnimation} ${this.props.delay || 1}s ease 0s 1 forwards;
                 }
             }
+
+            &:hover + ${ToolTip} {
+                opacity: 1;
+                display: block;
+            }
         `
 
         return (
-            <Button disabled={this.state.disabled} onMouseDown={() => this.onClick(this.props.delay)}>Points: {this.props.value}</Button>
+            <Wrapper>
+                <Button 
+                    disabled={this.state.disabled} 
+                    onMouseDown={() => this.onClick(this.props.delay)}
+                >
+                    {this.props.text}
+                </Button>
+                <ToolTip>
+                    {this.props.toolTipText}
+                    <Rewards>Rewards: </Rewards>
+                    <div>
+                        {(this.props.min || 1) * this.props.multiplier}-{(this.props.max || 5) * this.props.multiplier} {this.props.title.split('-')[0]}
+                    </div>
+                    {(Object.keys(this.props.cost).length > 0) && <>
+                        <Costs>Costs: </Costs>
+                        {Object.keys(this.props.cost).map((key, index) => {
+                            return (
+                                <div key={`${key}_${index}`}>
+                                    {this.props.cost[key]} {key}
+                                </div>
+                            )
+                        })}
+                    </>}
+                    
+                </ToolTip>
+            </Wrapper>
         );
     }
 }

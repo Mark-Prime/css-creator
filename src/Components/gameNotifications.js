@@ -9,6 +9,10 @@ let Wrapper = styled.div`
     padding: 1rem;
     margin: 1rem;
     font-size: .8rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
 `;
 
 const loadAnimation = keyframes`
@@ -33,6 +37,12 @@ let Resources = styled.div`
     animation: ${loadAnimation} .3s ease-in-out 0s 1 forwards;
 `;
 
+let Danger = styled.div`
+    margin: 0.7rem 0;
+    color: #f44336;
+    animation: ${loadAnimation} .3s ease-in-out 0s 1 forwards;
+`;
+
 class Notifications extends Component {
     render() { 
         return (
@@ -51,6 +61,12 @@ class Notifications extends Component {
                                         <Resources key={`${index}_${notification.text}`} id={`${index}_${notification.text}`}>
                                             {notification.text}
                                         </Resources>
+                                    )
+                                case 'danger':
+                                    return (
+                                        <Danger key={`${index}_${notification.text}`} id={`${index}_${notification.text}`}>
+                                            {notification.text}
+                                        </Danger>
                                     )
                                 default:
                                     return (
