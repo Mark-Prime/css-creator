@@ -9,6 +9,7 @@ import './index.css';
 import App from './App';
 import CssBuilder from './Pages/css-builder';
 import Home from './Pages/home';
+import Game from './Pages/game';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/reducers'; // imports ./redux/reducers/index.js
 import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
@@ -34,6 +35,8 @@ ReactDOM.render(
       <Route exact path="/" component={App} /> 
       <Route path="/home" component={Home} /> 
       <Route path="/css" component={CssBuilder} /> 
+      <Route path="/game" component={Game
+      } /> 
     </Router>
   </Provider>,
   document.getElementById('root')

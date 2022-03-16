@@ -10,6 +10,7 @@ function App() {
           Portfolio Coming Soon
         </p>
         <Link to="/css">CSS Builder</Link>
+        <Link to="/game">Game</Link>
       </header>
     </div>
   );
