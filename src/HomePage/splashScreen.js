@@ -54,14 +54,15 @@ const Scanline = styled.div`
 
 const Header = styled.div`
     font-family: "Major Mono Display", sans-serif;
-    background: linear-gradient(#000000 0%, ${colorBg} 100%);
+    background: linear-gradient(#000000 0%, ${colorBg} 70%, ${colorPrimary} 110%);
     width: 100%;
-    height: 95vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     overflow: hidden;
+    position: relative;
 `
 
 function createAnimation(lineheight) {
@@ -161,46 +162,46 @@ const NamePlate = styled.img`
     max-width: 100vw;
 `
 
-const arrowAnim = keyframes`
-    0% {
-        clip-path: polygon(0% -40%, 50% -20%, 100% -40%, 100% -20%, 50% 0%, 0% -20%);
-        background: ${colorPrimary};
-    }
+// const arrowAnim = keyframes`
+//     0% {
+//         clip-path: polygon(0% -40%, 50% -20%, 100% -40%, 100% -20%, 50% 0%, 0% -20%);
+//         background: ${colorPrimary};
+//     }
 
-    100% {
-        clip-path: polygon(0% 100%, 50% 120%, 100% 100%, 100% 120%, 50% 140%, 0% 120%);
-        background: ${colorHighlight};
-    }
-`
+//     100% {
+//         clip-path: polygon(0% 100%, 50% 120%, 100% 100%, 100% 120%, 50% 140%, 0% 120%);
+//         background: ${colorHighlight};
+//     }
+// `
 
-const DownArrow = styled.div`
-    height: 50px;
-    width: 50px;
-    position: relative;
-    z-index: 1;
-    mask: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,.9) 90%, rgba(255,255,255,0) 100%);
+// const DownArrow = styled.div`
+//     height: 50px;
+//     width: 50px;
+//     position: relative;
+//     z-index: 1;
+//     mask: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,.9) 90%);
 
-    &::before {
-        content: "";
-        clear: both;
-        display: table;
-        height: 50px;
-        width: 50px;
-        animation: ${arrowAnim} 1.5s linear infinite;
-    }
+//     &::before {
+//         content: "";
+//         clear: both;
+//         display: table;
+//         height: 50px;
+//         width: 50px;
+//         animation: ${arrowAnim} 1.5s linear infinite;
+//     }
 
-    &::after {
-        content: "";
-        position: relative;
-        top: -100%;
-        clear: both;
-        display: table;
-        height: 50px;
-        width: 50px;
-        animation: ${arrowAnim} 1.5s linear infinite 0.75s;
-    }
+//     &::after {
+//         content: "";
+//         position: relative;
+//         top: -100%;
+//         clear: both;
+//         display: table;
+//         height: 50px;
+//         width: 50px;
+//         animation: ${arrowAnim} 1.5s linear infinite 0.75s;
+//     }
 
-`
+// `
 
 const ME = styled.div`
     background: -webkit-linear-gradient(${colorPrimary}, ${colorHighlight});
@@ -462,7 +463,6 @@ class Splash extends Component {
                     </Descriptor>
                     <PurpleLines />
                 </SubHeader>
-                <DownArrow />
                 <Scanner>
                     <Scanline />
                 </Scanner>

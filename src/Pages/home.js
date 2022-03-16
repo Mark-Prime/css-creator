@@ -14,11 +14,34 @@ import Projects from '../HomePage/projects';
 const Container = styled.div``
 
 class Home extends Component {
+    state = {
+        activePage: "home",
+        pages: ["home", "projects", "art", "skills"],
+        pageIndex: 0
+    }
+
+    
+
     render() { 
         return ( 
             <Container>
-                <Splash />
-                <Projects />
+                {(() => {
+                    switch (this.state.activePage) {
+                    case 'home':
+                        return <>
+                                <Splash active={true}/>
+                                <Projects active={false}/>
+                            </>
+                    case 'projects':
+                        return <>
+                                <Splash active={false}/>
+                                <Projects active={true}/>
+                            </>
+                    default:
+                        return null
+                    }
+                })()}
+                
             </Container>
          );
     }
