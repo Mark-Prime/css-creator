@@ -23,6 +23,7 @@ class Game extends Component {
     state = { 
         wood: 0,
         food: 4,
+        tools: 0,
         multiplier: 1,
         notifications: [
             {text: 'Welcome to the game!', type: 'info'},
@@ -35,23 +36,47 @@ class Game extends Component {
                     type: 'equals'
                 },
             },
+            {
+                wood: {
+                    required: 50,
+                    type: 'greaterthan'
+                },
+            },
         ]
      } 
 
     checkStage = (newState) => {
-        for (let item in newState.stages[newState.currentStage]) {
-            console.log(item)
-            switch (newState.stages[newState.currentStage][item].type) {
+        let count = 0;
+        let stage = newState.stages[newState.currentStage];
+
+        if (stage === undefined) {
+            return newState;
+        }
+
+        let requiredCount = Object.keys(stage).length;
+
+        for (let item in stage) {
+            let itemObj = stage[item];
+            switch (itemObj.type) {
                 case 'equals':
-                    if (newState.stages[newState.currentStage][item].required === newState[item]) {
-                        newState.currentStage = newState.currentStage + 1;
+                    if (newState[item] === itemObj.required) {
+                        count = count + 1;
+                    }
+                    break;
+                case 'greaterthan':
+                    if (newState[item] > itemObj.required) {
+                        count = count + 1;
                     }
                     break;
                 default:
                     break;
             }
         }
-        return newState;
+
+        if (count === requiredCount) {
+            newState.currentStage = newState.currentStage + 1;
+        }
+
     }
 
     addValue = (perClick, resource = "wood") => {
@@ -83,7 +108,11 @@ class Game extends Component {
                     notifications = notifications.slice(0, 20);
                     newState.notifications = notifications;
                 }
-            } else {
+            }
+        }
+
+        if (hasEnough) {
+            for (let resource in cost) {
                 newState[resource] -= cost[resource];
                 if (newState[resource] === 0) {
                     let newNotification = {text: `You are out of ${resource}, gather more as soon as you can.`, type: 'priority'};
@@ -128,7 +157,20 @@ class Game extends Component {
                         cost={{}}
                         toolTipText="Gather berries from nearby bushes."
                     />}
-                    
+                    {this.state.currentStage >= 2 && <GameButton
+                        delay={10}
+                        multiplier={this.state.multiplier}
+                        addValue={this.addValue}
+                        text="Construct Tools"
+                        title="tools-construct"
+                        checkCost={this.checkCost}
+                        max={3}
+                        cost={{
+                            wood: 10,
+                            food: 5,
+                        }}
+                        toolTipText="Construct tools to make other tasks faster."
+                    />}
                 </MainBody>
             </Body>
         );
