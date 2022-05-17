@@ -10,15 +10,13 @@ let Body = styled.div`
     justify-content: center;
     height: 100vh;
     position: relative;
-    width: 60%;
     margin: 0 auto;
 `
 
 let MainBody = styled.div`
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    
 `;
 
 class Game extends Component {
@@ -29,13 +27,32 @@ class Game extends Component {
         notifications: [
             {text: 'Welcome to the game!', type: 'info'},
         ],
-        unlocks: {
-            berries: {
-                completed: false,
-                devText: 'This unlocks the first time the player runs out of food.',
+        currentStage: 0,
+        stages: [
+            {
+                food: {
+                    required: 0,
+                    type: 'equals'
+                },
+            },
+        ]
+     } 
+
+    checkStage = (newState) => {
+        for (let item in newState.stages[newState.currentStage]) {
+            console.log(item)
+            switch (newState.stages[newState.currentStage][item].type) {
+                case 'equals':
+                    if (newState.stages[newState.currentStage][item].required === newState[item]) {
+                        newState.currentStage = newState.currentStage + 1;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
-     } 
+        return newState;
+    }
 
     addValue = (perClick, resource = "wood") => {
         let baseResource = resource.split('-')[0];
@@ -69,17 +86,15 @@ class Game extends Component {
             } else {
                 newState[resource] -= cost[resource];
                 if (newState[resource] === 0) {
-                    let newNotification = {text: `You are out of ${resource}, gather more as soon as you can.`, type: 'danger'};
+                    let newNotification = {text: `You are out of ${resource}, gather more as soon as you can.`, type: 'priority'};
                     let notifications = [newNotification, ...this.state.notifications];
                     notifications = notifications.slice(0, 20);
                     newState.notifications = notifications;
-
-                    if (resource === 'food' && !this.state.unlocks.berries.completed) {
-                        newState.unlocks.berries.completed = true;
-                    }
                 }
             }
         }
+
+        newState = this.checkStage(newState);
 
         this.setState(newState);
         return hasEnough;
@@ -102,7 +117,7 @@ class Game extends Component {
                         }}
                         toolTipText="Gather wood from the forest."
                     />
-                    {this.state.unlocks.berries.completed && <GameButton
+                    {this.state.currentStage >= 1 && <GameButton
                         delay={4}
                         multiplier={this.state.multiplier}
                         addValue={this.addValue}

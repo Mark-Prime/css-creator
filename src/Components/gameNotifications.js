@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 
 let Wrapper = styled.div`
     height: calc(100% - 4rem);
-    width: 20vw;
     color: white;
     mask: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 50%);
     padding: 1rem;
