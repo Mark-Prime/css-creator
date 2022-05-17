@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components'
-
-const Open = keyframes`
-    from {
-        min-height: 0px;
-        max-height: 0px;
-        overflow-y: hidden;
-    }
-
-    to {
-        min-height: 10px;
-        max-height: 600px;
-        overflow-y: hidden;
-    }
-`
+import styled from 'styled-components'
 
 const Content = styled.div`
-    padding: 4px 4px 4px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    padding: 0;
+    overflow: hidden;
 
-    min-height: 10px;
-    max-height: 600px;
+    transition: all .2s;
 
-    animation: ${Open} .2s linear 0s 1 normal;
+    min-height: ${props=>props.open ? '10px' : '0px'};
+    max-height: ${props=>props.open ? '600px' : '0px'};
 `
 
 const Wrapper = styled.div`
@@ -56,14 +41,14 @@ class Expander extends Component {
 
         const Notch = styled.div`
             float: left;
-            transform: rotate(0deg) translateY(-.7rem);
+            transform: rotate(0deg) translateY(-.5rem);
             margin-right: 10px;
             font-size: 1.6rem;
             height: .6rem;
             transition: all .1s;
 
             &[open] {
-                transform: rotate(90deg) translateY(-1rem) translateX(.3rem);
+                transform: rotate(90deg) translate(.3rem, -1rem);
             }
         `
         return ( 
@@ -73,7 +58,7 @@ class Expander extends Component {
                     {this.props.title}
                 </Title>
                 
-                {this.state.open && <Content>{this.props.children}</Content>}
+                <Content open={this.state.open}>{this.props.children}</Content>
             </Wrapper>
          );
     }
