@@ -12,7 +12,7 @@ let Wrapper = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: -1;
 `;
 
 const loadAnimation = keyframes`
