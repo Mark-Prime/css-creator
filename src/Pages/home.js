@@ -11,37 +11,20 @@ import Projects from '../HomePage/projects';
 // let colorPrimary = "#fe3218"
 // let colorSecondary = "#e100f5"
 
-const Container = styled.div``
+const Container = styled.div`
+    box-sizing: border-box;
+`
 
 class Home extends Component {
     state = {
         activePage: "home",
-        pages: ["home", "projects", "art", "skills"],
-        pageIndex: 0
     }
-
-    
 
     render() { 
         return ( 
             <Container>
-                {(() => {
-                    switch (this.state.activePage) {
-                    case 'home':
-                        return <>
-                                <Splash active={true}/>
-                                <Projects active={false}/>
-                            </>
-                    case 'projects':
-                        return <>
-                                <Splash active={false}/>
-                                <Projects active={true}/>
-                            </>
-                    default:
-                        return null
-                    }
-                })()}
-                
+                <Splash />
+                <Projects />
             </Container>
          );
     }

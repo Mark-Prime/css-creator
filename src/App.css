@@ -1,5 +1,17 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
 html {
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  box-sizing: border-box;
 }
 
 .App {
