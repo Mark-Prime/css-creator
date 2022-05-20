@@ -57,7 +57,7 @@ const Header = styled.div`
     font-family: "Major Mono Display", sans-serif;
     background: linear-gradient(#000000 0%, ${colorBg} 70%, ${colorBg2} 110%);
     width: 100%;
-    height: 90vh;
+    height: 95vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

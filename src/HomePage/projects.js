@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from '../Components/Cyberpunk/Card';
+import Header from '../Components/Cyberpunk/Header';
 
 // import Natours from '../imgs/Natours.png';
 import QuiRe from '../imgs/QuiRe.svg';
@@ -11,8 +12,9 @@ import Maven from '../imgs/Maven.png';
 import REACT from '../imgs/React.png';
 import Redux from '../imgs/redux.svg';
 import Node from '../imgs/nodejs.svg';
-import HTML5 from '../imgs/HTML5.png';
+// import HTML5 from '../imgs/HTML5.png';
 import CSS3 from '../imgs/css3.png';
+import JavaScript from '../imgs/javascript.svg';
 // import Sass from '../imgs/sass-1.svg';
 import Chrome from '../imgs/chrome.svg';
 import Python from '../imgs/python.svg';
@@ -21,8 +23,8 @@ import StyledComponents from '../imgs/styledcomponents.png';
 // * colors:
 let colorBg = "#21006f"
 let colorBg2 = "#450eff"
-let colorHighlight = "#ff911a"
-let colorPrimary = "#fe3218"
+// let colorHighlight = "#ff911a"
+// let colorPrimary = "#fe3218"
 let colorSecondary = "#e100f5"
 
 const Wrapper = styled.div`
@@ -32,7 +34,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     height 100%;
-    padding-top: 8rem;
+    padding: 8rem 0;
     position: relative;
     z-index: 1;
     background: ${colorSecondary};
@@ -64,22 +66,6 @@ const Container = styled.div`
     }
 `
 
-const Header = styled.h1`
-    font-size: 3rem;
-    text-align: center;
-    color: ${colorHighlight};
-    transition: all .3s;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 2rem;
-    
-    // text-shadow: 0 0 0 ${colorPrimary}, 0 0 0 ${colorSecondary};
-
-    // &:hover{
-    //     text-shadow: 4px 4px 0 ${colorPrimary}, 8px 8px 0 ${colorSecondary};
-    // }
-`
-
 const Cards = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -99,11 +85,13 @@ class Projects extends Component {
                     <Cards>
                         <Card title="Ryukbot" logo={Ryukbot} 
                             github="https://github.com/Mark-Prime/Ryukbotv2"
+                            tagline="Source Engine video clip recording, automated."
                             builtWith={[
                                 {name: "Python", logo: Python},
                             ]}/>
                         <Card title="TeamTrack" logo={TeamTrack}
                             github="https://github.com/Mark-Prime/Team-Track"
+                            tagline="eSports statistics categorized and visualized."
                             website='https://www.teamtrack.xyz/#/home'
                             builtWith={[
                                 {name: "REACT.js", logo: REACT},
@@ -112,14 +100,16 @@ class Projects extends Component {
                             ]} />
                         <Card title="QuiRe" logo={QuiRe}
                             github="https://github.com/Mark-Prime/QuiRe"
+                            tagline="Browser extension for quick and easy access to common replies."
                             website="https://chrome.google.com/webstore/detail/quire/ilchbfooaopcoekdfnhlcohobeediilo"
                             builtWith={[
                                 {name: "CSS3", logo: CSS3},
-                                {name: "HTML5", logo: HTML5},
+                                {name: "JavaScript", logo: JavaScript},
                                 {name: "Chrome", logo: Chrome},
                             ]} />
                         <Card title="CSS Builder" logo={Maven}
                             github="https://github.com/Mark-Prime/css-creator"
+                            tagline='Powerful CSS writing tool with no CSS knowledge required.'
                             website="https://markspannbauer.me/css"
                             builtWith={[
                                 {name: "REACT.js", logo: REACT},

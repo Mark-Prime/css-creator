@@ -65,7 +65,15 @@ const Title = styled.h1`
     font-size: 2.5rem;
     text-align: center;
     color: ${colorHighlight};
-    transition: all .3s;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+`
+
+const Tagline = styled.h2`
+    font-size: 1rem;
+    color: ${colorHighlight};
+    text-align: center;
 
     font-family: 'inter', sans-serif;
     font-weight: 100;
@@ -318,7 +326,10 @@ function Card(props) {
     return ( 
         <Container>
             <Front>
-                <Title>{props.title}</Title>
+                <div>
+                    <Title>{props.title}</Title>
+                    <Tagline>{props.tagline}</Tagline>
+                </div>
                 <ProjectLogo src={props.logo} alt="logo"/>
             </Front>
 
