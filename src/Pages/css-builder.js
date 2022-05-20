@@ -26,6 +26,28 @@ const Center = styled.div`
     grid-gap: 0px;
 `
 
+const Display = styled.div`
+    background: ${props=>props.background};
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: initial;
+
+    & *,
+    & *::after,
+    & *::before {
+        margin: initial;
+        padding: initial;
+        box-sizing: initial;
+    }
+`
+
+const Parent = styled.div`
+    ${props=>props.css}
+`
+
 class CssBuilder extends Component {
     state = { 
         scss: true,
@@ -52,19 +74,6 @@ class CssBuilder extends Component {
     };
 
     render() { 
-        const Display = styled.div`
-            background: ${this.state.background};
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-        `
-
-        const Parent = styled.div`
-            ${this.props.container.css}
-        `
-
         let selectors = ['hover', 'active', 'focus', 'target'];
         let extraCSS = ''
 
@@ -96,8 +105,8 @@ class CssBuilder extends Component {
                     }}
                 />
                 <Center>
-                    <Display>
-                        <Parent key={this.props.log}>
+                    <Display background={this.state.background}>
+                        <Parent css={this.props.container.css} key={this.props.log}>
                             {this.state.tag === 'button' && 
                                 (<Button>{this.state.text}</Button>)
                             }
