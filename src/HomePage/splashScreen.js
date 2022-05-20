@@ -336,10 +336,10 @@ const SubHeader = styled.div`
     color: white;
     font-size: 3rem;
     height: 6rem;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     width: 100%;
     margin: auto;
-    mask: linear-gradient(0deg, rgba(255,255,255,0) 15%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,0) 85%);
+    mask: linear-gradient(0deg, rgba(255,255,255,0) 10%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,0) 90%);
     overflow: hidden;
 
     display: grid;
@@ -348,21 +348,25 @@ const SubHeader = styled.div`
     @media (max-width: 1550px) {
         font-size: 2.5rem;
         line-height: 2.5rem;
+        padding-top: 2rem;
     }
 
     @media (max-width: 1300px) {
         font-size: 2rem;
         line-height: 2rem;
+        padding-top: 2.2rem;
     }
 
     @media (max-width: 1000px) {
         font-size: 1.5rem;
         line-height: 1.5rem;
+        padding-top: 2.5rem;
     }
 
     @media (max-width: 750px) {
         font-size: 2rem;
         line-height: 2rem;
+        padding-top: 2.2rem;
     }
 
     &:hover ${Descriptor} {

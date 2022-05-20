@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import SassLogo from './sass-1.svg'
+import SassLogo from '../imgs/sass-1.svg';
 
 const Wrapper = styled.div`
     background: #303030;
