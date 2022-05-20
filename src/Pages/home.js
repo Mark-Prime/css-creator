@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Splash from '../HomePage/splashScreen';
 import Projects from '../HomePage/projects';
+// import Art from '../HomePage/art';
 
 // * colors:
 // let colorBg = "#21006f"
@@ -25,6 +26,7 @@ class Home extends Component {
             <Container>
                 <Splash />
                 <Projects />
+                {/* <Art /> */}
             </Container>
          );
     }
