@@ -132,6 +132,42 @@ const defaults = `{
                 "alias": "padding",
                 "type": "number"
             },
+            "paddingShorthand": {
+                "isKey": true,
+                "enabled": false,
+                "alias": "padding",
+                "type": "shorthand",
+                "props": {
+                    "paddingTop": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<top/bottom/all>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "paddingRight": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<right/left>",
+                        "type": "number",
+                        "index": 1
+                    },
+                    "paddingBottom": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<bottom>",
+                        "type": "number",
+                        "index": 2
+                    },
+                    "paddingLeft": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<left>",
+                        "type": "number",
+                        "index": 3
+                    }
+                }
+            },
             "paddingTop": {
                 "val": "3px",
                 "enabled": false,
@@ -346,6 +382,42 @@ const defaults = `{
                 "enabled": false,
                 "alias": "margin",
                 "type": "number"
+            },
+            "marginShorthand": {
+                "isKey": true,
+                "enabled": false,
+                "alias": "margin",
+                "type": "shorthand",
+                "props": {
+                    "marginTop": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<top/bottom/all>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "marginRight": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<right/left>",
+                        "type": "number",
+                        "index": 1
+                    },
+                    "marginBottom": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<bottom>",
+                        "type": "number",
+                        "index": 2
+                    },
+                    "marginLeft": {
+                        "val": "3px",
+                        "enabled": false,
+                        "alias": "<left>",
+                        "type": "number",
+                        "index": 3
+                    }
+                }
             },
             "marginTop": {
                 "val": "3px",
