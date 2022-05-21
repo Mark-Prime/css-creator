@@ -8,9 +8,28 @@ let colorHighlight = "#ff911a"
 let colorPrimary = "#fe3218"
 let colorSecondary = "#e100f5"
 
-const Front = styled.div`
-    background: black;
+const FrontEffects = styled.div`
+    filter: drop-shadow(0 0 8px ${colorPrimary});
+    width: 100%;
+    height: 100%;
+`
+
+const FrontGlow = styled.div`
     border: 1px solid ${colorPrimary};
+    width: 100%;
+    height: 100%;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 5rem),
+        calc(100% - 5rem) 100%,
+        0 100%
+        );
+`
+
+const Front = styled.div`
+    background: rgba(0,0,0,0.3);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -32,9 +51,33 @@ const Front = styled.div`
         );
 `
 
+const BackEffects = styled.div`
+    filter: drop-shadow(0 0 3px ${colorHighlight});
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+`
+
+const BackGlow = styled.div`
+    border: 1px solid ${colorHighlight};
+    background: ${colorHighlight};
+    width: 100%;
+    height: 100%;
+
+    clip-path: polygon(
+        100% 0,
+        100% calc(100% - 4rem),
+        calc(100% - 4rem) 100%,
+        0 100%,
+        100% 100%
+        );
+`
+
 const Back = styled.div`
     background: ${colorHighlight};
-    border: 1px solid ${colorHighlight};
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -46,7 +89,6 @@ const Back = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 
     clip-path: polygon(
         100% 0,
@@ -65,6 +107,7 @@ const Title = styled.h1`
     font-size: 2.5rem;
     text-align: center;
     color: ${colorHighlight};
+    text-shadow: 0px 0px 5px ${colorHighlight};
 
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
@@ -77,6 +120,7 @@ const Tagline = styled.h2`
 
     font-family: 'inter', sans-serif;
     font-weight: 100;
+    padding-bottom: 1rem;
 `
 
 const Subtitle = styled.h1`
@@ -98,7 +142,7 @@ const Container = styled.div`
         transition: all .3s;
     }
 
-    &:hover ${Front} {
+    &:hover ${Front}, &:hover ${FrontGlow} {
         background: ${colorPrimary};
         clip-path: polygon(
             0 0,
@@ -109,8 +153,8 @@ const Container = styled.div`
             );
     }
 
-    &:hover ${Back} {
-        background: black;
+    &:hover ${Back}, &:hover ${BackGlow} {
+        background: none;
         clip-path: polygon(
             100% 0,
             calc(0% + 5rem) 0,
@@ -120,12 +164,24 @@ const Container = styled.div`
             );
     }
 
+    &:hover ${Back} {
+        background: rgba(0,0,0,0.3);
+    }
+
     &:hover ${Front} * {
         opacity: 0;
     }
 
     &:hover ${Back} * {
         opacity: 1;
+    }
+
+    &:hover ${FrontEffects} {
+        filter: drop-shadow(0 0 3px ${colorPrimary});
+    }
+
+    &:hover ${BackEffects} {
+        filter: drop-shadow(0 0 8px ${colorHighlight});
     }
 `
 
@@ -325,14 +381,18 @@ const Links = styled.div`
 function Card(props) {
     return ( 
         <Container>
+            <FrontEffects>
+                <FrontGlow />
+            </FrontEffects>
             <Front>
-                <div>
-                    <Title>{props.title}</Title>
-                    <Tagline>{props.tagline}</Tagline>
-                </div>
+                <Title>{props.title}</Title>
+                <Tagline>{props.tagline}</Tagline>
                 <ProjectLogo src={props.logo} alt="logo"/>
             </Front>
 
+            <BackEffects>
+                <BackGlow />
+            </BackEffects>
             <Back>
                 <Subtitle>Built with:</Subtitle>
                 <BuiltWith>

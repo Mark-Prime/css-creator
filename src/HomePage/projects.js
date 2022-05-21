@@ -49,7 +49,13 @@ const Container = styled.div`
 
     &::after {
         content: "";
-        background: black;
+        // background: black;
+        background-color: black;
+        background-image: radial-gradient(
+            ellipse at 5% 93%,
+            ${colorBg} 0%,
+            transparent 60%);
+        background-repeat: no-repeat;
         position: absolute;
         z-index: -1;
         top: 1rem;
@@ -81,7 +87,7 @@ class Projects extends Component {
         return ( 
             <Wrapper>
                 <Container>
-                    <Header>Projects</Header>
+                    <Header>projects</Header>
                     <Cards>
                         <Card title="Ryukbot" logo={Ryukbot} 
                             github="https://github.com/Mark-Prime/Ryukbotv2"

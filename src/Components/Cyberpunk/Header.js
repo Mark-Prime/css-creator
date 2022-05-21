@@ -12,6 +12,7 @@ const Header = styled.h1`
     letter-spacing: 1rem;
     text-align: center;
     color: ${colorHighlight};
+    text-shadow: 0px 0px 5px ${colorHighlight};
     font-family: 'Major Mono Display', sans-serif;
     font-weight: 100;
     transition: all .3s;
