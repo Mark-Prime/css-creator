@@ -35,11 +35,25 @@ class Select extends Component {
 
     toggleEnabled = (event) => {
         const name = event.target.name;
-
         let styles = this.props.styles;
-
+        
         if (this.props.selection !== 'content') {
-            styles = this.props[this.props.selection]
+            styles = this.props[this.props.selection];
+        }
+        
+        if (this.props.isChild) {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            if (event.target.checked) {
+                styles[this.props.title].enabled = true;
+                styles[this.props.title].props[parent].enabled = true;
+                styles[this.props.title].props[parent].props[child].enabled = true;
+            } else {
+                styles[this.props.title].props[parent].props[child].enabled = false;
+            }
+
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            return
         }
 
         let style = styles[this.props.title];
@@ -79,6 +93,15 @@ class Select extends Component {
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
         }
+
+        if (this.props.isChild) {
+            let name = this.props.name;
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            styles[this.props.title].props[parent].props[child].val = value;
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            return
+        }
         
         styles[this.props.title].props[event.target.name].val = value;
         this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
@@ -91,35 +114,59 @@ class Select extends Component {
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
         }
-        
-        let style = styles[this.props.title];
 
-        if (style.props[name].key) {
-            let key = style.props[name].key;
-            let keyEnabled = style.props[key].enabled;
-            let keyVal = style.props[key].val;
+        let title = this.props.title;
+        let style = styles[title]
+        let alias = '';
+        let enabled;
+        let val;
 
-            if (!keyEnabled || !style.props[name].showOnValue[keyVal]){
-                return null;
+        if (name.indexOf("_") === -1) {
+            alias = style.props[name].alias;
+            enabled = style.props[name].enabled;
+            val = style.props[name].val;
+
+            if (style.props[name].key) {
+                let key = style.props[name].key;
+                let keyEnabled = style.props[key].enabled;
+                let keyVal = style.props[key].val;
+    
+                if (style.props[name].type !== 'shorthand') {
+                    if (!keyEnabled ||!style.props[name].showOnValue[keyVal]){
+                        return null;
+                    }
+                } else {
+                    if (!keyEnabled) {
+                        return null;
+                    }
+                }
             }
+        } else {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+
+            alias = style.props[parent].props[child].alias;
+            enabled = style.props[parent].props[child].enabled;
+            val = style.props[parent].props[child].val;
         }
+        
         return ( 
             <Wrapper key={this.props.log}>
                 <Label>
                     <CheckBox 
                         name={name}
                         type="checkbox" 
-                        checked={style.props[name].enabled}
+                        checked={enabled}
                         onChange={this.toggleEnabled}
                         key={this.props.log}
                     />
-                    <InputLabel>{style.props[name].alias}:</InputLabel>
+                    <InputLabel>{alias}:</InputLabel>
                 </Label>
                 <SelectInput 
                     name={name}
-                    value={style.props[name].val} 
+                    value={val} 
                     onChange={this.OnStyleChange} 
-                    disabled={!style.props[name].enabled}
+                    disabled={!enabled}
                 >
                     {this.props.options.map(item => (
                         <Option value={item} key={`${name}-${item}`}>

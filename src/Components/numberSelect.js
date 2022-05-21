@@ -65,6 +65,34 @@ class NumberSelect extends Component {
     OnSuffixChange = (event) => {
         let value = event.target.value
 
+        if (this.props.isChild) {
+            let name = this.props.name;
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            let styleValue = parseInt(this.props.styles[this.props.title].props[parent].props[child].val, 10);
+
+            if (this.props.selection !== 'content') {
+                styleValue = parseInt(this.props[this.props.selection][parent].props[child].val, 10);
+            }
+
+            this.setState({
+                suffix: value
+            })
+
+            this.OnStyleChange(
+                {
+                    target: {
+                        dataset: {
+                            suffix: value === 'auto' ? '' : value
+                        },
+                        value: value === 'auto' ? "auto" : parseInt(styleValue, 10),
+                        name: this.props.name
+                    }
+                }
+            )
+            return
+        }
+
         let styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10);
 
         if (this.props.selection !== 'content') {
@@ -96,7 +124,7 @@ class NumberSelect extends Component {
         let suffix = event.target.dataset.suffix
         if (suffix !== 'auto') {
             let value = event.target.value
-            if (suffix) { 
+            if (suffix) {
                 value += suffix
             }
             
@@ -104,6 +132,15 @@ class NumberSelect extends Component {
 
             if (this.props.selection !== 'content') {
                 styles = this.props[this.props.selection]
+            }
+
+            if (this.props.isChild) {
+                let name = event.target.name;
+                let parent = name.split("_")[0];
+                let child = name.split("_")[1];
+                styles[this.props.title].props[parent].props[child].val = value;
+                this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+                return
             }
             
             styles[this.props.title].props[event.target.name].val = value;
@@ -113,11 +150,26 @@ class NumberSelect extends Component {
 
     toggleEnabled = (event) => {
         const name = event.target.name;
-
         let styles = this.props.styles;
 
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
+        }
+
+
+        if (this.props.isChild) {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            if (event.target.checked) {
+                styles[this.props.title].enabled = true;
+                styles[this.props.title].props[parent].enabled = true;
+                styles[this.props.title].props[parent].props[child].enabled = true;
+            } else {
+                styles[this.props.title].props[parent].props[child].enabled = false;
+            }
+
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            return
         }
 
         if (event.target.checked) {
@@ -150,35 +202,61 @@ class NumberSelect extends Component {
 
     render() { 
         let name = this.props.name;
-    
         let styles = this.props.styles;
 
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
         }
-        
-        let style = styles[this.props.title];
 
-        if (style.props[name].key) {
-            let key = style.props[name].key;
-            let keyEnabled = style.props[key].enabled;
-            let keyVal = style.props[key].val;
+        let title = this.props.title;
+        let style = styles[title]
+        let alias = '';
+        let enabled;
+        let suffixOverrides;
+        let val;
 
-            if (!keyEnabled || !style.props[name].showOnValue[keyVal]){
-                return null;
+        if (name.indexOf("_") === -1) {
+            alias = style.props[name].alias;
+            enabled = style.props[name].enabled;
+            suffixOverrides = style.props[name].suffixOverrides;
+            val = style.props[name].val;
+
+            if (style.props[name].key) {
+                let key = style.props[name].key;
+                let keyEnabled = style.props[key].enabled;
+                let keyVal = style.props[key].val;
+    
+                if (style.props[name].type !== 'shorthand') {
+                    if (!keyEnabled ||!style.props[name].showOnValue[keyVal]){
+                        return null;
+                    }
+                } else {
+                    if (!keyEnabled) {
+                        return null;
+                    }
+                }
             }
+        } else {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+
+            alias = style.props[parent].props[child].alias;
+            enabled = style.props[parent].props[child].enabled;
+            suffixOverrides = style.props[parent].props[child].suffixOverrides;
+            val = style.props[parent].props[child].val;
         }
+
         return ( 
             <Wrapper>
                 <Label>
                     <CheckBox 
                         name={name}
                         type="checkbox" 
-                        checked={style.props[name].enabled}
+                        checked={enabled}
                         onChange={this.toggleEnabled}
                         key={this.props.log}
                     />
-                    <InputLabel>{style.props[name].alias}:</InputLabel>
+                    <InputLabel>{alias}:</InputLabel>
                 </Label>
                 <SelectWrapper>
                     <NumberInput 
@@ -188,19 +266,19 @@ class NumberSelect extends Component {
                         step="any"
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={parseInt(style.props[name].val, 10)} 
+                        value={parseInt(val)} 
                         onChange={this.OnStyleChange} 
-                        disabled={!style.props[name].enabled || this.state.suffix === 'auto'}
+                        disabled={!enabled || this.state.suffix === 'auto'}
                     />
 
                     <SuffixSelect
                         name={name}
                         value={this.state.suffix} 
                         onChange={this.OnSuffixChange} 
-                        disabled={!style.props[name].enabled}
+                        disabled={!enabled}
                     >
-                        {style.props[name].suffixOverrides ? 
-                            style.props[name].suffixOverrides.map((item) => {
+                        {suffixOverrides ? 
+                            suffixOverrides.map((item) => {
                                 return <option value={item} key={item}>{item}</option>
                             }
                         ) : 

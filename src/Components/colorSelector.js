@@ -31,6 +31,26 @@ const Xbutton = styled.button`
     font-size: 16px;
 `
 
+const ColorShowcase = styled.div`
+    width: 44%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    background: ${props => props.val};
+`
+
+const HexCode = styled.div`
+    background: #303030;
+    color: #fff;
+    float: left;
+    padding-right: 3px;
+    height: 100%;
+
+    &[disabled] {
+        color: #BFBFBF;
+    }
+`
+
 
 class ColorSelector extends Component {
 
@@ -40,11 +60,25 @@ class ColorSelector extends Component {
 
     toggleEnabled = (event) => {
         const name = event.target.name;
-
         let styles = this.props.styles;
 
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
+        }
+
+        if (this.props.isChild) {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            if (event.target.checked) {
+                styles[this.props.title].enabled = true;
+                styles[this.props.title].props[parent].enabled = true;
+                styles[this.props.title].props[parent].props[child].enabled = true;
+            } else {
+                styles[this.props.title].props[parent].props[child].enabled = false;
+            }
+
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            return
         }
 
         if (event.target.checked) {
@@ -81,6 +115,15 @@ class ColorSelector extends Component {
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
         }
+
+        if (this.props.isChild) {
+            let name = this.props.name;
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+            styles[this.props.title].props[parent].props[child].val = value;
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            return
+        }
         
         styles[this.props.title].props[event.target.name].val = value;
         this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
@@ -107,38 +150,41 @@ class ColorSelector extends Component {
         if (this.props.selection !== 'content') {
             styles = this.props[this.props.selection]
         }
-        
-        let style = styles[this.props.title];
 
-        if (style.props[name].key) {
-            let key = style.props[name].key;
-            let keyEnabled = style.props[key].enabled;
-            let keyVal = style.props[key].val;
+        let title = this.props.title;
+        let style = styles[title]
+        let alias = '';
+        let enabled;
+        let val;
 
-            if (!keyEnabled || !style.props[name].showOnValue[keyVal]){
-                return null;
+        if (name.indexOf("_") === -1) {
+            alias = style.props[name].alias;
+            enabled = style.props[name].enabled;
+            val = style.props[name].val;
+
+            if (style.props[name].key) {
+                let key = style.props[name].key;
+                let keyEnabled = style.props[key].enabled;
+                let keyVal = style.props[key].val;
+    
+                if (style.props[name].type !== 'shorthand') {
+                    if (!keyEnabled ||!style.props[name].showOnValue[keyVal]){
+                        return null;
+                    }
+                } else {
+                    if (!keyEnabled) {
+                        return null;
+                    }
+                }
             }
+        } else {
+            let parent = name.split("_")[0];
+            let child = name.split("_")[1];
+
+            alias = style.props[parent].props[child].alias;
+            enabled = style.props[parent].props[child].enabled;
+            val = style.props[parent].props[child].val;
         }
-
-        const ColorShowcase = styled.div`
-            width: 44%;
-            text-align: center;
-            cursor: pointer;
-            position: relative;
-            background: ${style.props[name].val};
-        `
-
-        const HexCode = styled.div`
-            background: #303030;
-            color: #fff;
-            float: left;
-            padding-right: 3px;
-            height: 100%;
-
-            &[disabled] {
-                color: #BFBFBF;
-            }
-        `
 
         return ( 
             <Wrapper>
@@ -146,21 +192,21 @@ class ColorSelector extends Component {
                     <CheckBox 
                         name={name}
                         type="checkbox" 
-                        checked={style.props[name].enabled}
+                        checked={enabled}
                         onChange={this.toggleEnabled}
                         key={this.props.log}
                     />
-                    <InputLabel>{style.props[name].alias}:</InputLabel>
+                    <InputLabel>{alias}:</InputLabel>
                 </Label>
-                <ColorShowcase onClick={this.toggleSketchPicker}>
-                    <HexCode disabled={!style.props[name].enabled}>{style.props[name].val}</HexCode>
+                <ColorShowcase val={val} onClick={this.toggleSketchPicker}>
+                    <HexCode disabled={!enabled}>{val}</HexCode>
                 </ColorShowcase>
                 {this.state.open && 
                     <PopoutWrapper>
-                        {style.props[name].alias}:
+                        {alias}:
                         <Xbutton onClick={this.toggleSketchPicker}>X</Xbutton>
                         <SketchPicker
-                            color={ style.props[name].val }
+                            color={ val }
                             onChange={ this.handleChangeComplete }
                             disableAlpha={true}
                             margin="7px"

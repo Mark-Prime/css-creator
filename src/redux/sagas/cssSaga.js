@@ -1,5 +1,65 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
+function parseShorthand(prop, CSS) {
+  let props = Object.keys(prop.props);
+
+  let output = '';
+
+  for (let index in props) {
+    let innerProp = prop.props[props[index]];
+
+    if (!innerProp.enabled) {
+      continue;
+    }
+
+    if (innerProp.type === 'shorthand') {
+      CSS = CSS + parseShorthand(innerProp, CSS);
+      continue;
+    }
+
+    if (innerProp.index !== undefined) {
+
+      if (innerProp.val !== undefined) {
+        output += ` ${innerProp.val}`;
+      }
+
+      if (!prop.props[props[parseInt(index) + 1]] || !prop.props[props[parseInt(index) + 1]].enabled || prop.props[props[parseInt(index) + 1]]?.index === undefined) {
+        console.log('index + 1', prop.props[props[parseInt(index) + 1]])
+        console.log('OUTPUT:', `\t${prop.alias}: ${output};\n`)
+        CSS = CSS + `\t${prop.alias}: ${output};\n`
+        output = '';
+      }
+
+      continue;
+    }
+
+  }
+
+  // console.log(CSS)
+  return CSS
+}
+
+function parseProp(prop, CSS, styles, key) {
+    if (prop.type === 'shorthand') {
+      if (prop.enabled) {
+        return parseShorthand(prop, CSS);
+      }
+      return CSS;
+    }
+
+    if (prop.key) {
+      if (styles[key].props[prop.key].enabled && prop.showOnValue[styles[key].props[prop.key].val] && prop.enabled && prop.val !== undefined) {
+        return CSS + `\t${prop.alias}: ${prop.val};\n`
+      }
+      return CSS;
+    }
+    
+    if (prop.enabled) {
+      return CSS + `\t${prop.alias}: ${prop.val};\n`
+    }
+    return CSS;
+}
+
 function writeCSS(styles, key){
   let CSS = '';
   let values = Object.keys(styles[key].props);
@@ -10,13 +70,7 @@ function writeCSS(styles, key){
       
       let prop = styles[key].props[value];
       try {
-        if (prop.key) {
-            if (styles[key].props[prop.key].enabled && prop.showOnValue[styles[key].props[prop.key].val] && prop.enabled) {
-              CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
-            }
-        } else if (prop.enabled) {
-          CSS = CSS + `\t${prop.alias}: ${prop.val};\n`
-        }
+        CSS = parseProp(prop, CSS, styles, key);
       } catch (error) {
         console.log('Error in writeCSS', error);
         return CSS
@@ -48,11 +102,27 @@ function reloadCSS(styles) {
 function parseStyles(action, styles) {
   let CSS = styles.css;
   let prop = styles[action.payload.title].props[action.payload.name];
-  let re = new RegExp(`\\t${prop.alias}[: ].+;\\n`)
-  if (styles[action.payload.title].props[action.payload.name].enabled) {
+  
+  let alias = prop?.alias;
+
+
+  if (action.payload.isChild) {
+    prop = styles[action.payload.title].props[action.payload.parent].props[action.payload.child];
+    alias = styles[action.payload.title].props[action.payload.parent].alias;
+  }
+
+  let val = prop.val;
+
+  let re = new RegExp(`\\t${alias}[: ].+;\\n`)
+  console.log('AAAAA', {alias, val})
+  if (prop.enabled) {
     if (re.test(CSS)){
-      if (styles[action.payload.title].props[action.payload.name].isKey) {
+      console.log('VICTORY')
+      if (prop.isKey) {
         CSS = reloadCSS(styles);
+      } else if (action.payload.isChild) {
+        console.log('PARSE STYLES', {prop, alias, val})
+        CSS = CSS.replace(re, parseShorthand(styles[action.payload.title].props[action.payload.parent], ''));
       } else {
         CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
       }
@@ -61,8 +131,11 @@ function parseStyles(action, styles) {
     }
   } else {
     if (re.test(CSS)){
-      if (styles[action.payload.title].props[action.payload.name].isKey) {
+      if (prop.isKey) {
         CSS = reloadCSS(styles);
+      } else if (action.payload.isChild) {
+        console.log('PARSE STYLES DISABLED', {alias, val})
+        CSS = CSS.replace(re, parseShorthand(styles[action.payload.title].props[action.payload.parent], ''));
       } else {
         CSS = CSS.replace(re, ``);
       }

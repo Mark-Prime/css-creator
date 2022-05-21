@@ -161,6 +161,36 @@ const defaults = `{
     "Border" : {
         "enabled": false,
         "props" : {
+            "borderShorthand": {
+                "isKey": true,
+                "enabled": false,
+                "alias": "border",
+                "type": "shorthand",
+                "props": {
+                    "borderWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "borderStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "borderColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
+            },
             "borderWidth": {
                 "val": "1px",
                 "enabled": false,
@@ -179,6 +209,126 @@ const defaults = `{
                 "enabled": false,
                 "alias": "border-color",
                 "type": "color"
+            },
+            "borderTop": {
+                "enabled": false,
+                "alias": "border-top",
+                "type": "shorthand",
+                "key": "borderShorthand",
+                "props": {
+                    "borderWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "borderStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "borderColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
+            },
+            "borderRight": {
+                "enabled": false,
+                "alias": "border-right",
+                "type": "shorthand",
+                "key": "borderShorthand",
+                "props": {
+                    "borderWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "borderStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "borderColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
+            },
+            "borderLeft": {
+                "enabled": false,
+                "alias": "border-left",
+                "type": "shorthand",
+                "key": "borderShorthand",
+                "props": {
+                    "borderWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "borderStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "borderColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
+            },
+            "borderBottom": {
+                "enabled": false,
+                "alias": "border-bottom",
+                "type": "shorthand",
+                "key": "borderShorthand",
+                "props": {
+                    "borderWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "borderStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "borderColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
             },
             "borderRadius": {
                 "val": "0px",
@@ -302,7 +452,9 @@ const defaults = `{
                 "key": "display",
                 "showOnValue": {
                     "flex": true,
-                    "inline-flex": true
+                    "inline-flex": true,
+                    "grid": true,
+                    "inline-grid": true
                 }
             },
             "rowGap": {
@@ -313,7 +465,9 @@ const defaults = `{
                 "key": "display",
                 "showOnValue": {
                     "flex": true,
-                    "inline-flex": true
+                    "inline-flex": true,
+                    "grid": true,
+                    "inline-grid": true
                 }
             },
             "columnGap": {
@@ -324,7 +478,9 @@ const defaults = `{
                 "key": "display",
                 "showOnValue": {
                     "flex": true,
-                    "inline-flex": true
+                    "inline-flex": true,
+                    "grid": true,
+                    "inline-grid": true
                 }
             }
         }
