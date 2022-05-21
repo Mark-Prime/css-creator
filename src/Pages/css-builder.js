@@ -27,7 +27,7 @@ const Center = styled.div`
 `
 
 const Display = styled.div`
-    background: ${props=>props.background};
+    background: #ffffff;
     position: relative;
     width: 100%;
     height: 100%;
@@ -53,7 +53,6 @@ class CssBuilder extends Component {
         scss: true,
         tag: 'button',
         text: "Button",
-        background: '#ffffff',
      }
 
      componentDidMount() {
@@ -68,10 +67,6 @@ class CssBuilder extends Component {
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
 
     setText = (event) => {this.setState({text: event.target.value})}
-
-    handleChangeComplete = (color) => {
-        this.setState({ background: color.hex });
-    };
 
     render() { 
         let selectors = ['hover', 'active', 'focus', 'target'];
@@ -97,15 +92,13 @@ class CssBuilder extends Component {
                 <Sidebar 
                     functions={{
                         toggleSCSS: this.toggleSCSS,
-                        handleChangeComplete: this.handleChangeComplete
                     }} 
                     values = {{
                         scss: this.state.scss,
-                        background: this.state.background
                     }}
                 />
                 <Center>
-                    <Display background={this.state.background}>
+                    <Display>
                         <Parent css={this.props.container.css} key={this.props.log}>
                             {this.state.tag === 'button' && 
                                 (<Button>{this.state.text}</Button>)
