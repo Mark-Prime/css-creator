@@ -408,7 +408,7 @@ const SubHeader = styled.div`
     }`}
 `
 
-const descriptors = ['a movie lover', 'a software engineer', 'an artist', 'a front-end developer', 'a photographer', 'a video editor', 'a gamer', 'a performer', 'a leader', 'a python developer', 'a magician'];
+const descriptors = ['a movie lover', 'a software engineer', 'an artist', 'a front-end developer', 'a photographer', 'a video editor', 'a gamer', 'a performer', 'a leader', 'a python developer', 'a magician', 'a digital painter'];
 
 class Splash extends Component {
     state = { 
