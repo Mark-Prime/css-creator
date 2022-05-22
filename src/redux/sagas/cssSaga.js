@@ -111,17 +111,12 @@ function parseStyles(action, styles) {
     alias = styles[action.payload.title].props[action.payload.parent].alias;
   }
 
-  let val = prop.val;
-
   let re = new RegExp(`\\t${alias}[: ].+;\\n`)
-  console.log('AAAAA', {alias, val})
   if (prop.enabled) {
     if (re.test(CSS)){
-      console.log('VICTORY')
       if (prop.isKey) {
         CSS = reloadCSS(styles);
       } else if (action.payload.isChild) {
-        console.log('PARSE STYLES', {prop, alias, val})
         CSS = CSS.replace(re, parseShorthand(styles[action.payload.title].props[action.payload.parent], ''));
       } else {
         CSS = CSS.replace(re, `\t${prop.alias}: ${prop.val};\n`);
@@ -134,7 +129,6 @@ function parseStyles(action, styles) {
       if (prop.isKey) {
         CSS = reloadCSS(styles);
       } else if (action.payload.isChild) {
-        console.log('PARSE STYLES DISABLED', {alias, val})
         CSS = CSS.replace(re, parseShorthand(styles[action.payload.title].props[action.payload.parent], ''));
       } else {
         CSS = CSS.replace(re, ``);
