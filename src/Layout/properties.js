@@ -34,6 +34,10 @@ const InputLabel = styled.label`
     padding-left: 4px;
 `
 
+const Hr = styled.hr`
+    margin-bottom: 3px;
+`
+
 const mapStateToProps = (props) => (props);
 
 export default connect(mapStateToProps)(function Properties(props) {
@@ -52,7 +56,7 @@ export default connect(mapStateToProps)(function Properties(props) {
                     <InputLabel>Content: </InputLabel>
                     <TextBox value={props.text} onChange={props.setText}></TextBox>
                 </Input>
-                <hr />
+                <Hr />
                 {Object.keys(styles).map((key, i) => {
                     if (key !== 'css'){
                         return (
