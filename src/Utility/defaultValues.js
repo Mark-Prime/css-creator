@@ -374,6 +374,66 @@ const defaults = `{
             }
         }
     },
+    "Outline" : {
+        "enabled": false,
+        "props" : {
+            "outlineShorthand": {
+                "isKey": true,
+                "enabled": false,
+                "alias": "outline",
+                "type": "shorthand",
+                "props": {
+                    "outlineWidth": {
+                        "val": "1px",
+                        "enabled": false,
+                        "alias": "<width>",
+                        "type": "number",
+                        "index": 0
+                    },
+                    "outlineStyle": {
+                        "val": "solid",
+                        "enabled": false,
+                        "alias": "<style>",
+                        "type": "select",
+                        "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"],
+                        "index": 1
+                    },
+                    "outlineColor": {
+                        "val": "#000000",
+                        "enabled": false,
+                        "alias": "<color>",
+                        "type": "color",
+                        "index": 2
+                    }
+                }
+            },
+            "outlineWidth": {
+                "val": "1px",
+                "enabled": false,
+                "alias": "outline-width",
+                "type": "number"
+            },
+            "outlineStyle": {
+                "val": "solid",
+                "enabled": false,
+                "alias": "outline-style",
+                "type": "select",
+                "options": ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"]
+            },
+            "outlineColor": {
+                "val": "#000000",
+                "enabled": false,
+                "alias": "outline-color",
+                "type": "color"
+            },
+            "outlineColor": {
+                "val": "0px",
+                "enabled": false,
+                "alias": "outline-offset",
+                "type": "number"
+            }
+        }
+    },
     "Margin" : {
         "enabled": false,
         "props": {
