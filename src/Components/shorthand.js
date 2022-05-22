@@ -6,11 +6,15 @@ import { Label, InputLabel, CheckBox } from './Label'
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 21;
+    height: 21px;
 `
 
 const Text = styled.p`
-    color: ${props => props.disabled ? '#BFBFBF' : '#fff'};
+    color: #fff;
+
+    &[disabled] {
+        color: #BFBFBF;
+    }
 `
 
 class Select extends Component {

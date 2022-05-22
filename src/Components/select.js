@@ -6,7 +6,6 @@ import { Label, InputLabel, CheckBox } from './Label'
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
-    height: 21;
 `
 
 const Option = styled.option`

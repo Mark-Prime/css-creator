@@ -57,7 +57,6 @@ const SuffixSelect = styled.select`
 `
 
 class NumberSelect extends Component {
-
     state = {
         suffix: "px",
     }
@@ -124,6 +123,7 @@ class NumberSelect extends Component {
         let suffix = event.target.dataset.suffix
         if (suffix !== 'auto') {
             let value = event.target.value
+            console.log('VALUE: ', value)
             if (suffix) {
                 value += suffix
             }
@@ -200,6 +200,14 @@ class NumberSelect extends Component {
         
     }
 
+    componentDidMount() {
+        if (this.props.suffixSelected) {
+            this.setState({
+                suffix: this.props.suffixSelected
+            })
+        }
+    }
+
     render() { 
         let name = this.props.name;
         let styles = this.props.styles;
@@ -246,6 +254,22 @@ class NumberSelect extends Component {
             val = style.props[parent].props[child].val;
         }
 
+        if (suffixOverrides && suffixOverrides.length === 0) {
+            if (this.state.suffix !== '') {
+                this.setState({
+                    suffix: ''
+                })
+            }
+        }
+
+        if (suffixOverrides && suffixOverrides.length > 0) {
+            if (suffixOverrides.indexOf(this.state.suffix) === -1) {
+                this.setState({
+                    suffix: suffixOverrides[0]
+                })
+            }
+        }
+
         return ( 
             <Wrapper>
                 <Label>
@@ -263,15 +287,14 @@ class NumberSelect extends Component {
                         name={name}
                         data-suffix={this.state.suffix}
                         type="number"
-                        step="any"
+                        step={this.props.step ? this.props.step : "any"}
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={parseInt(val)} 
+                        value={val.replace(this.state.suffix, '')} 
                         onChange={this.OnStyleChange} 
                         disabled={!enabled || this.state.suffix === 'auto'}
                     />
-
-                    <SuffixSelect
+                    {(!suffixOverrides || suffixOverrides.length > 0) && <SuffixSelect
                         name={name}
                         value={this.state.suffix} 
                         onChange={this.OnSuffixChange} 
@@ -286,7 +309,7 @@ class NumberSelect extends Component {
                                 return <option value={item} key={item}>{item}</option>
                             })
                         }
-                    </SuffixSelect>
+                    </SuffixSelect>}
                 </SelectWrapper>
             </Wrapper>
          );

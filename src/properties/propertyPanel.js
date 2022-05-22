@@ -15,9 +15,11 @@ export default function Panel(props) {
                             <NumberSelect 
                                 name={style}
                                 title={props.title}
+                                step={props.styles[style].step}
                                 min={props.styles[style].min}
                                 max={props.styles[style].max}
                                 key={`${props.title}-${i}-${style}-num`}
+                                suffixSelected={props.styles[style].suffixSelected}
                             />
                         )
                     case "color":
@@ -43,7 +45,7 @@ export default function Panel(props) {
                                 <Shorthand 
                                     name={style}
                                     title={props.title}
-                                    key={`${props.title}-${i}-style`}
+                                    key={`${props.title}-${i}-shorthand`}
                                 />
                                 {props.styles[style].enabled && Object.keys(props.styles[style].props).map((innerStyle, i) => {
                                     let prop = props.styles[style].props[innerStyle]
@@ -56,7 +58,7 @@ export default function Panel(props) {
                                                     title={props.title}
                                                     min={prop.min}
                                                     max={prop.max}
-                                                    key={`${props.title}-${i}-${prop.alias}-num`}
+                                                    key={`${props.title}-${i}-${style}-${prop.alias}-num`}
                                                 />
                                             )
                                         case "color":
@@ -65,7 +67,7 @@ export default function Panel(props) {
                                                     name={`${style}_${innerStyle}`}
                                                     isChild={true}
                                                     title={props.title}
-                                                    key={`${props.title}-${i}-${prop.alias}-color`}
+                                                    key={`${props.title}-${i}-${style}-${prop.alias}-color`}
                                                 />
                                             )
                                         case "select":
@@ -75,7 +77,7 @@ export default function Panel(props) {
                                                     isChild={true}
                                                     title={props.title}
                                                     options={prop.options}
-                                                    key={`${props.title}-${i}-${prop.alias}-select`}
+                                                    key={`${props.title}-${i}-${style}-${prop.alias}-select`}
                                                 />
                                             )
                                         default:
