@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 const Label = styled.label`
     position: relative;
+    cursor: pointer;
 `
 
 const InputLabel = styled.div`

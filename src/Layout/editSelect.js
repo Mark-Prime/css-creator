@@ -27,6 +27,8 @@ const Label = styled.label`
     padding: 1px 4px 3px;
     background-color: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(0, 0, 0, .7);
+
+    cursor: pointer;
 `
 
 const Group = styled.form`
