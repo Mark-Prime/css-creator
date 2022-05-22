@@ -699,41 +699,65 @@ const defaults = `{
                 "options": ["left", "right", "none", "inline-start", "inline-end", "inherit", "initial", "revert", "unset"]
             }
         }
+    },
+    "Misc" : {
+        "enabled": false,
+        "props" : {
+            "transitionShorthand": {
+                "enabled": false,
+                "alias": "transition",
+                "type": "shorthand",
+                "props": {
+                    "transitionProperty": {
+                        "val": "all",
+                        "enabled": false,
+                        "alias": "<property>",
+                        "type": "select",
+                        "options": ["all"],
+                        "index": 0
+                    },
+                    "transitionDuration": {
+                        "val": "0.2s",
+                        "enabled": false,
+                        "alias": "<duration>",
+                        "type": "number",
+                        "step": "0.1",
+                        "suffixOverrides": [ "s", "ms" ],
+                        "suffixSelected": "s",
+                        "index": 1
+                    },
+                    "transitionTimingFunction": {
+                        "val": "ease",
+                        "enabled": false,
+                        "alias": "<timing-function>",
+                        "type": "select",
+                        "options": [ "linear", "ease", "ease-in", "ease-out", "ease-in-out", "step-start", "step-end"],
+                        "index": 2
+                    },
+                    "transitionDelay": {
+                        "val": "0s",
+                        "enabled": false,
+                        "alias": "<delay>",
+                        "type": "number",
+                        "step": "0.1",
+                        "suffixOverrides": [ "s", "ms" ],
+                        "suffixSelected": "s",
+                        "index": 3
+                    }
+                }
+            },
+            "Opacity": {
+                "val": "1",
+                "enabled": false,
+                "alias": "opacity",
+                "type": "number",
+                "min": "0",
+                "max": "1",
+                "step": "0.1",
+                "suffixOverrides": []
+            }
+        }
     }
 }`
 
 export default defaults;
-
-// ,
-//     "Animations" : {
-//         "enabled": false,
-//         "props" : {
-//             "transitionProperty": {
-//                 "val": "all",
-//                 "enabled": false,
-//                 "alias": "transition-property",
-//                 "type": "select",
-//                 "options": ["all"]
-//             },
-//             "transitionDuration": {
-//                 "val": "0.2s",
-//                 "enabled": false,
-//                 "alias": "transition-duration",
-//                 "type": "number",
-//                 "suffixOverrides": [ "s", "ms" ]
-//             },
-//             "transitionTimingFunction": {
-//                 "val": "ease",
-//                 "enabled": false,
-//                 "alias": "transition-timing-function",
-//                 "type": "select",
-//                 "options": [ "linear", "ease", "ease-in", "ease-out", "ease-in-out", "step-start", "step-end"]
-//             },
-//             "transitionDelay": {
-//                 "val": "0px",
-//                 "enabled": false,
-//                 "alias": "transition-delay",
-//                 "type": "number"
-//             }
-//         }
-//     }
