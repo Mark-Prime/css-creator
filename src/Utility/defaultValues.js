@@ -755,6 +755,18 @@ const defaults = `{
                 "max": "1",
                 "step": "0.1",
                 "suffixOverrides": []
+            },
+            "cursor": {
+                "val": "none",
+                "enabled": false,
+                "alias": "cursor",
+                "type": "select",
+                "options": ["default", "pointer", "alias", "all-scroll", "auto", "cell", "context-menu",
+                    "col-resize", "copy", "crosshair", "e-resize", "ew-resize", "help", "move",
+                    "n-resize", "ne-resize", "nesw-resize", "ns-resize", "nw-resize", "nwse-resize",
+                    "no-drop", "none", "not-allowed", "progress", "row-resize", "s-resize", "se-resize",
+                    "sw-resize", "text", "vertical-text", "w-resize", "wait", "zoom-in", "zoom-out",
+                    "inherit", "initial", "revert", "unset"]
             }
         }
     }
