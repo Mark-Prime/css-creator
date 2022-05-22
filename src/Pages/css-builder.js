@@ -48,6 +48,12 @@ const Parent = styled.div`
     ${props=>props.css}
 `
 
+const Button = styled.button`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
 class CssBuilder extends Component {
     state = { 
         scss: true,
@@ -78,12 +84,6 @@ class CssBuilder extends Component {
             }
         }
 
-        const Button = styled.button`
-            ${this.props.styles.css}
-
-            ${extraCSS}
-        `
-
         return ( 
             <Body>
                 <Helmet>
@@ -101,7 +101,7 @@ class CssBuilder extends Component {
                     <Display>
                         <Parent css={this.props.container.css} key={this.props.log}>
                             {this.state.tag === 'button' && 
-                                (<Button>{this.state.text}</Button>)
+                                (<Button css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Button>)
                             }
                         </Parent>
                     </Display>
