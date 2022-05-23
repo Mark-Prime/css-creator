@@ -116,7 +116,7 @@ class Projects extends Component {
                         <Card title="CSSimple" logo={Maven}
                             github="https://github.com/Mark-Prime/css-creator"
                             tagline='Powerful CSS writing tool with no CSS knowledge required.'
-                            website="https://markspannbauer.me/css"
+                            website="https://markspannbauer.me/cssimple"
                             builtWith={[
                                 {name: "REACT.js", logo: REACT},
                                 {name: "Redux", logo: Redux},

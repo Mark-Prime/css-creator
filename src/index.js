@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import './index.css';
-import App from './App';
+import './App.css';
 import CssBuilder from './Pages/css-builder';
 import Home from './Pages/home';
 import Game from './Pages/game';
@@ -32,11 +32,9 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <Router>  
-      <Route exact path="/" component={App} /> 
-      <Route path="/home" component={Home} /> 
+      <Route exact path="/" component={Home} /> 
       <Route path="/cssimple" component={CssBuilder} /> 
-      <Route path="/game" component={Game
-      } /> 
+      <Route path="/game" component={Game} /> 
     </Router>
   </Provider>,
   document.getElementById('root')
