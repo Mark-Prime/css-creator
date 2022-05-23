@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'inter', sans-serif;
 `
 
 const PropList = styled.div`

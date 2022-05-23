@@ -3,6 +3,7 @@ import styled from "styled-components"
 const Label = styled.label`
     position: relative;
     cursor: pointer;
+    font-weight: 300;
 `
 
 const InputLabel = styled.div`

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 const Wrapper = styled.div`
     background: #303030;
+    font-family: 'inter', sans-serif;
+    font-weight: 300;
 `
 
 const Input = styled.input`
@@ -11,8 +13,6 @@ const Input = styled.input`
 
     :checked + label {
         border: 1px solid #ccc;
-        border-left: 2px solid #ccc;
-        border-right: 2px solid #ccc;
         margin: 0;
     }
 
@@ -23,7 +23,6 @@ const Input = styled.input`
 
 const Label = styled.label`
     font-size: 12px;
-    margin: 0 1px;
     padding: 1px 4px 3px;
     background-color: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(0, 0, 0, .7);
@@ -37,7 +36,7 @@ const Group = styled.form`
     align-items: center;
     width: 100%;
     border-top: 2px rgba(255, 255, 255, 0.12) solid;
-    padding: 5px 0;
+    padding: 5px 2px;
 `
 
 class EditSelect extends Component {

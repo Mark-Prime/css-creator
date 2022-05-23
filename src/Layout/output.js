@@ -8,6 +8,7 @@ const Wrapper = styled.div`
     background: #303030;
     border-top: 2px rgba(255, 255, 255, 0.12) solid;
     display: grid;
+    font-family: 'inter', sans-serif;
 `
 
 const TextBox = styled.div`
@@ -41,6 +42,7 @@ const TextBoxBody = styled.p`
     position: absolute;
     left: 5px;
     bottom: 0;
+    font-weight: 300;
 `
 
 const mapStateToProps = (props) => (props);
