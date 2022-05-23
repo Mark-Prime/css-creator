@@ -30,6 +30,7 @@ const Center = styled.div`
 
 const Display = styled.div`
     background: #ffffff;
+    color: #000000;
     position: relative;
     width: 100%;
     height: 100%;
@@ -56,6 +57,36 @@ const Button = styled.button`
     ${props=>props.extraCSS}
 `
 
+const P = styled.p`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const A = styled.a`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Div = styled.div`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Span = styled.span`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Img = styled.img`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
 class CssBuilder extends Component {
     state = { 
         scss: true,
@@ -76,10 +107,12 @@ class CssBuilder extends Component {
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
 
+    changeTag = (tag) => {this.setState({tag: tag})}
+
     setText = (event) => {this.setState({text: event.target.value})}
 
     render() { 
-        let selectors = ['hover', 'active', 'focus', 'target'];
+        let selectors = ['hover', 'active', 'focus', 'target', 'disabled', 'invalid'];
         let extraCSS = ''
 
         for (let selector of selectors) {
@@ -91,14 +124,17 @@ class CssBuilder extends Component {
         return ( 
             <Body>
                 <Helmet>
-                    <title>CSS {this.state.tag[0].toUpperCase() + this.state.tag.slice(1)} Builder</title>
+                    <title>CSSimple</title>
                 </Helmet>
                 <Sidebar 
                     functions={{
                         toggleSCSS: this.toggleSCSS,
+                        changeTag: this.changeTag,
+                        
                     }} 
                     values = {{
                         scss: this.state.scss,
+                        tag: this.state.tag,
                     }}
                 />
                 <Center>
@@ -107,6 +143,22 @@ class CssBuilder extends Component {
                             {this.state.tag === 'button' && 
                                 (<Button css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Button>)
                             }
+                            {this.state.tag === 'p' && 
+                                (<P css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</P>)
+                            }
+                            {this.state.tag === 'a' && 
+                                (<A css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</A>)
+                            }
+                            {this.state.tag === 'div' && 
+                                (<Div css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Div>)
+                            }
+                            {this.state.tag === 'span' && 
+                                (<Span css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Span>)
+                            }
+                            {this.state.tag === 'img' && 
+                                (<Img css={this.props.styles.css} extraCSS={extraCSS} alt="CSSimple" src={this.state.text}/>)
+                            }
+
                         </Parent>
                     </Display>
                     <Output 
