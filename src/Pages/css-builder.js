@@ -60,7 +60,7 @@ class CssBuilder extends Component {
     state = { 
         scss: true,
         tag: 'button',
-        text: "Button",
+        text: "Hello World!",
      }
 
      componentDidMount() {
