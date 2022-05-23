@@ -11,6 +11,8 @@ import active from '../Utility/active';
 import focus from '../Utility/focus';
 import target from '../Utility/target';
 import { Helmet } from 'react-helmet';
+import disabled from '../Utility/disabled';
+import invalid from '../Utility/invalid';
 
 const Body = styled.div`
     color: #fff;
@@ -68,6 +70,8 @@ class CssBuilder extends Component {
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: active, selection: 'active'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: focus, selection: 'focus'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: target, selection: 'target'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: disabled, selection: 'disabled'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: invalid, selection: 'invalid'}})
      }
 
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}

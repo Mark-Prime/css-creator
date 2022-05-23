@@ -1,5 +1,5 @@
 import defaultValues from './defaultValues'
 
-const focus = JSON.parse(defaultValues);
+const active = JSON.parse(defaultValues);
 
-export default focus;
+export default active;

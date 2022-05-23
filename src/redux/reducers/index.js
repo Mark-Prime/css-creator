@@ -5,6 +5,8 @@ import hover from './hoverReducer';
 import active from './activeReducer';
 import focus from './focusReducer';
 import target from './targetReducer';
+import disabled from './disabledReducer';
+import invalid from './invalidReducer';
 import selection from './selectionReducer';
 import log from './logReducer';
 
@@ -16,7 +18,9 @@ const rootReducer = combineReducers({
   target,
   selection,
   styles,
-  log
+  log,
+  disabled,
+  invalid
 });
 
 export default rootReducer;
