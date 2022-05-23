@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import styles from './styleReducer';
 import container from './containerStyleReducer';
+import before from './beforeReducer';
+import after from './afterReducer';
 import hover from './hoverReducer';
 import active from './activeReducer';
 import focus from './focusReducer';
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   styles,
   log,
   disabled,
+  after,
+  before,
   invalid
 });
 

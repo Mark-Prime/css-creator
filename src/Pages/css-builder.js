@@ -6,6 +6,8 @@ import Sidebar from '../Layout/sidebar';
 import { connect } from 'react-redux';
 import styles from '../Utility/styles'
 import container from '../Utility/container';
+import before from '../Utility/before';
+import after from '../Utility/after';
 import hover from '../Utility/hover';
 import active from '../Utility/active';
 import focus from '../Utility/focus';
@@ -92,11 +94,15 @@ class CssBuilder extends Component {
         scss: true,
         tag: 'button',
         text: "Hello World!",
+        before: '',
+        after: '',
      }
 
      componentDidMount() {
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles, selection: 'content'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: container, selection: 'container'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: after, selection: 'after'}})
+        this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: before, selection: 'before'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: hover, selection: 'hover'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: active, selection: 'active'}})
         this.props.dispatch({ type: 'LOAD_CSS' , payload: {styles: focus, selection: 'focus'}})
@@ -109,16 +115,46 @@ class CssBuilder extends Component {
 
     changeTag = (tag) => {this.setState({tag: tag})}
 
-    setText = (event) => {this.setState({text: event.target.value})}
+    setText = (event) => {
+        if (this.props.selection === 'after') {
+            this.setState({after: event.target.value})
+            return
+        }
+
+        if (this.props.selection === 'before') {
+            this.setState({before: event.target.value})
+            return
+        }
+
+        this.setState({text: event.target.value})
+    }
 
     render() { 
-        let selectors = ['hover', 'active', 'focus', 'target', 'disabled', 'invalid'];
+        let selectors = ['hover', 'active', 'focus', 'target', 'disabled', 'invalid', 'before', 'after'];
         let extraCSS = ''
 
         for (let selector of selectors) {
             if (this.props[selector] && this.props[selector].css && this.props[selector].css !== '') {
+                if (selector === 'before') {
+                    extraCSS = extraCSS + `&::${selector} {\n\tcontent: '${this.state.before}';\n${this.props[selector].css}}\n\n`
+                    continue
+                }
+                if (selector === 'after') {
+                    extraCSS = extraCSS + `&::${selector} {\n\tcontent: '${this.state.after}';\n${this.props[selector].css}}\n\n`
+                    continue
+                }
                 extraCSS = extraCSS + `&:${selector}{\n${this.props[selector].css}}`
             }
+        }
+
+        let text = this.state.text;
+
+        if (this.props.selection === 'after') {
+            text = this.state.after;
+        }
+
+        if (this.props.selection === 'before') {
+            text = this.state.before;
         }
 
         return ( 
@@ -166,10 +202,12 @@ class CssBuilder extends Component {
                         text={this.state.text} 
                         scss={this.state.scss} 
                         tag={this.state.tag}
+                        beforeText={this.state.before}
+                        afterText={this.state.after}
                     />
                 </Center>
                 <Properties 
-                    text={this.state.text}
+                    text={text}
                     background={this.state.background}
                     setText={this.setText}
                 />

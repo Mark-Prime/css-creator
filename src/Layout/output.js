@@ -65,10 +65,20 @@ export default connect(mapStateToProps)((props) => {
         SASS = SASS + `${props.tag} \n${props.styles.css}\n`
     }
 
-    let selectors = ['hover', 'active', 'focus', 'target'];
+    let selectors = ['hover', 'active', 'focus', 'target', 'disabled', 'invalid', 'before', 'after'];
 
     for (let selector of selectors) {
         if (props[selector] && props[selector].css && props[selector].css !== '') {
+            if (selector === 'before') {
+                CSS = CSS + `${props.tag}::${selector} {\n\tcontent: '${props.beforeText}';\n${props[selector].css}}\n\n`
+                SASS = SASS + `\t&::${selector} \n\t\tcontent: '${props.afterText}';\n${props[selector].css.split('\t').join('\t\t')}\n`
+                continue
+            }
+            if (selector === 'after') {
+                CSS = CSS + `${props.tag}::${selector} {\n\tcontent: '${props.afterText}';\n${props[selector].css}}\n\n`
+                SASS = SASS + `\t&::${selector} \n\t\tcontent: '${props.afterText}';\n${props[selector].css.split('\t').join('\t\t')}\n`
+                continue
+            }
             CSS = CSS + `${props.tag}:${selector} {\n${props[selector].css}}\n\n`
             SASS = SASS + `\t&:${selector} \n${props[selector].css.split('\t').join('\t\t')}\n`
         }

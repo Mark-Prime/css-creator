@@ -43,7 +43,6 @@ const Group = styled.form`
 class EditSelect extends Component {
     
     handleFormChange = (e) => {
-        console.log(e.target.value)
         this.props.dispatch({ type: 'SET_SELECTION' , payload: e.target.value})
     }
 
@@ -56,9 +55,9 @@ class EditSelect extends Component {
                     <Label htmlFor='container'>Container</Label>
                     <Input type="radio" onChange={this.handleFormChange} id='content' name='editSelect' value='content' checked={selection === 'content'}/>
                     <Label htmlFor='content'>Content</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id='before' name='editSelect' value='before' checked={selection === 'before'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id='before' name='editSelect' value='before' checked={selection === 'before'}/>
                     <Label htmlFor='before'>::before</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id='after' name='editSelect' value='after' checked={selection === 'after'} disabled/>
+                    <Input type="radio" onChange={this.handleFormChange} id='after' name='editSelect' value='after' checked={selection === 'after'}/>
                     <Label htmlFor='after'>::after</Label>
                 </Group>
                 <Group>
