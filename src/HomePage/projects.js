@@ -113,7 +113,7 @@ class Projects extends Component {
                                 {name: "JavaScript", logo: JavaScript},
                                 {name: "Chrome", logo: Chrome},
                             ]} />
-                        <Card title="CSS Builder" logo={Maven}
+                        <Card title="CSSimple" logo={Maven}
                             github="https://github.com/Mark-Prime/css-creator"
                             tagline='Powerful CSS writing tool with no CSS knowledge required.'
                             website="https://markspannbauer.me/css"
