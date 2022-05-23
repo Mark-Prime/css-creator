@@ -684,6 +684,21 @@ const defaults = `{
                     "sticky": true
                 }
             },
+            "zIndex": {
+                "val": "3",
+                "enabled": false,
+                "alias": "z-index",
+                "type": "number",
+                "min": "none",
+                "suffixOverrides": [],
+                "key": "position",
+                "showOnValue": {
+                    "absolute": true,
+                    "relative": true,
+                    "fixed": true,
+                    "sticky": true
+                }
+            },
             "float": {
                 "val": "none",
                 "enabled": false,
