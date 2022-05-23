@@ -34,7 +34,7 @@ ReactDOM.render(
     <Router>  
       <Route exact path="/" component={App} /> 
       <Route path="/home" component={Home} /> 
-      <Route path="/css" component={CssBuilder} /> 
+      <Route path="/cssimple" component={CssBuilder} /> 
       <Route path="/game" component={Game
       } /> 
     </Router>

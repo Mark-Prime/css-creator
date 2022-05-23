@@ -9,7 +9,7 @@ function App() {
           Mark Spannbauer <br/>
           Portfolio Coming Soon
         </p>
-        <Link to="/css">CSS Builder</Link>
+        <Link to="/cssimple">CSSimple</Link>
         <Link to="/game">Game</Link>
       </header>
     </div>
