@@ -70,8 +70,18 @@ class NumberSelect extends Component {
             let child = name.split("_")[1];
             let styleValue = parseInt(this.props.styles[this.props.title].props[parent].props[child].val, 10);
 
-            if (this.props.selection !== 'content') {
-                styleValue = parseInt(this.props[this.props.selection][parent].props[child].val, 10);
+            let selection = this.props.selection;
+
+            if (this.props.selection === 'content' && this.props.selector !== '') {
+                selection = this.props.selector;
+            } else if (this.props.selection !== 'content') {
+                if (this.props.selector !== '') {
+                    selection = `${this.props.selection}_${this.props.selector}`;
+                }
+            }
+
+            if (selection !== 'content') {
+                styleValue = parseInt(this.props[selection][parent].props[child].val, 10);
             }
 
             this.setState({
@@ -94,8 +104,18 @@ class NumberSelect extends Component {
 
         let styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10);
 
-        if (this.props.selection !== 'content') {
-            styleValue = parseInt(this.props[this.props.selection][this.props.title].props[this.props.name].val, 10);
+        let selection = this.props.selection;
+
+        if (this.props.selection === 'content' && this.props.selector !== '') {
+            selection = this.props.selector;
+        } else if (this.props.selection !== 'content') {
+            if (this.props.selector !== '') {
+                selection = `${this.props.selection}_${this.props.selector}`;
+            }
+        }
+
+        if (selection !== 'content') {
+            styleValue = parseInt(this.props[selection][this.props.title].props[this.props.name].val, 10);
         }
 
         if (isNaN(styleValue)) {
@@ -129,9 +149,18 @@ class NumberSelect extends Component {
             }
             
             let styles = this.props.styles;
+            let selection = this.props.selection;
 
-            if (this.props.selection !== 'content') {
-                styles = this.props[this.props.selection]
+            if (this.props.selection === 'content' && this.props.selector !== '') {
+                selection = this.props.selector;
+                styles = this.props[selection];
+            } else if (this.props.selection !== 'content') {
+                styles = this.props[this.props.selection];
+    
+                if (this.props.selector !== '') {
+                    selection = `${this.props.selection}_${this.props.selector}`;
+                    styles = this.props[selection];
+                }
             }
 
             if (this.props.isChild) {
@@ -144,18 +173,26 @@ class NumberSelect extends Component {
             }
             
             styles[this.props.title].props[event.target.name].val = value;
-            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: selection }})
         }
     }
 
     toggleEnabled = (event) => {
         const name = event.target.name;
         let styles = this.props.styles;
+        let selection = this.props.selection;
 
-        if (this.props.selection !== 'content') {
-            styles = this.props[this.props.selection]
+        if (this.props.selection === 'content' && this.props.selector !== '') {
+            selection = this.props.selector;
+            styles = this.props[selection];
+        } else if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection];
+
+            if (this.props.selector !== '') {
+                selection = `${this.props.selection}_${this.props.selector}`;
+                styles = this.props[selection];
+            }
         }
-
 
         if (this.props.isChild) {
             let parent = name.split("_")[0];
@@ -168,7 +205,7 @@ class NumberSelect extends Component {
                 styles[this.props.title].props[parent].props[child].enabled = false;
             }
 
-            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+            this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: selection }})
             return
         }
 
@@ -196,8 +233,7 @@ class NumberSelect extends Component {
             styles[this.props.title].enabled = enabled;
         }
 
-        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
-        
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: selection }})
     }
 
     componentDidMount() {
@@ -212,8 +248,14 @@ class NumberSelect extends Component {
         let name = this.props.name;
         let styles = this.props.styles;
 
-        if (this.props.selection !== 'content') {
-            styles = this.props[this.props.selection]
+        if (this.props.selection === 'content' && this.props.selector !== '') {
+            styles = this.props[this.props.selector]
+        } else if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection];
+
+            if (this.props.selector !== '') {
+                styles = this.props[`${this.props.selection}_${this.props.selector}`];
+            }
         }
 
         let title = this.props.title;

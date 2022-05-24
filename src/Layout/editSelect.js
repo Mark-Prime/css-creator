@@ -42,11 +42,23 @@ const Group = styled.form`
 class EditSelect extends Component {
     
     handleFormChange = (e) => {
+        console.log('HANDLE FORM CHANGE');
         this.props.dispatch({ type: 'SET_SELECTION' , payload: e.target.value})
+    }
+
+    handleFormChangeSelector = (e) => {
+        console.log('HANDLE FORM CHANGE SELECTOR');
+        this.props.dispatch({ type: 'SET_SELECTOR' , payload: e.target.value})
+    }
+
+    onClick = (e) => {
+        console.log('ON CLICK');
+        this.props.dispatch({ type: 'SET_SELECTOR' , payload: ''})
     }
 
     render() { 
         let selection = this.props.selection;
+        let selector = this.props.selector;
         return ( 
             <Wrapper>
                 <Group>
@@ -60,17 +72,17 @@ class EditSelect extends Component {
                     <Label htmlFor='after'>::after</Label>
                 </Group>
                 <Group>
-                    <Input type="radio" onChange={this.handleFormChange} id=':hover' name='editSelect' value='hover' checked={selection === 'hover'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':hover' name='editSelect' value='hover' checked={selector === 'hover'}/>
                     <Label htmlFor=':hover'>:hover</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':active' name='editSelect' value='active' checked={selection === 'active'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':active' name='editSelect' value='active' checked={selector === 'active'}/>
                     <Label htmlFor=':active'>:active</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':focus' name='editSelect' value='focus' checked={selection === 'focus'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':focus' name='editSelect' value='focus' checked={selector === 'focus'}/>
                     <Label htmlFor=':focus'>:focus</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':target' name='editSelect' value='target' checked={selection === 'target'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':target' name='editSelect' value='target' checked={selector === 'target'}/>
                     <Label htmlFor=':target'>:target</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':disabled' name='editSelect' value='disabled' checked={selection === 'disabled'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':disabled' name='editSelect' value='disabled' checked={selector === 'disabled'}/>
                     <Label htmlFor=':disabled'>:disabled</Label>
-                    <Input type="radio" onChange={this.handleFormChange} id=':invalid' name='editSelect' value='invalid' checked={selection === 'invalid'}/>
+                    <Input type="radio" onChange={this.handleFormChangeSelector} onClick={this.onClick} id=':invalid' name='editSelect' value='invalid' checked={selector === 'invalid'}/>
                     <Label htmlFor=':invalid'>:invalid</Label>
                 </Group>
             </Wrapper>
@@ -78,6 +90,6 @@ class EditSelect extends Component {
     }
 }
 
-const mapStateToProps = ({selection}) => ({selection});
+const mapStateToProps = ({selection, selector}) => ({selection, selector});
 
 export default connect(mapStateToProps)(EditSelect);

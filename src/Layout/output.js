@@ -56,10 +56,12 @@ export default connect(mapStateToProps)((props) => {
 
     let CSS = ``
     let SASS = ``
+    let containerCSS = ``;
+    let containerSASS = ``;
 
     if (props.container.css !== '') {
-        CSS = CSS + `.container {\n${props.container.css}}\n\n`
-        SASS = SASS + `.container\n${props.container.css}\n`
+        containerCSS = containerCSS + `.container {\n${props.container.css}}\n\n`
+        containerSASS = containerSASS + `.container\n${props.container.css}\n`
     }
 
     if (props.styles.css !== '') {
@@ -67,7 +69,7 @@ export default connect(mapStateToProps)((props) => {
         SASS = SASS + `${props.tag} \n${props.styles.css}\n`
     }
 
-    let selectors = ['hover', 'active', 'focus', 'target', 'disabled', 'invalid', 'before', 'after'];
+    let selectors = [ 'before', 'after', 'hover', 'active', 'focus', 'target', 'disabled', 'invalid'];
 
     for (let selector of selectors) {
         if (props[selector] && props[selector].css && props[selector].css !== '') {
@@ -84,6 +86,21 @@ export default connect(mapStateToProps)((props) => {
             CSS = CSS + `${props.tag}:${selector} {\n${props[selector].css}}\n\n`
             SASS = SASS + `\t&:${selector} \n${props[selector].css.split('\t').join('\t\t')}\n`
         }
+            
+        if (props[`container_${selector}`] && props[`container_${selector}`].css && props[`container_${selector}`].css !== '') {
+            containerCSS = containerCSS + `.container:${selector} {\n${props[`container_${selector}`].css}}\n\n`
+            containerSASS = containerSASS + `\t&:${selector}\n\t${props[`container_${selector}`].css}\n`
+        }
+
+        if (props[`before_${selector}`] && props[`before_${selector}`].css && props[`before_${selector}`].css !== '') {
+            CSS = CSS + `${props.tag}:${selector} ${props.tag}::before {\n${props[`before_${selector}`].css}}\n\n`
+            SASS = SASS + `\t&:${selector} \n\t\t&::before \n\t\t${props[`before_${selector}`].css}\n`
+        }
+
+        if (props[`after_${selector}`] && props[`after_${selector}`].css && props[`after_${selector}`].css !== '') {
+            CSS = CSS + `${props.tag}:${selector} ${props.tag}::after {\n${props[`after_${selector}`].css}}\n\n`
+            SASS = SASS + `\t&:${selector}\n\t\t&::after  \n\t\t${props[`after_${selector}`].css}\n`
+        }
     }
 
     return ( 
@@ -93,12 +110,12 @@ export default connect(mapStateToProps)((props) => {
                 <TextBoxBody>{HTML}</TextBoxBody>
             </TextBox>
             <TextBox>
-                <TextBoxHeader>CSS <CopyButton text={CSS} /></TextBoxHeader>
-                <TextBoxBody>{CSS}</TextBoxBody>
+                <TextBoxHeader>CSS <CopyButton text={`${containerCSS}${CSS}`} /></TextBoxHeader>
+                <TextBoxBody>{`${containerCSS}${CSS}`}</TextBoxBody>
             </TextBox>
             <TextBox style={{"display": !props.scss &&"none"}}>
-                <TextBoxHeader>SASS <CopyButton text={SASS} /></TextBoxHeader>
-                <TextBoxBody>{SASS}</TextBoxBody>
+                <TextBoxHeader>SASS <CopyButton text={`${containerSASS}${SASS}`} /></TextBoxHeader>
+                <TextBoxBody>{`${containerSASS}${SASS}`}</TextBoxBody>
             </TextBox>
         </Wrapper>
      );

@@ -44,10 +44,20 @@ const mapStateToProps = (props) => (props);
 export default connect(mapStateToProps)(function Properties(props) {
     let styles = props.styles;
 
+    if (props.selection === 'content' && props.selector !== '') {
+        styles = props[props.selector]
+    }
+
     if (props.selection !== 'content') {
-        styles = props[props.selection]
+        styles = props[props.selection];
+
+        if (props.selector !== '') {
+            styles = props[`${props.selection}_${props.selector}`];
+        }
     }
     
+    console.log('PROPERTIES');
+    console.log(`${props.selection}_${props.selector}`);
     console.table(styles);
       
     return ( 

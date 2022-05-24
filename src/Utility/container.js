@@ -18,4 +18,11 @@ container.Display.props.justifyContent.val = 'center';
 container.Display.props.alignItems.enabled = true;
 container.Display.props.alignItems.val = 'center';
 
+export const container_hover = JSON.parse(defaultValues);
+export const container_active = JSON.parse(defaultValues);
+export const container_focus = JSON.parse(defaultValues);
+export const container_target = JSON.parse(defaultValues);
+export const container_disabled = JSON.parse(defaultValues);
+export const container_invalid = JSON.parse(defaultValues);
+
 export default container;

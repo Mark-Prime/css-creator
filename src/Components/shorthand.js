@@ -23,9 +23,18 @@ class Select extends Component {
         const name = event.target.name;
 
         let styles = this.props.styles;
+        let selection = this.props.selection;
 
-        if (this.props.selection !== 'content') {
-            styles = this.props[this.props.selection]
+        if (this.props.selection === 'content' && this.props.selector !== '') {
+            selection = this.props.selector;
+            styles = this.props[selection];
+        } else if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection];
+
+            if (this.props.selector !== '') {
+                selection = `${this.props.selection}_${this.props.selector}`;
+                styles = this.props[selection];
+            }
         }
 
         let style = styles[this.props.title];
@@ -54,15 +63,21 @@ class Select extends Component {
             style.enabled = enabled;
         }
 
-        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: this.props.selection }})
+        this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: selection }})
     }
 
     render() { 
         let name = this.props.name;
         let styles = this.props.styles;
 
-        if (this.props.selection !== 'content') {
-            styles = this.props[this.props.selection]
+        if (this.props.selection === 'content' && this.props.selector !== '') {
+            styles = this.props[this.props.selector]
+        } else if (this.props.selection !== 'content') {
+            styles = this.props[this.props.selection];
+
+            if (this.props.selector !== '') {
+                styles = this.props[`${this.props.selection}_${this.props.selector}`];
+            }
         }
         
         let style = styles[this.props.title];
