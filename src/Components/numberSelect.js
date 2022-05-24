@@ -152,6 +152,8 @@ class NumberSelect extends Component {
             let selection = this.props.selection;
 
             if (this.props.selection === 'content' && this.props.selector !== '') {
+                console.log('SELECTION: ', this.props.selection)
+                console.log('SELECTOR: ', this.props.selector)
                 selection = this.props.selector;
                 styles = this.props[selection];
             } else if (this.props.selection !== 'content') {
@@ -168,7 +170,7 @@ class NumberSelect extends Component {
                 let parent = name.split("_")[0];
                 let child = name.split("_")[1];
                 styles[this.props.title].props[parent].props[child].val = value;
-                this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: this.props.selection }})
+                this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: selection }})
                 return
             }
             
