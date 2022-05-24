@@ -27,7 +27,6 @@ const Clicked = keyframes`
 const Button = styled.a`
     background: #303030;
     color: #BFBFBF;
-    border-radius: 10%;
     float: right;
     padding: 0 3px 3px 3px;
     position: relative;
@@ -41,7 +40,7 @@ const Button = styled.a`
 const Popup = styled.p`
     background: #303030;
     color: #FFFFFF;
-    border-radius: 10%;
+    border-radius: 5px;
     padding: 0 3px 3px 3px;
 
     position: absolute;

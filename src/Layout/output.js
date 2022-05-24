@@ -12,35 +12,45 @@ const Wrapper = styled.div`
 `
 
 const TextBox = styled.div`
-    margin: 3px 2px 0;
-    padding: 0 4px;
+    margin: 2px 1px 0;
+    padding: 0 2px;
     background: #424242;
-    border-radius: 5px 5px 0 0;
     display: grid;
     position: relative;
     grid-template-rows: 5% auto;
+
+    &:first-child {
+        margin-left: 2px;
+    }
+
+    &:last-child {
+        margin-right: 2px;
+    }
 `
 
 const TextBoxHeader = styled.h4`
     margin: 3px 0 0 0;
-    padding: 0 3px 3px 10px;
+    padding: 0 0 0 2px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 `
 
 const TextBoxBody = styled.p`
     background: #303030;
     margin-bottom: 0px;
-    padding: 0 4px;
-    border-radius: 5px 5px 0 0;
+    padding: 0 2px;
     white-space: pre-wrap;
 
     overflow-x: hidden;
     overflow-y: auto;
 
-    height: calc(100% - 30px);
-    width: calc(100% - 18px);
+    height: calc(100% - 28px);
+    width: calc(100% - 4px);
 
     position: absolute;
-    left: 5px;
+    left: 2px;
     bottom: 0;
     font-weight: 300;
 `
@@ -106,15 +116,15 @@ export default connect(mapStateToProps)((props) => {
     return ( 
         <Wrapper style={{"gridTemplateColumns": props.scss ? "33.33% 33.33% 33.33%" : "50% 50%"}}>
             <TextBox>
-                <TextBoxHeader>HTML <CopyButton text={HTML} /></TextBoxHeader>
+                <TextBoxHeader><p>HTML</p><CopyButton text={HTML} /></TextBoxHeader>
                 <TextBoxBody>{HTML}</TextBoxBody>
             </TextBox>
             <TextBox>
-                <TextBoxHeader>CSS <CopyButton text={`${containerCSS}${CSS}`} /></TextBoxHeader>
+                <TextBoxHeader><p>CSS</p><CopyButton text={`${containerCSS}${CSS}`} /></TextBoxHeader>
                 <TextBoxBody>{`${containerCSS}${CSS}`}</TextBoxBody>
             </TextBox>
             <TextBox style={{"display": !props.scss &&"none"}}>
-                <TextBoxHeader>SASS <CopyButton text={`${containerSASS}${SASS}`} /></TextBoxHeader>
+                <TextBoxHeader><p>SASS</p><CopyButton text={`${containerSASS}${SASS}`} /></TextBoxHeader>
                 <TextBoxBody>{`${containerSASS}${SASS}`}</TextBoxBody>
             </TextBox>
         </Wrapper>

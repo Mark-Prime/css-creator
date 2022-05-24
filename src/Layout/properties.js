@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const PropList = styled.div`
     flex-shrink: 1;
-    padding: 3px;
+    padding: 1px;
     overflow-x: hidden;
     overflow-y: auto;
 `;
@@ -29,14 +29,32 @@ const Input = styled.div`
 `
 
 const TextBox = styled.input`
+    border: none;
+    border-bottom: 1px dotted darkgray;
+    outline: none;
+    background: #303030;
+    color: #fff;
+    width: 45%;
+    margin-left: 4px;
+    flex: 1 1;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:disabled {
+        color: #BFBFBF;
+        text-decoration: line-through;
+    }
 `
 
 const InputLabel = styled.label`
-    padding-left: 4px;
+    padding-left: 1px;
 `
 
 const Hr = styled.hr`
-    margin-bottom: 3px;
+    margin: 2px 0;
+    border: 1px rgba(255, 255, 255, 0.12) solid;
 `
 
 const mapStateToProps = (props) => (props);
@@ -55,16 +73,12 @@ export default connect(mapStateToProps)(function Properties(props) {
             styles = props[`${props.selection}_${props.selector}`];
         }
     }
-    
-    console.log('PROPERTIES');
-    console.log(`${props.selection}_${props.selector}`);
-    console.table(styles);
       
     return ( 
         <Wrapper>
             <PropList>
                 <Input>
-                    <InputLabel>Content: </InputLabel>
+                    <InputLabel>{props.tag === 'img' ? 'src=' : 'Content: '}</InputLabel>
                     <TextBox value={props.text} onChange={props.setText}></TextBox>
                 </Input>
                 <Hr />

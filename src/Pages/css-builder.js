@@ -250,6 +250,7 @@ class CssBuilder extends Component {
                     text={text}
                     background={this.state.background}
                     setText={this.setText}
+                    tag={this.state.tag}
                 />
             </Body>
          );

@@ -33,7 +33,7 @@ const ToolTip = styled.div`
     background: #303030;
     z-index: 3;
     position: absolute;
-    left: 60px;
+    left: 62px;
     padding: 1px 5px 4px 5px;
     border-radius: 5px;
     font-size: 12px;
@@ -93,6 +93,10 @@ const Tag = styled.div`
 
 const CenteredImg = styled.img`
 `
+const Hr = styled.hr`
+    margin: 2px 0;
+    border: rgba(255, 255, 255, 0.16) solid 1px;
+`
 
 class Sidebar extends Component {
     render() { 
@@ -103,12 +107,13 @@ class Sidebar extends Component {
                     <ToggleEnabled><ToggleBody><CenteredImg src={SassLogo} alt="SASS" width="70%"/><ToolTip>Disable SASS Output Panel</ToolTip></ToggleBody></ToggleEnabled> :
                     <ToggleDisabled><ToggleBody><CenteredImg src={SassLogo} alt="SASS" width="70%"/><ToolTip>Enable SASS Output Panel</ToolTip></ToggleBody></ToggleDisabled>}
                 </Toggle>
-                <Tag enabled={this.props.values.tag === 'button'} onClick={() => this.props.functions.changeTag('button')}>{'<button>'}<ToolTip>Select {'<button>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'p'} onClick={() => this.props.functions.changeTag('p')}>{'<p>'}<ToolTip>Select {'<p>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'a'} onClick={() => this.props.functions.changeTag('a')}>{'<a>'}<ToolTip>Select {'<a>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'div'} onClick={() => this.props.functions.changeTag('div')}>{'<div>'}<ToolTip>Select {'<div>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'span'} onClick={() => this.props.functions.changeTag('span')}>{'<span>'}<ToolTip>Select {'<span>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'img'} onClick={() => this.props.functions.changeTag('img')}>{'<img>'}<ToolTip>Select {'<img>'} Tag</ToolTip></Tag>
+                <Hr />
+                <Tag enabled={this.props.values.tag === 'button'} onClick={() => this.props.functions.changeTag('button')}>{'button'}<ToolTip>Select {'<button>'} Tag</ToolTip></Tag>
+                <Tag enabled={this.props.values.tag === 'p'} onClick={() => this.props.functions.changeTag('p')}>{'p'}<ToolTip>Select {'<p>'} Tag</ToolTip></Tag>
+                <Tag enabled={this.props.values.tag === 'a'} onClick={() => this.props.functions.changeTag('a')}>{'a'}<ToolTip>Select {'<a>'} Tag</ToolTip></Tag>
+                <Tag enabled={this.props.values.tag === 'div'} onClick={() => this.props.functions.changeTag('div')}>{'div'}<ToolTip>Select {'<div>'} Tag</ToolTip></Tag>
+                <Tag enabled={this.props.values.tag === 'span'} onClick={() => this.props.functions.changeTag('span')}>{'span'}<ToolTip>Select {'<span>'} Tag</ToolTip></Tag>
+                <Tag enabled={this.props.values.tag === 'img'} onClick={() => this.props.functions.changeTag('img')}>{'img'}<ToolTip>Select {'<img />'} Tag</ToolTip></Tag>
             </Wrapper>
          );
     }
