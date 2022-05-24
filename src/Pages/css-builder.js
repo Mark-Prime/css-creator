@@ -46,13 +46,9 @@ const Display = styled.div`
         margin: initial;
         padding: initial;
         box-sizing: initial;
+        padding: revert;
+        margin: revert;
     }
-`
-
-const Parent = styled.div`
-    ${props=>props.css}
-
-    ${props=>props.extraCSSContainer}
 `
 
 const Button = styled.button`
@@ -91,10 +87,53 @@ const Img = styled.img`
     ${props=>props.extraCSS}
 `
 
+const H1 = styled.h1`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const H2 = styled.h2`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const H3 = styled.h3`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const H4 = styled.h4`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Ul = styled.ul`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Ol = styled.ol`
+    ${props=>props.css}
+
+    ${props=>props.extraCSS}
+`
+
+const Li = styled.li`    
+    ${props=>props.css}
+    
+    ${props=>props.extraCSS}
+`
+
 class CssBuilder extends Component {
     state = { 
         scss: true,
         tag: 'button',
+        container: 'div',
         text: "Hello World!",
         before: '',
         after: '',
@@ -138,6 +177,7 @@ class CssBuilder extends Component {
     toggleSCSS = () => {this.setState({scss: this.state.scss ? false : true})}
 
     changeTag = (tag) => {this.setState({tag: tag})}
+    changeContainer = (tag) => {this.setState({container: tag})}
 
     setText = (event) => {
         if (this.props.selection === 'after') {
@@ -197,6 +237,60 @@ class CssBuilder extends Component {
             text = this.state.before;
         }
 
+        let Child;
+        switch (this.state.tag) {
+            case 'button':
+                Child = () => <Button css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Button>;
+                break;
+            case 'p':
+                Child = () => <P css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</P>;
+                break;
+            case 'a':
+                Child = () => <A css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</A>;
+                break;
+            case 'div':
+                Child = () => <Div css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Div>;
+                break;
+            case 'span':
+                Child = () => <Span css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Span>;
+                break;
+            case 'li':
+                Child = () => <Li css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Li>;
+                break;
+            case 'h1':
+                Child = () => <H1 css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</H1>;
+                break;
+            case 'h2':
+                Child = () => <H2 css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</H2>;
+                break;
+            case 'h3':
+                Child = () => <H3 css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</H3>;
+                break;
+            case 'h4':
+                Child = () => <H4 css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</H4>;
+                break;
+            case 'img':
+                Child = () => <Img css={this.props.styles.css} extraCSS={extraCSS} alt={'CSSimple'} src={this.state.text}/>;
+                break;
+            default:
+                Child = () => <Button css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Button>;
+        };
+
+        let Parent;
+        switch (this.state.tag) {
+            case 'button':
+                Parent = () => <Div css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Div>;
+                break;
+            case 'ul':
+                Parent = () => <Ul css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Ul>;
+                break;
+            case 'ol':
+                Parent = () => <Ol css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Ol>;
+                break;
+            default:
+                Parent = () => <Div css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Div>;
+        };
+
         return ( 
             <Body>
                 <Helmet>
@@ -206,42 +300,24 @@ class CssBuilder extends Component {
                     functions={{
                         toggleSCSS: this.toggleSCSS,
                         changeTag: this.changeTag,
-                        
+                        changeContainer: this.changeContainer,
                     }} 
                     values = {{
                         scss: this.state.scss,
                         tag: this.state.tag,
+                        containerTag: this.state.container,
                     }}
                 />
                 <Center>
                     <Display>
-                        <Parent css={this.props.container.css} extraCSSContainer={extraCSSContainer} key={this.props.log}>
-                            {this.state.tag === 'button' && 
-                                (<Button css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Button>)
-                            }
-                            {this.state.tag === 'p' && 
-                                (<P css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</P>)
-                            }
-                            {this.state.tag === 'a' && 
-                                (<A css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</A>)
-                            }
-                            {this.state.tag === 'div' && 
-                                (<Div css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Div>)
-                            }
-                            {this.state.tag === 'span' && 
-                                (<Span css={this.props.styles.css} extraCSS={extraCSS}>{this.state.text}</Span>)
-                            }
-                            {this.state.tag === 'img' && 
-                                (<Img css={this.props.styles.css} extraCSS={extraCSS} alt="CSSimple" src={this.state.text}/>)
-                            }
-
-                        </Parent>
+                        <Parent />
                     </Display>
                     <Output 
                         background={this.state.background} 
                         text={this.state.text} 
                         scss={this.state.scss} 
                         tag={this.state.tag}
+                        containerTag={this.state.container}
                         beforeText={this.state.before}
                         afterText={this.state.after}
                     />

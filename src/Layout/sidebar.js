@@ -100,6 +100,8 @@ const Hr = styled.hr`
 
 class Sidebar extends Component {
     render() { 
+        let ContainerTagOptions = ['div', 'ul', 'ol'];
+        let tagOptions = ['button', 'p', 'a', 'div', 'span', 'img', 'li', 'h1', 'h2', 'h3', 'h4'];
         return ( 
             <Wrapper>
                 <Toggle onClick={this.props.functions.toggleSCSS}>
@@ -108,12 +110,14 @@ class Sidebar extends Component {
                     <ToggleDisabled><ToggleBody><CenteredImg src={SassLogo} alt="SASS" width="70%"/><ToolTip>Enable SASS Output Panel</ToolTip></ToggleBody></ToggleDisabled>}
                 </Toggle>
                 <Hr />
-                <Tag enabled={this.props.values.tag === 'button'} onClick={() => this.props.functions.changeTag('button')}>{'button'}<ToolTip>Select {'<button>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'p'} onClick={() => this.props.functions.changeTag('p')}>{'p'}<ToolTip>Select {'<p>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'a'} onClick={() => this.props.functions.changeTag('a')}>{'a'}<ToolTip>Select {'<a>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'div'} onClick={() => this.props.functions.changeTag('div')}>{'div'}<ToolTip>Select {'<div>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'span'} onClick={() => this.props.functions.changeTag('span')}>{'span'}<ToolTip>Select {'<span>'} Tag</ToolTip></Tag>
-                <Tag enabled={this.props.values.tag === 'img'} onClick={() => this.props.functions.changeTag('img')}>{'img'}<ToolTip>Select {'<img />'} Tag</ToolTip></Tag>
+                {ContainerTagOptions.map((tag, index) => {
+                    return (
+                        <Tag key={index} enabled={this.props.values.containerTag === tag} onClick={() => this.props.functions.changeContainer(tag)}>{tag}</Tag>
+                )})}
+                <Hr />
+                {tagOptions.map((tag, index) => {
+                    return <Tag enabled={this.props.values.tag === tag} onClick={() => this.props.functions.changeTag(tag)} key={index}>{tag}<ToolTip>Select {tag} Tag</ToolTip></Tag>
+                })}
             </Wrapper>
          );
     }

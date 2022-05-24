@@ -58,10 +58,10 @@ const TextBoxBody = styled.p`
 const mapStateToProps = (props) => (props);
 
 export default connect(mapStateToProps)((props) => {
-    let HTML = `<div class="container">\n\t<${props.tag}>${props.text}</${props.tag}>\n</div>`
+    let HTML = `<${props.containerTag} class="container">\n\t<${props.tag}>${props.text}</${props.tag}>\n</${props.containerTag}>`
 
     if (props.tag === 'img') {
-        HTML = `<div class="container">\n\t<${props.tag} alt="CSSimple" src="${props.text}" />\n</div>`
+        HTML = `<${props.containerTag} class="container">\n\t<${props.tag} alt="CSSimple" src="${props.text}" />\n</${props.containerTag}>`
     }
 
     let CSS = ``
