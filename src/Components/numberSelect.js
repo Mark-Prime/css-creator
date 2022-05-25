@@ -323,7 +323,9 @@ class NumberSelect extends Component {
                         step={this.props.step ? this.props.step : "any"}
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={val.replace(suffixSelected || this.state.suffix, '')} 
+                        value={val.replace(suffixSelected || this.state.suffix, '')
+                                ||
+                            ((suffixSelected === 'auto' || this.state.suffix === 'auto') ? '' : 0)} 
                         onChange={this.OnStyleChange} 
                         disabled={!enabled || this.state.suffix === 'auto'}
                     />
