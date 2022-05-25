@@ -81,7 +81,7 @@ class NumberSelect extends Component {
             }
 
             if (selection !== 'content') {
-                styleValue = parseInt(this.props[selection][parent].props[child].val, 10);
+                styleValue = this.props[selection][parent].props[child].val.replace(this.state.suffix, '');
             }
 
             this.setState({
@@ -94,12 +94,13 @@ class NumberSelect extends Component {
                         dataset: {
                             suffix: value === 'auto' ? '' : value
                         },
-                        value: value === 'auto' ? "auto" : parseInt(styleValue, 10),
+                        value: value === 'auto' ? "auto" : styleValue,
                         name: this.props.name
                     }
                 }
             )
-            return
+
+            return 
         }
 
         let styleValue = parseInt(this.props.styles[this.props.title].props[this.props.name].val, 10);
@@ -115,7 +116,7 @@ class NumberSelect extends Component {
         }
 
         if (selection !== 'content') {
-            styleValue = parseInt(this.props[selection][this.props.title].props[this.props.name].val, 10);
+            styleValue = this.props[selection][this.props.title].props[this.props.name].val.replace(this.state.suffix, '');
         }
 
         if (isNaN(styleValue)) {
@@ -125,14 +126,14 @@ class NumberSelect extends Component {
         this.setState({
             suffix: value
         })
-
+        
         this.OnStyleChange(
             {
                 target: {
                     dataset: {
                         suffix: value === 'auto' ? '' : value
                     },
-                    value: value === 'auto' ? "auto" : parseInt(styleValue, 10),
+                    value: value === 'auto' ? "auto" : styleValue,
                     name: this.props.name
                 }
             }
@@ -142,8 +143,7 @@ class NumberSelect extends Component {
     OnStyleChange = (event) => {
         let suffix = event.target.dataset.suffix
         if (suffix !== 'auto') {
-            let value = event.target.value
-            console.log('VALUE: ', value)
+            let value = event.target.value;
             if (suffix) {
                 value += suffix
             }
@@ -170,11 +170,13 @@ class NumberSelect extends Component {
                 let parent = name.split("_")[0];
                 let child = name.split("_")[1];
                 styles[this.props.title].props[parent].props[child].val = value;
+                styles[this.props.title].props[parent].props[child].suffixSelected = suffix;
                 this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, isChild: true, parent, child, title: this.props.title, name, css: styles.css, selection: selection }})
                 return
             }
             
             styles[this.props.title].props[event.target.name].val = value;
+            styles[this.props.title].props[event.target.name].suffixSelected = suffix;
             this.props.dispatch({ type: 'UPDATE_CSS' , payload: {styles, title: this.props.title, name: event.target.name, css: styles.css, selection: selection }})
         }
     }
@@ -265,12 +267,14 @@ class NumberSelect extends Component {
         let alias = '';
         let enabled;
         let suffixOverrides;
+        let suffixSelected;
         let val;
 
         if (name.indexOf("_") === -1) {
             alias = style.props[name].alias;
             enabled = style.props[name].enabled;
             suffixOverrides = style.props[name].suffixOverrides;
+            suffixSelected = style.props[name].suffixSelected;
             val = style.props[name].val;
 
             if (style.props[name].key) {
@@ -295,23 +299,8 @@ class NumberSelect extends Component {
             alias = style.props[parent].props[child].alias;
             enabled = style.props[parent].props[child].enabled;
             suffixOverrides = style.props[parent].props[child].suffixOverrides;
+            suffixSelected = style.props[parent].props[child].suffixSelected;
             val = style.props[parent].props[child].val;
-        }
-
-        if (suffixOverrides && suffixOverrides.length === 0) {
-            if (this.state.suffix !== '') {
-                this.setState({
-                    suffix: ''
-                })
-            }
-        }
-
-        if (suffixOverrides && suffixOverrides.length > 0) {
-            if (suffixOverrides.indexOf(this.state.suffix) === -1) {
-                this.setState({
-                    suffix: suffixOverrides[0]
-                })
-            }
         }
 
         return ( 
@@ -329,18 +318,18 @@ class NumberSelect extends Component {
                 <SelectWrapper>
                     <NumberInput 
                         name={name}
-                        data-suffix={this.state.suffix}
+                        data-suffix={suffixSelected || this.state.suffix}
                         type="number"
                         step={this.props.step ? this.props.step : "any"}
                         min={this.props.min ? this.props.min : 0}
                         max={this.props.max ? this.props.max : "none"}
-                        value={val.replace(this.state.suffix, '')} 
+                        value={val.replace(suffixSelected || this.state.suffix, '')} 
                         onChange={this.OnStyleChange} 
                         disabled={!enabled || this.state.suffix === 'auto'}
                     />
                     {(!suffixOverrides || suffixOverrides.length > 0) && <SuffixSelect
                         name={name}
-                        value={this.state.suffix} 
+                        value={suffixSelected || this.state.suffix} 
                         onChange={this.OnSuffixChange} 
                         disabled={!enabled}
                     >

@@ -6,6 +6,7 @@ container.Content.enabled = true;
 
 container.Content.props.height.enabled = true;
 container.Content.props.height.val = '100%';
+container.Content.props.height.suffixSelected = '%';
 
 container.Display.enabled = true;
 
