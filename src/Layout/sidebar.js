@@ -206,11 +206,11 @@ class Sidebar extends Component {
                 <Hr />
                 {ContainerTagOptions.map((tag, index) => {
                     return (
-                        <Tag key={index} enabled={this.props.values.containerTag === tag} onClick={() => this.props.functions.changeContainer(tag)}>{tag}</Tag>
+                        <Tag key={index} enabled={this.props.values.containerTag === tag} onClick={() => this.props.functions.changeContainer(tag)}>{tag}<ToolTip>Select {`<${tag}>`} tag for the container element</ToolTip></Tag>
                 )})}
                 <Hr />
                 {tagOptions.map((tag, index) => {
-                    return <Tag enabled={this.props.values.tag === tag} onClick={() => this.props.functions.changeTag(tag)} key={index}>{tag}<ToolTip>Select {tag} Tag</ToolTip></Tag>
+                    return <Tag enabled={this.props.values.tag === tag} onClick={() => this.props.functions.changeTag(tag)} key={index}>{tag}<ToolTip>Select {`<${tag}>`} tag for the child element</ToolTip></Tag>
                 })}
                 <Hr />
                 <Counts>
