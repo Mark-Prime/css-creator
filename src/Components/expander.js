@@ -25,6 +25,7 @@ const Title = styled.div`
     transition: all .1s;
     background: #383838;
     position: relative;
+    font-weight: 300;
 
     &:before {
         content: '';
@@ -43,7 +44,7 @@ const Title = styled.div`
     }
     
     &:hover {
-        font-weight: bold;
+        font-weight: 500;
         padding: 1px 1.4rem;
         background: #404040;
 

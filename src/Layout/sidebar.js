@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     width: 55px;
     cursor: context-menu;
     font-family: 'inter', sans-serif;
+    font-weight: 300;
 `
 
 const Toggle = styled.div`
@@ -36,7 +37,6 @@ const ToolTip = styled.div`
     left: 62px;
     padding: 1px 5px 4px 5px;
     border-radius: 5px;
-    font-size: 12px;
     display: none;
     width: auto;
     min-width: max-content;
