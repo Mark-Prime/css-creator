@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
     cursor: pointer;
-    padding: 1px 1rem;
+    padding: 1px 1rem 3px;
     transition: all .1s;
     background: #383838;
     position: relative;
@@ -45,7 +45,7 @@ const Title = styled.div`
     
     &:hover {
         font-weight: 500;
-        padding: 1px 1.4rem;
+        padding: 1px 1.4rem 3px;
         background: #404040;
 
         &:before {

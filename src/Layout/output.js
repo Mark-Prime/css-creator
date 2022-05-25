@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     background: #303030;
     border-top: 2px rgba(255, 255, 255, 0.12) solid;
     display: grid;
-    font-family: 'inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
 `
 
 const TextBox = styled.div`

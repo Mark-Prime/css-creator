@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     border-right: 2px rgba(255, 255, 255, 0.12) solid;
     width: 55px;
     cursor: context-menu;
-    font-family: 'inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 300;
 `
 
