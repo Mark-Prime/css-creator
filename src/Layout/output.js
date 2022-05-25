@@ -104,12 +104,12 @@ export default connect(mapStateToProps)((props) => {
 
         if (props[`before_${selector}`] && props[`before_${selector}`].css && props[`before_${selector}`].css !== '') {
             CSS = CSS + `${props.tag}:${selector} ${props.tag}::before {\n${props[`before_${selector}`].css}}\n\n`
-            SASS = SASS + `\t&:${selector} \n\t\t&::before \n\t\t${props[`before_${selector}`].css}\n`
+            SASS = SASS + `\t&:${selector} \n\t\t&::before \n${props[`before_${selector}`].css.replace(/\t/g,"\t\t\t")}\n`
         }
 
         if (props[`after_${selector}`] && props[`after_${selector}`].css && props[`after_${selector}`].css !== '') {
             CSS = CSS + `${props.tag}:${selector} ${props.tag}::after {\n${props[`after_${selector}`].css}}\n\n`
-            SASS = SASS + `\t&:${selector}\n\t\t&::after  \n\t\t${props[`after_${selector}`].css}\n`
+            SASS = SASS + `\t&:${selector}\n\t\t&::after  \n${props[`after_${selector}`].css.replace(/\t/g,"\t\t\t")}\n`
         }
     }
 
