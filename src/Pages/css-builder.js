@@ -16,6 +16,14 @@ import { Helmet } from 'react-helmet';
 import disabled from '../Utility/disabled';
 import invalid from '../Utility/invalid';
 
+function range(end) {
+    var ans = [];
+    for (let i = 1; i <= end; i++) {
+        ans.push(i);
+    }
+    return ans;
+}
+
 const Body = styled.div`
     color: #fff;
     display: flex;
@@ -137,6 +145,7 @@ class CssBuilder extends Component {
         text: "Hello World!",
         before: '',
         after: '',
+        count: 1,
      }
 
      componentDidMount() {
@@ -178,6 +187,12 @@ class CssBuilder extends Component {
 
     changeTag = (tag) => {this.setState({tag: tag})}
     changeContainer = (tag) => {this.setState({container: tag})}
+    addCount = () => {this.setState({count: this.state.count + 1})}
+    subtractCount = () => {
+        if (this.state.count > 1) {
+            this.setState({count: this.state.count - 1})
+        }
+    }
 
     setText = (event) => {
         if (this.props.selection === 'after') {
@@ -277,18 +292,18 @@ class CssBuilder extends Component {
         };
 
         let Parent;
-        switch (this.state.tag) {
-            case 'button':
-                Parent = () => <Div css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Div>;
+        switch (this.state.container) {
+            case 'div':
+                Parent = (props) => <Div css={this.props.container.css} extraCSS={extraCSSContainer}>{props.children}</Div>;
                 break;
             case 'ul':
-                Parent = () => <Ul css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Ul>;
+                Parent = (props) => <Ul css={this.props.container.css} extraCSS={extraCSSContainer}>{props.children}</Ul>;
                 break;
             case 'ol':
-                Parent = () => <Ol css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Ol>;
+                Parent = (props) => <Ol css={this.props.container.css} extraCSS={extraCSSContainer}>{props.children}</Ol>;
                 break;
             default:
-                Parent = () => <Div css={this.props.container.css} extraCSS={extraCSSContainer}><Child /></Div>;
+                Parent = (props) => <Div css={this.props.container.css} extraCSS={extraCSSContainer}>{props.children}</Div>;
         };
 
         return ( 
@@ -301,6 +316,8 @@ class CssBuilder extends Component {
                         toggleSCSS: this.toggleSCSS,
                         changeTag: this.changeTag,
                         changeContainer: this.changeContainer,
+                        addCount: this.addCount,
+                        subtractCount: this.subtractCount,
                     }} 
                     values = {{
                         scss: this.state.scss,
@@ -310,7 +327,11 @@ class CssBuilder extends Component {
                 />
                 <Center>
                     <Display>
-                        <Parent />
+                        <Parent>
+                            {range(this.state.count).map((i) => {
+                                return <Child key={`CHILD-${i}`} />
+                            })}
+                        </Parent>
                     </Display>
                     <Output 
                         background={this.state.background} 

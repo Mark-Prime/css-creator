@@ -37,6 +37,9 @@ const ToolTip = styled.div`
     padding: 1px 5px 4px 5px;
     border-radius: 5px;
     font-size: 12px;
+    display: none;
+    width: auto;
+    min-width: max-content;
 
     ::before {
         content: '';
@@ -44,7 +47,7 @@ const ToolTip = styled.div`
         z-index: 2;
         position: absolute;
         height: .6rem;
-        width: 6px;
+        width: 7px;
         top: 50%;
         left: -6px;
         clip-path: polygon(100% 0, 100% 100%, 0 50%);
@@ -58,10 +61,6 @@ const ToggleBody = styled.div`
     justify-content: center;
     height: 100%;
     width: 100%;
-
-    ${ToolTip} {
-        display: none;
-    }
 
     &:hover ${ToolTip} {
         display: block;
@@ -78,10 +77,6 @@ const Tag = styled.div`
     justify-content: center;
     cursor: pointer;
 
-    ${ToolTip} {
-        display: none;
-    }
-
     &:hover {
         background: ${props => props.enabled ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0.3)'};
 
@@ -92,7 +87,106 @@ const Tag = styled.div`
 `
 
 const CenteredImg = styled.img`
+
 `
+
+const Counts = styled.div`
+    background: rgba(255, 255, 255, 0.10);
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const Addition = styled.button`
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.10);
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-size: 12px;
+    color: #ffffff;
+
+    &::before {
+        content: '';
+        clip-path: polygon(10% 40%, 40% 40%, 40% 10%, 60% 10%, 60% 40%, 90% 40%, 90% 60%, 60% 60%, 60% 90%, 40% 90%, 40% 60%, 10% 60%);
+        background: rgba(255, 255, 255);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+    }
+
+    ${ToolTip} {
+        position: absolute;
+        left: 35px;
+        top: 3px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+
+        ${ToolTip} {
+            display: block;
+        }
+    }
+
+    &:active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+`
+
+const Subtraction = styled.button`
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.10);
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-size: 12px;
+    color: #ffffff;
+
+    &::before {
+        content: '';
+        clip-path: polygon(10% 40%, 90% 40%, 90% 60%, 10% 60%);
+        background: rgba(255, 255, 255);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+    }
+
+    ${ToolTip} {
+        position: absolute;
+        top: 3px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+
+        ${ToolTip} {
+            display: block;
+        }
+    }
+
+    &:active {
+        background: rgba(255, 255, 255, 0.3);
+    }
+`
+
 const Hr = styled.hr`
     margin: 2px 0;
     border: rgba(255, 255, 255, 0.16) solid 1px;
@@ -118,6 +212,11 @@ class Sidebar extends Component {
                 {tagOptions.map((tag, index) => {
                     return <Tag enabled={this.props.values.tag === tag} onClick={() => this.props.functions.changeTag(tag)} key={index}>{tag}<ToolTip>Select {tag} Tag</ToolTip></Tag>
                 })}
+                <Hr />
+                <Counts>
+                    <Subtraction onClick={this.props.functions.subtractCount}><ToolTip>Remove a child tag</ToolTip></Subtraction>
+                    <Addition onClick={this.props.functions.addCount}><ToolTip>Add a child tag</ToolTip></Addition>
+                </Counts>
             </Wrapper>
          );
     }
