@@ -123,13 +123,11 @@ const Name = styled.h2`
     text-shadow: 0px 0px 5px ${colorHighlight};
     font-family: 'Major Mono Display', sans-serif;
     font-weight: 100;
-    transition: all .3s;
-    position: relative;
-    z-index: 1;
     margin: 1rem 0;
 `
 
 const Links = styled.div`
+
 `
 
 const Link = styled.a`

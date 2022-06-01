@@ -5,6 +5,7 @@ import Splash from '../HomePage/splashScreen';
 import Projects from '../HomePage/projects';
 // import Art from '../HomePage/art';
 import AboutMe from '../HomePage/aboutMe';
+import Contact from '../HomePage/contact';
 
 // * colors:
 // let colorBg = "#21006f"
@@ -28,6 +29,7 @@ class Home extends Component {
                 <Splash />
                 <AboutMe />
                 <Projects />
+                <Contact />
                 {/* <Art /> */}
             </Container>
          );

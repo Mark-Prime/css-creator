@@ -18,6 +18,8 @@ const Header = styled.h1`
     transition: all .3s;
     position: relative;
     z-index: 1;
+    margin: 0;
+    padding: 0;
     margin-bottom: 2rem;
 `
 

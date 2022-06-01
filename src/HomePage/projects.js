@@ -23,8 +23,8 @@ import Python from '../imgs/python.svg';
 import StyledComponents from '../imgs/styledcomponents.png';
 
 // * colors:
-let colorBg = "#21006f"
-// let colorBg2 = "#450eff"
+// let colorBg = "#21006f"
+let colorBg2 = "#450eff"
 // let colorHighlight = "#ff911a"
 // let colorPrimary = "#fe3218"
 let colorSecondary = "#e100f5"
@@ -54,9 +54,13 @@ const Container = styled.div`
         // background: black;
         background-color: black;
         background-image: radial-gradient(
-            ellipse at 5% 93%,
-            ${colorBg} 0%,
-            transparent 60%);
+            ellipse at 5% 87%,
+            ${colorBg2} 0%,
+            transparent 50%),
+            radial-gradient(
+                ellipse at 95% 95%,
+                ${colorBg2} 0%,
+                transparent 30%);
         background-repeat: no-repeat;
         position: absolute;
         z-index: -1;
