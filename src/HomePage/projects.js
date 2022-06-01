@@ -8,10 +8,12 @@ import QuiRe from '../imgs/QuiRe.svg';
 import TeamTrack from '../imgs/TeamTrack.svg';
 import Ryukbot from '../imgs/Ryukbot.png';
 import Maven from '../imgs/Maven.png';
+import imgElution from '../imgs/imgelution.png';
 
 import REACT from '../imgs/React.png';
 import Redux from '../imgs/redux.svg';
 import Node from '../imgs/nodejs.svg';
+import Rust from '../imgs/rust.png';
 // import HTML5 from '../imgs/HTML5.png';
 import CSS3 from '../imgs/css3.png';
 import JavaScript from '../imgs/javascript.svg';
@@ -22,13 +24,13 @@ import StyledComponents from '../imgs/styledcomponents.png';
 
 // * colors:
 let colorBg = "#21006f"
-let colorBg2 = "#450eff"
+// let colorBg2 = "#450eff"
 // let colorHighlight = "#ff911a"
 // let colorPrimary = "#fe3218"
 let colorSecondary = "#e100f5"
 
 const Wrapper = styled.div`
-    background: linear-gradient(${colorBg} -30%, ${colorBg2} 10%);
+    background: black;
     position: relative;
 `
 
@@ -78,7 +80,7 @@ const Cards = styled.div`
     grid-gap: 2rem;
     width: 100%;
     padding: 1rem;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
 `
 
@@ -89,29 +91,11 @@ class Projects extends Component {
                 <Container>
                     <Header>projects</Header>
                     <Cards>
-                        <Card title="Ryukbot" logo={Ryukbot} 
-                            github="https://github.com/Mark-Prime/Ryukbotv2"
-                            tagline="Source Engine video clip recording, automated."
+                        <Card title="Img-elution" logo={imgElution}
+                            github="https://github.com/Mark-Prime/img-elution"
+                            tagline='Recreating source images using random lines and evolution.'
                             builtWith={[
-                                {name: "Python", logo: Python},
-                            ]}/>
-                        <Card title="TeamTrack" logo={TeamTrack}
-                            github="https://github.com/Mark-Prime/Team-Track"
-                            tagline="eSports statistics categorized and visualized."
-                            website='https://www.teamtrack.xyz/#/home'
-                            builtWith={[
-                                {name: "REACT.js", logo: REACT},
-                                {name: "Redux", logo: Redux},
-                                {name: "node.js", logo: Node},
-                            ]} />
-                        <Card title="QuiRe" logo={QuiRe}
-                            github="https://github.com/Mark-Prime/QuiRe"
-                            tagline="Browser extension for quick and easy access to common replies."
-                            website="https://chrome.google.com/webstore/detail/quire/ilchbfooaopcoekdfnhlcohobeediilo"
-                            builtWith={[
-                                {name: "CSS3", logo: CSS3},
-                                {name: "JavaScript", logo: JavaScript},
-                                {name: "Chrome", logo: Chrome},
+                                {name: "Rust", logo: Rust},
                             ]} />
                         <Card title="CSSimple" logo={Maven}
                             github="https://github.com/Mark-Prime/css-creator"
@@ -122,6 +106,30 @@ class Projects extends Component {
                                 {name: "Redux", logo: Redux},
                                 {name: "Styled Components", logo: StyledComponents},
                             ]} />
+                        <Card title="QuiRe" logo={QuiRe}
+                            github="https://github.com/Mark-Prime/QuiRe"
+                            tagline="Browser extension for quick and easy access to common replies."
+                            website="https://chrome.google.com/webstore/detail/quire/ilchbfooaopcoekdfnhlcohobeediilo"
+                            builtWith={[
+                                {name: "CSS3", logo: CSS3},
+                                {name: "JavaScript", logo: JavaScript},
+                                {name: "Chrome", logo: Chrome},
+                            ]} />
+                        <Card title="TeamTrack" logo={TeamTrack}
+                            github="https://github.com/Mark-Prime/Team-Track"
+                            tagline="eSports statistics categorized and visualized."
+                            website='https://www.teamtrack.xyz/#/home'
+                            builtWith={[
+                                {name: "REACT.js", logo: REACT},
+                                {name: "Redux", logo: Redux},
+                                {name: "node.js", logo: Node},
+                            ]} />
+                        <Card title="Ryukbot" logo={Ryukbot} 
+                            github="https://github.com/Mark-Prime/Ryukbotv2"
+                            tagline="Source Engine video clip recording, automated."
+                            builtWith={[
+                                {name: "Python", logo: Python},
+                            ]}/>
                     </Cards>
                 </Container>
             </Wrapper>
