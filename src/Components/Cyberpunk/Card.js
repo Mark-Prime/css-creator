@@ -19,6 +19,8 @@ const FrontGlow = styled.div`
     width: 100%;
     height: 100%;
 
+    background: linear-gradient(-45deg, ${colorPrimary} 0%, ${colorPrimary} 3.5rem, transparent 3.5rem);
+
     clip-path: polygon(
         0 0,
         100% 0,
@@ -154,7 +156,7 @@ const Container = styled.div`
     }
 
     &:hover ${Back}, &:hover ${BackGlow} {
-        background: none;
+        background: linear-gradient(135deg, ${colorHighlight} 0%, ${colorHighlight} 3.5rem, transparent 3.5rem);
         clip-path: polygon(
             100% 0,
             calc(0% + 5rem) 0,

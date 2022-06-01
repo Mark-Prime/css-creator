@@ -211,6 +211,10 @@ const Button = styled.button`
     outline: none;
     border: 1px solid ${colorHighlight};
 
+    transition: all .1s;
+
+    cursor: pointer;
+
     clip-path: polygon(
         0 0,
 
@@ -255,6 +259,10 @@ const Button = styled.button`
             calc(100% - 3rem) 100%,
             calc(100% - 2rem) 50%
         );
+    }
+
+    &:hover {
+        padding-right: 4rem;
     }
 `
 
