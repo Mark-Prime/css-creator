@@ -28,6 +28,9 @@ const FrontGlow = styled.div`
         calc(100% - 5rem) 100%,
         0 100%
         );
+
+    position: relative;
+    z-index: 3;
 `
 
 const Front = styled.div`
@@ -36,7 +39,7 @@ const Front = styled.div`
     height: 100%;
     position: absolute;
     padding: 1rem;
-    z-index: 2;
+    z-index: 1;
     top: 0;
     left: 0;
 
@@ -129,7 +132,7 @@ const Subtitle = styled.h1`
     font-size: 2rem;
     text-align: center;
     color: ${colorPrimary};
-    transition: all .3s;
+    transition: all .2s;
 
     font-family: 'inter', sans-serif;
     font-weight: 100;
@@ -141,7 +144,7 @@ const Container = styled.div`
     height: 25rem;
 
     & * {
-        transition: all .3s;
+        transition: all .2s;
     }
 
     &:hover ${Front}, &:hover ${FrontGlow} {
@@ -185,11 +188,19 @@ const Container = styled.div`
     &:hover ${BackEffects} {
         filter: drop-shadow(0 0 8px ${colorHighlight});
     }
+
+    @media (max-width: 1300px) {
+        height: 30rem;
+    }
 `
 
 const ProjectLogo = styled.img`
     width: 100%;
     max-height: 100%;
+    position: relative;
+    z-index: -1;
+
+    object-fit: contain;
 `
 
 const Logo = styled.img`
@@ -287,7 +298,7 @@ const Link = styled.a`
         );
     
     &:after {
-        transition: all .3s;
+        transition: all .2s;
     }
 
     &:first-child {

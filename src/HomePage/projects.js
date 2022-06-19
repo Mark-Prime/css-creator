@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Card from '../Components/Cyberpunk/Card';
 import Header from '../Components/Cyberpunk/Header';
 
-// import Natours from '../imgs/Natours.png';
+import Natours from '../imgs/Natours.png';
 import QuiRe from '../imgs/QuiRe.svg';
 import TeamTrack from '../imgs/TeamTrack.svg';
 import Ryukbot from '../imgs/Ryukbot.png';
@@ -80,12 +80,32 @@ const Container = styled.div`
 
 const Cards = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
     grid-gap: 2rem;
-    width: 100%;
+    width: 60%;
     padding: 1rem;
     max-width: 1600px;
     margin: 0 auto;
+
+    @media (max-width: 1300px) {
+        width: 80%;
+    }
+
+    @media (max-width: 1000px) {
+        width: 100%;
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+
+    @media (max-width: 900px) {
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+    }
+
+    @media (max-width: 550px) {
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
+    }
 `
 
 class Projects extends Component {
@@ -134,6 +154,13 @@ class Projects extends Component {
                             builtWith={[
                                 {name: "Python", logo: Python},
                             ]}/>
+                        <Card title="Natours" logo={Natours}
+                            github="https://github.com/Mark-Prime/Natours"
+                            tagline="Beautiful and sleek Nature themed web page design."
+                            website="https://mark-prime.github.io/Natours/"
+                            builtWith={[
+                                {name: "CSS3", logo: CSS3},
+                            ]} />
                     </Cards>
                 </Container>
             </Wrapper>

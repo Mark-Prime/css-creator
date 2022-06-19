@@ -117,7 +117,8 @@ const Form = styled.form`
         calc(50% + 12rem) .8rem,
         calc(50% + 12rem) 1rem,
 
-        calc(100% - 1rem) 1rem,
+        calc(100% - 1rem - 1px) 1rem,
+        calc(100% - 1px) 0,
         100% 0,
         100% 100%,
         0 100%

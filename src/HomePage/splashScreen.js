@@ -165,47 +165,6 @@ const NamePlate = styled.img`
     max-width: 100vw;
 `
 
-// const arrowAnim = keyframes`
-//     0% {
-//         clip-path: polygon(0% -40%, 50% -20%, 100% -40%, 100% -20%, 50% 0%, 0% -20%);
-//         background: ${colorPrimary};
-//     }
-
-//     100% {
-//         clip-path: polygon(0% 100%, 50% 120%, 100% 100%, 100% 120%, 50% 140%, 0% 120%);
-//         background: ${colorHighlight};
-//     }
-// `
-
-// const DownArrow = styled.div`
-//     height: 50px;
-//     width: 50px;
-//     position: relative;
-//     z-index: 1;
-//     mask: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,.9) 90%);
-
-//     &::before {
-//         content: "";
-//         clear: both;
-//         display: table;
-//         height: 50px;
-//         width: 50px;
-//         animation: ${arrowAnim} 1.5s linear infinite;
-//     }
-
-//     &::after {
-//         content: "";
-//         position: relative;
-//         top: -100%;
-//         clear: both;
-//         display: table;
-//         height: 50px;
-//         width: 50px;
-//         animation: ${arrowAnim} 1.5s linear infinite 0.75s;
-//     }
-
-// `
-
 const ME = styled.div`
     background: -webkit-linear-gradient(${colorPrimary}, ${colorHighlight});
     font-family: "Montserrat", sans-serif;
@@ -214,6 +173,8 @@ const ME = styled.div`
     position: absolute;
     bottom: 0;
     left: 1rem;
+
+    transition: all 0.2s ease;
 
     &::before {
         content: "ME";
@@ -255,17 +216,10 @@ const Descriptor = styled.div`
     }
 
     @media (max-width: 1000px) {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        transform: translateY(calc(-100% + 1.5rem));
-        animation: ${createAnimation('1.5rem')} ${(props=>props.loaded) ? '0s' : '2.5s'};
-    }
-
-    @media (max-width: 750px) {
         font-size: 2rem;
         line-height: 2rem;
         transform: translateY(calc(-100% + 2rem));
-        animation: ${createAnimation('2rem')} 0s ease;
+        animation: none;
     }
 `
 
@@ -319,7 +273,7 @@ const PurpleLines = styled.div`
         box-shadow: 0px 22px 0px ${colorSecondary};
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 1000px) {
         width: 50%;
         animation: ${purpleAnim} 0s ease;
     }
@@ -358,12 +312,6 @@ const SubHeader = styled.div`
     }
 
     @media (max-width: 1000px) {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        padding-top: 2.5rem;
-    }
-
-    @media (max-width: 750px) {
         font-size: 2rem;
         line-height: 2rem;
         padding-top: 2.2rem;
@@ -381,10 +329,6 @@ const SubHeader = styled.div`
         }
 
         @media (max-width: 1000px) {
-            transform: translateY(calc((-1.5rem * ${props=>props.num}) - 3px));
-        }
-
-        @media (max-width: 750px) {
             transform: translateY(calc(-100% + 2rem));
         }
     }

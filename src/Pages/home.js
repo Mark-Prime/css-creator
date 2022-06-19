@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Splash from '../HomePage/splashScreen';
 import Projects from '../HomePage/projects';
-// import Art from '../HomePage/art';
 import AboutMe from '../HomePage/aboutMe';
 import Contact from '../HomePage/contact';
 
@@ -19,10 +18,6 @@ const Container = styled.div`
 `
 
 class Home extends Component {
-    state = {
-        activePage: "home",
-    }
-
     render() { 
         return ( 
             <Container>
@@ -30,7 +25,6 @@ class Home extends Component {
                 <AboutMe />
                 <Projects />
                 <Contact />
-                {/* <Art /> */}
             </Container>
          );
     }

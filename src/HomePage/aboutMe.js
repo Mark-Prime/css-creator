@@ -208,7 +208,7 @@ function AboutMe() {
                             </ImgEffects>
                             <Img src={Me} alt="Mark (Maven) Spannbauer"/>
                         </ImgContainer>
-                        <Name>mark (maven) spannbauer</Name>
+                        <Name>maven (mark) spannbauer</Name>
                         <Links>
                             <Link href={"https://github.com/Mark-Prime"} target="_blank">
                                 <Github aria-hidden={true}></Github>

@@ -17,7 +17,7 @@ import disabled from '../Utility/disabled';
 import invalid from '../Utility/invalid';
 
 function range(end) {
-    var ans = [];
+    let ans = [];
     for (let i = 1; i <= end; i++) {
         ans.push(i);
     }
