@@ -134,6 +134,21 @@ const purpleAnim = keyframes`
     }
 `
 
+const Top = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const Bio = styled.h1`
+    font-size: 1.2rem;
+    font-family: "Montserrat", sans-serif;
+    background: linear-gradient(${colorPrimary}, ${colorHighlight});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+`
+
 const IAM = styled.div`
     font-family: "Montserrat", sans-serif;
     background: linear-gradient(${colorPrimary}, ${colorHighlight});
@@ -390,7 +405,10 @@ class Splash extends Component {
     render() { 
         return ( 
             <Header>
-                <NamePlate src={logo} alt="Mark Spannbauer" />
+                <Top>
+                    <NamePlate src={logo} alt="Maven (Mark) Spannbauer Logo" />
+                    <Bio>Software Engineer, Artist, Performer</Bio>
+                </Top>
                 <SubHeader loaded={this.state.loaded} num={this.state.num} onMouseEnter={this.onMouseEnter} key={this.state.num}>
                     <IAMContainer>
                         <IAM>I AM</IAM>

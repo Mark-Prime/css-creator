@@ -126,6 +126,16 @@ const Name = styled.h2`
     margin: 1rem 0;
 `
 
+const Text = styled.p`
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: ${colorHighlight};
+
+    text-align: center;
+
+    margin-bottom: 1rem;
+`
+
 const Links = styled.div`
 
 `
@@ -209,6 +219,7 @@ function AboutMe() {
                             <Img src={Me} alt="Mark (Maven) Spannbauer"/>
                         </ImgContainer>
                         <Name>maven (mark) spannbauer</Name>
+                        <Text>I'm a dedicated, charismatic, and self-motivated person looking to improve the lives of those around me. I love learning new technology, programming languages, and frameworks to expand what I can offer. </Text>
                         <Links>
                             <Link href={"https://github.com/Mark-Prime"} target="_blank">
                                 <Github aria-hidden={true}></Github>
