@@ -141,7 +141,7 @@ const Subtitle = styled.h1`
 const Container = styled.div`
     position: relative;
     z-index: 1;
-    height: 25rem;
+    height: 30rem;
 
     & * {
         transition: all .2s;
@@ -273,7 +273,7 @@ const BuiltWith = styled.div`
     position: relative;
     height: 200px;
 
-    padding: 0 2rem;
+    padding: 0 3rem;
 
     &:hover ${BuiltWithLogo}:not(:hover) {
         transform: scale(.95);
